@@ -39,6 +39,21 @@ public class NewButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        OnClick();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnHoverEnter();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnHoverExit();
+    }
+
+    public void OnClick()
+    {
         if (pressedCoroutine != null) return;
         buttonEvent.Invoke();
         pressedCoroutine = StartCoroutine(SpritePressed());
@@ -46,7 +61,7 @@ public class NewButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         audioSrc.Play();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnHoverEnter()
     {
         hover = true;
         if (pressedCoroutine != null) return;
@@ -55,7 +70,7 @@ public class NewButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         audioSrc.Play();
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnHoverExit()
     {
         hover = false;
         if (pressedCoroutine != null) return;

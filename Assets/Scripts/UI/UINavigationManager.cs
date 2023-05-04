@@ -9,7 +9,7 @@ public class UINavigationManager : MonoBehaviour
     private List<UINavigatable> navList = new();
 
     public List<UINavigatable> GetAllNavigatable() { return navList; }
-    public List<UINavigatable> currentSelected = new();
+    [HideInInspector] public List<UINavigatable> currentSelected = new();
 
     public GameObject p1Selector;
     public GameObject p2Selector;
@@ -83,7 +83,7 @@ public class UINavigationManager : MonoBehaviour
         currentSelected[1].OnFocusOut();
         currentSelected[1] = currentSelected[1].up;
         currentSelected[1].OnFocusIn();
-        SetP1Selector();
+        SetP2Selector();
     }
     private void OnP2MoveDown()
     {
@@ -91,7 +91,7 @@ public class UINavigationManager : MonoBehaviour
         currentSelected[1].OnFocusOut();
         currentSelected[1] = currentSelected[1].down;
         currentSelected[1].OnFocusIn();
-        SetP1Selector();
+        SetP2Selector();
     }
     private void OnP2MoveRight()
     {
@@ -99,7 +99,7 @@ public class UINavigationManager : MonoBehaviour
         currentSelected[1].OnFocusOut();
         currentSelected[1] = currentSelected[1].right;
         currentSelected[1].OnFocusIn();
-        SetP1Selector();
+        SetP2Selector();
     }
     private void OnP2MoveLeft()
     {
@@ -107,7 +107,7 @@ public class UINavigationManager : MonoBehaviour
         currentSelected[1].OnFocusOut();
         currentSelected[1] = currentSelected[1].left;
         currentSelected[1].OnFocusIn();
-        SetP1Selector();
+        SetP2Selector();
     }
     private void OnP2Select()
     {

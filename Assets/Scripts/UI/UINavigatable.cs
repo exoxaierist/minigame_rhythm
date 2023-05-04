@@ -11,6 +11,8 @@ public class UINavigatable : MonoBehaviour
     public UINavigatable up;
     public UINavigatable down;
 
+    private NewButton btn;
+
     public void SearchNavigatable()
     {
         right = SearchRight();
@@ -21,17 +23,26 @@ public class UINavigatable : MonoBehaviour
 
     public void OnFocusIn()
     {
-
+        if(TryGetComponent(out btn))
+        {
+            btn.OnHoverEnter();
+        }
     }
 
     public void OnFocusOut()
     {
-
+        if(TryGetComponent(out btn))
+        {
+            btn.OnHoverExit();
+        }
     }
 
     public void OnSelect()
     {
-
+        if(TryGetComponent(out btn))
+        {
+            btn.OnClick();
+        }
     } 
 
     private UINavigatable SearchRight()
@@ -42,7 +53,7 @@ public class UINavigatable : MonoBehaviour
         
         foreach (UINavigatable nav in all)
         {
-            if (player == nav.player || nav.player == Player.All)
+            if (player == nav.player)
             {
                 if (nav.transform.position.x > transform.position.x)
                 {
@@ -67,7 +78,7 @@ public class UINavigatable : MonoBehaviour
 
         foreach (UINavigatable nav in all)
         {
-            if (player == nav.player || nav.player == Player.All)
+            if (player == nav.player)
             {
                 if (nav.transform.position.x < transform.position.x)
                 {
@@ -92,7 +103,7 @@ public class UINavigatable : MonoBehaviour
 
         foreach (UINavigatable nav in all)
         {
-            if (player == nav.player || nav.player == Player.All)
+            if (player == nav.player)
             {
                 if (nav.transform.position.y > transform.position.y)
                 {
@@ -117,7 +128,7 @@ public class UINavigatable : MonoBehaviour
 
         foreach (UINavigatable nav in all)
         {
-            if (player == nav.player || nav.player == Player.All)
+            if (player == nav.player)
             {
                 if (nav.transform.position.y < transform.position.y)
                 {

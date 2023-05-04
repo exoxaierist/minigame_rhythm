@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
     public KeyCode p2Down = KeyCode.DownArrow;
     public KeyCode p2Right = KeyCode.RightArrow;
     public KeyCode p2Left = KeyCode.LeftArrow;
-    public KeyCode p2Special = KeyCode.Return;
+    public KeyCode p2Select = KeyCode.Return;
 
     private void Update()
     {
@@ -41,7 +41,7 @@ public class InputHandler : MonoBehaviour
             if (Input.GetKeyDown(p2Down)) Global.P2DownAction?.Invoke();
             if (Input.GetKeyDown(p2Right)) Global.P2RightAction?.Invoke();
             if (Input.GetKeyDown(p2Left)) Global.P2LeftAction?.Invoke();
-            if (Input.GetKeyDown(p2Special)) Global.P2SelectAction?.Invoke();
+            if (Input.GetKeyDown(p2Select)) Global.P2SelectAction?.Invoke();
         }
     }
 }
