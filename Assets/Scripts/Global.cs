@@ -24,6 +24,9 @@ public static class Global
     public static Action P2LeftAction;
     public static Action P2SpecialAction;
 
+    // UI Navigation
+    public static UINavigationManager uiNavManager;
+
     //// 에셋 참조
     public static AssetCollector assets;
 

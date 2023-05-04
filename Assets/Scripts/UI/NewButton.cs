@@ -11,18 +11,22 @@ public class NewButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 {
     private Image image;
     private AudioSource audioSrc;
+    [Header("Sprite Swap")]
     public Sprite defaultSprite;
     public Sprite hoverSprite;
     public Sprite pressedSprite;
 
+    [Header("Audio Clip")]
     public AudioClip hoverClip;
     public AudioClip pressClip;
 
     private float pressedDuration = 0.1f;
     private bool hover = false;
 
+    [Header("UnityEvent")]
     public UnityEvent buttonEvent;
     private Coroutine pressedCoroutine;
+
 
     private void Awake()
     {
