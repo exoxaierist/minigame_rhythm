@@ -9,44 +9,116 @@ public class UINavigationManager : MonoBehaviour
     private List<UINavigatable> navList = new();
 
     public List<UINavigatable> GetAllNavigatable() { return navList; }
-    public UINavigatable currentSelected;
+    public List<UINavigatable> currentSelected = new();
 
-    public GameObject p1Sel;
+    public GameObject p1Selector;
+    public GameObject p2Selector;
 
     private void Awake()
     {
         Global.uiNavManager = this;
         navList = FindObjectsOfType<UINavigatable>().ToList();
         foreach (UINavigatable nav in navList) nav.SearchNavigatable();
-        currentSelected = navList[0];
+        currentSelected.Add(navList[0]);
+        currentSelected.Add(navList[1]);
+
+        Global.P1UpAction += OnP1MoveUp;
+        Global.P1DownAction += OnP1MoveDown;
+        Global.P1RightAction += OnP1MoveRight;
+        Global.P1LeftAction += OnP1MoveLeft;
+        Global.P1SelectAction += OnP1Select;
+
+        Global.P2UpAction += OnP2MoveUp;
+        Global.P2DownAction += OnP2MoveDown;
+        Global.P2RightAction += OnP2MoveRight;
+        Global.P2LeftAction += OnP2MoveLeft;
+        Global.P2SelectAction += OnP2Select;
     }
 
     private void Start()
     {
-        p1Sel.transform.position = currentSelected.transform.position;
+        SetP1Selector();
+        SetP2Selector();
     }
 
-    private void Update()
+    private void OnP1MoveUp()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && currentSelected.right!=null)
-        {
-            currentSelected = currentSelected.right;
-            p1Sel.transform.position = currentSelected.transform.position;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSelected.left != null)
-        {
-            currentSelected = currentSelected.left;
-            p1Sel.transform.position = currentSelected.transform.position;
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && currentSelected.up != null)
-        {
-            currentSelected = currentSelected.up;
-            p1Sel.transform.position = currentSelected.transform.position;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && currentSelected.down != null)
-        {
-            currentSelected = currentSelected.down;
-            p1Sel.transform.position = currentSelected.transform.position;
-        }
+        if (currentSelected[0].up == null) return;
+        currentSelected[0].OnFocusOut();
+        currentSelected[0] = currentSelected[0].up;
+        currentSelected[0].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP1MoveDown()
+    {
+        if (currentSelected[0].down == null) return;
+        currentSelected[0].OnFocusOut();
+        currentSelected[0] = currentSelected[0].down;
+        currentSelected[0].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP1MoveRight()
+    {
+        if (currentSelected[0].right == null) return;
+        currentSelected[0].OnFocusOut();
+        currentSelected[0] = currentSelected[0].right;
+        currentSelected[0].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP1MoveLeft()
+    {
+        if (currentSelected[0].left == null) return;
+        currentSelected[0].OnFocusOut();
+        currentSelected[0] = currentSelected[0].left;
+        currentSelected[0].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP1Select()
+    {
+        currentSelected[0].OnSelect();
+    }
+    private void OnP2MoveUp()
+    {
+        if (currentSelected[1].up == null) return;
+        currentSelected[1].OnFocusOut();
+        currentSelected[1] = currentSelected[1].up;
+        currentSelected[1].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP2MoveDown()
+    {
+        if (currentSelected[1].down == null) return;
+        currentSelected[1].OnFocusOut();
+        currentSelected[1] = currentSelected[1].down;
+        currentSelected[1].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP2MoveRight()
+    {
+        if (currentSelected[1].right == null) return;
+        currentSelected[1].OnFocusOut();
+        currentSelected[1] = currentSelected[1].right;
+        currentSelected[1].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP2MoveLeft()
+    {
+        if (currentSelected[1].left == null) return;
+        currentSelected[1].OnFocusOut();
+        currentSelected[1] = currentSelected[1].left;
+        currentSelected[1].OnFocusIn();
+        SetP1Selector();
+    }
+    private void OnP2Select()
+    {
+        currentSelected[1].OnSelect();
+    }
+    private void SetP1Selector()
+    {
+        p1Selector.transform.position = currentSelected[0].transform.position;
+    }
+    private void SetP2Selector()
+    {
+        p2Selector.transform.position = currentSelected[1].transform.position;
     }
 }

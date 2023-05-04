@@ -19,10 +19,25 @@ public class UINavigatable : MonoBehaviour
         down = SearchDown();
     }
 
+    public void OnFocusIn()
+    {
+
+    }
+
+    public void OnFocusOut()
+    {
+
+    }
+
+    public void OnSelect()
+    {
+
+    } 
+
     private UINavigatable SearchRight()
     {
         List<UINavigatable> all = Global.uiNavManager.GetAllNavigatable();
-        float largestDot = 100000;
+        float closestDist = 10000000;
         UINavigatable result = null;
         
         foreach (UINavigatable nav in all)
@@ -32,21 +47,22 @@ public class UINavigatable : MonoBehaviour
                 if (nav.transform.position.x > transform.position.x)
                 {
                     Vector3 dir = nav.transform.position - transform.position;
-                    float dot = (1 - Vector3.Dot(Vector3.right, dir.normalized)) * dir.sqrMagnitude;
-                    if (dot < largestDot)
+                    float dot = Vector3.Dot(Vector3.right, dir.normalized);
+                    if (dot > 0.7f && dir.magnitude < closestDist)
                     {
+                        closestDist = dir.magnitude;
                         result = nav;
-                        largestDot = dot;
                     }
                 }
             }
         }
         return result;
     }
+
     private UINavigatable SearchLeft()
     {
         List<UINavigatable> all = Global.uiNavManager.GetAllNavigatable();
-        float largestDot = 100000;
+        float closestDist = 10000000;
         UINavigatable result = null;
 
         foreach (UINavigatable nav in all)
@@ -56,21 +72,22 @@ public class UINavigatable : MonoBehaviour
                 if (nav.transform.position.x < transform.position.x)
                 {
                     Vector3 dir = nav.transform.position - transform.position;
-                    float dot = (1 - Vector3.Dot(Vector3.left, dir.normalized)) * dir.sqrMagnitude;
-                    if (dot < largestDot)
+                    float dot = Vector3.Dot(Vector3.left, dir.normalized);
+                    if (dot > 0.7f && dir.magnitude < closestDist)
                     {
+                        closestDist = dir.magnitude;
                         result = nav;
-                        largestDot = dot;
                     }
                 }
             }
         }
         return result;
     }
+
     private UINavigatable SearchUp()
     {
         List<UINavigatable> all = Global.uiNavManager.GetAllNavigatable();
-        float largestDot = 100000;
+        float closestDist = 10000000;
         UINavigatable result = null;
 
         foreach (UINavigatable nav in all)
@@ -80,36 +97,36 @@ public class UINavigatable : MonoBehaviour
                 if (nav.transform.position.y > transform.position.y)
                 {
                     Vector3 dir = nav.transform.position - transform.position;
-                    float dot = (1 - Vector3.Dot(Vector3.up, dir.normalized)) * dir.sqrMagnitude;
-                    if (dot < largestDot)
+                    float dot = Vector3.Dot(Vector3.up, dir.normalized);
+                    if (dot > 0.7f && dir.magnitude < closestDist)
                     {
+                        closestDist = dir.magnitude;
                         result = nav;
-                        largestDot = dot;
                     }
                 }
             }
         }
         return result;
     }
+
     private UINavigatable SearchDown()
     {
         List<UINavigatable> all = Global.uiNavManager.GetAllNavigatable();
-        float largestDot = 100000;
+        float closestDist = 10000000;
         UINavigatable result = null;
 
         foreach (UINavigatable nav in all)
         {
             if (player == nav.player || nav.player == Player.All)
             {
-                
                 if (nav.transform.position.y < transform.position.y)
                 {
                     Vector3 dir = nav.transform.position - transform.position;
-                    float dot = (1 - Vector3.Dot(Vector3.down, dir.normalized)) * dir.sqrMagnitude;
-                    if (dot < largestDot)
+                    float dot = Vector3.Dot(Vector3.down, dir.normalized);
+                    if (dot > 0.7f && dir.magnitude < closestDist)
                     {
+                        closestDist = dir.magnitude;
                         result = nav;
-                        largestDot = dot;
                     }
                 }
             }
