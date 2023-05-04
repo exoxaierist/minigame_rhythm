@@ -11,16 +11,21 @@ public class UINavigationManager : MonoBehaviour
     public List<UINavigatable> GetAllNavigatable() { return navList; }
     [HideInInspector] public List<UINavigatable> currentSelected = new();
 
+    [Header("Selector")]
     public GameObject p1Selector;
     public GameObject p2Selector;
+    public Transform parent;
+    [Header("Entry Button")]
+    public UINavigatable p1StartNav;
+    public UINavigatable p2StartNav;
 
     private void Awake()
     {
         Global.uiNavManager = this;
         navList = FindObjectsOfType<UINavigatable>().ToList();
         foreach (UINavigatable nav in navList) nav.SearchNavigatable();
-        currentSelected.Add(navList[0]);
-        currentSelected.Add(navList[1]);
+        currentSelected.Add(p1StartNav);
+        currentSelected.Add(p2StartNav);
 
         Global.P1UpAction += OnP1MoveUp;
         Global.P1DownAction += OnP1MoveDown;
@@ -33,6 +38,11 @@ public class UINavigationManager : MonoBehaviour
         Global.P2RightAction += OnP2MoveRight;
         Global.P2LeftAction += OnP2MoveLeft;
         Global.P2SelectAction += OnP2Select;
+
+        p1Selector = Instantiate(p1Selector);
+        p2Selector = Instantiate(p2Selector);
+        p1Selector.transform.SetParent(parent);
+        p2Selector.transform.SetParent(parent);
     }
 
     private void Start()
