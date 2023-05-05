@@ -3635,17 +3635,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1516290653}
     - target: {fileID: 7085493241934177029, guid: ff283aecd57a6904884739b2d42f1f9f, type: 3}
-      propertyPath: p1Selector
-      value: 
-      objectReference: {fileID: 789770314801800139, guid: 25ecf7af8838e8e458f48709f801d193, type: 3}
-    - target: {fileID: 7085493241934177029, guid: ff283aecd57a6904884739b2d42f1f9f, type: 3}
       propertyPath: p1StartNav
       value: 
       objectReference: {fileID: 146693582}
-    - target: {fileID: 7085493241934177029, guid: ff283aecd57a6904884739b2d42f1f9f, type: 3}
-      propertyPath: p2Selector
-      value: 
-      objectReference: {fileID: 4352479533654160872, guid: 370b0cad776539d44933bde4c4336dfc, type: 3}
     - target: {fileID: 7085493241934177029, guid: ff283aecd57a6904884739b2d42f1f9f, type: 3}
       propertyPath: p2StartNav
       value: 
