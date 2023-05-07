@@ -34,7 +34,7 @@ public class HpCounterUI : MonoBehaviour
         CancelInvoke(nameof(SetDefaultColor));
         Invoke(nameof(SetDamageColor), delay);
         Invoke(nameof(SetEmptyColor), delay + 0.2f);
-        transform.DOShakePosition(0.1f, new Vector3(0.07f, 0.07f, 0),30).SetDelay(delay);
+        transform.DOShakePosition(0.1f, new Vector3(0.07f, 0.07f, 0),30).OnComplete(() => ToOrigin()).SetDelay(delay);
         transform.DOShakeRotation(0.1f, new Vector3(0, 0, 20), 30).OnComplete(() => ToOrigin()).SetDelay(delay);
     }
 
@@ -46,7 +46,7 @@ public class HpCounterUI : MonoBehaviour
         CancelInvoke(nameof(SetEmptyColor));
         Invoke(nameof(SetHealColor), delay);
         Invoke(nameof(SetDefaultColor), delay+0.2f);
-        transform.DOPunchPosition(new Vector3(0, 0.1f, 0), 0.2f, 15).SetDelay(delay);
+        transform.DOPunchPosition(new Vector3(0, 0.1f, 0), 0.2f, 15).OnComplete(() => ToOrigin()).SetDelay(delay);
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.2f).OnComplete(() => ToOrigin()).SetDelay(delay);
     }
 

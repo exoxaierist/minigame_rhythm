@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SampleUnit : UnitBase
+public class SampleUnit : PlayerBase
 {
     protected override void Awake()
     {

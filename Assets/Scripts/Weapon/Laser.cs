@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -32,8 +33,8 @@ public class Laser : Weapon
 
     public override void Shoot(KeyCode key)
     {
-        if (rhythmLevel == RhythmLevel.Zero || isShooting)
-            return;
+        //if (rhythmLevel == RhythmLevel.Zero || isShooting)
+        //    return;
 
         if (key == KeyCode.F)
             CalculateLaser(Vector3.right);
@@ -41,7 +42,7 @@ public class Laser : Weapon
             CalculateLaser(Vector3.up);
 
         LaserEffectByLevel(rhythmLevel);
-        StartCoroutine(ShootFunc());
+        //StartCoroutine(ShootFunc());
 
         ResetEnergy();
     }
@@ -73,13 +74,13 @@ public class Laser : Weapon
         pos = transform.position;
 
         dangerLine.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         dangerLine.gameObject.SetActive(false);
 
         laser.startColor = c;
         laser.endColor = c;
         laser.enabled = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.3f);
         laser.enabled = false;
         isShooting = false;
 
@@ -89,6 +90,7 @@ public class Laser : Weapon
     //레이저 위치 및 거리 계산
     private void CalculateLaser(Vector3 dir)
     {
+        /*
         if (player == Player.Player2)
             dir *= -1;
 
@@ -108,5 +110,29 @@ public class Laser : Weapon
 
         dangerLine.SetPosition(1, dir * distance + dir);
         laser.SetPosition(1, dir * distance + dir);
+        */
+
+        dangerLine.gameObject.SetActive(true);
+        dangerLine.SetPosition(0, dir);
+        laser.SetPosition(0, dir);
+        float distance = maxLen;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + dir, dir, float.MaxValue, mask);
+        if (hit.collider != null)
+        {
+            distance = Vector2.Distance(transform.position + dir, hit.point);
+            Debug.Log(hit.collider.name + " " + distance);
+
+            //TODO 포탈 충돌 시
+        }
+        dangerLine.SetPosition(1, dir * distance + dir);
+        laser.SetPosition(1, dir * distance + dir);
+        dangerLine.startWidth = 0;
+        dangerLine.endWidth = 0;
+        DOTween.To(() => dangerLine.startWidth, x => dangerLine.startWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
+        DOTween.To(() => dangerLine.endWidth, x => dangerLine.endWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(dangerLine.DOColor(new Color2(Color.red, Color.red), new Color2(Color.white, Color.white), 1));
+        sequence.InsertCallback(1,() => { dangerLine.startColor = Color.blue; dangerLine.endColor = Color.blue; });
+        sequence.Append(dangerLine.DOColor(new Color2(Color.red,Color.red),new Color2(Color.blue,Color.blue),0.2f).SetDelay(0.1f));
     }
 }

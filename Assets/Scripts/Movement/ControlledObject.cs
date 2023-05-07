@@ -33,6 +33,11 @@ public class ControlledObject : GridObject
         if (!Global.CheckOverlap(transform.position * Vector2.one + new Vector2(-1,0), collisionLayer)) MoveRelative(new Vector2(-1, 0));
     }
 
+    protected virtual void ShootA()
+    {
+
+    }
+
     // 인풋 대리자에서 제거
     protected void UnsubscribeToInput()
     {
@@ -58,7 +63,7 @@ public class ControlledObject : GridObject
             Global.P1DownAction += MoveDown;
             Global.P1RightAction += MoveRight;
             Global.P1LeftAction += MoveLeft;
-            //Global.P1SpecialAction += MoveSpecial;
+            Global.P1SelectAction += ShootA;
         }
         else if (player == Player.Player2)
         {
