@@ -503,10 +503,10 @@ PrefabInstance:
     - target: {fileID: 5410972094752234938, guid: fabc70744787c5d468bc5a4f352f1db5, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 43e61abcce0587f41bdc8e75435e7206, type: 3}
+      objectReference: {fileID: 8300000, guid: 227123347e9fbd64194ad0d55eca0ef0, type: 3}
     - target: {fileID: 5410972094752234939, guid: fabc70744787c5d468bc5a4f352f1db5, type: 3}
       propertyPath: midiFileName
-      value: beat
+      value: bgm2
       objectReference: {fileID: 0}
     - target: {fileID: 5410972094752234939, guid: fabc70744787c5d468bc5a4f352f1db5, type: 3}
       propertyPath: notePlayingTime
