@@ -23,6 +23,7 @@ public class PlayerBase : ControlledObject
     protected override void ShootA()
     {
         base.ShootA();
+        //Global.GetTimingms();
     }
 
     // 오브젝트에 같이 딸려있는 HP 컴포넌트 찾아서 이벤트 등록

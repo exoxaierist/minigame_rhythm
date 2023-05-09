@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using DG.Tweening;
+
 public class NoteManager : MonoBehaviour
 {
     [Header("Mid파일이름")] public string midiFileName;
@@ -27,6 +28,11 @@ public class NoteManager : MonoBehaviour
   
     //상태 변수
     bool isPlaying;
+
+    private void Awake()
+    {
+        //Global.GetTimingms += Detection;
+    }
 
     void Start()
     {
@@ -91,6 +97,8 @@ public class NoteManager : MonoBehaviour
         bgm.Play();
     }
 
+    //int Detection()
+
     /** 노트 판정 계산 */
     bool Detection()
     {
@@ -146,7 +154,7 @@ public class NoteManager : MonoBehaviour
     /** Midi파일 불러오기 */
     void GetMidiFile(string name)
     {
-        midiFile = midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + name + ".mid");
+        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + name + ".mid");
     }
 
     /** Midi파일로부터 정보 불러오기 */
