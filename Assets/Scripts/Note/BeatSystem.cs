@@ -25,7 +25,7 @@ public class BeatSystem : MonoBehaviour
         {
             DOTween.Rewind(detectionLine);
             DOTween.Rewind(detLineIma);
-            Debug.Log(GetTiming());
+            Debug.Log(GetDelaytime());
             if (Detection())
             {
                 detectionLine.DOScale(detectionLine.localScale * 1.1f, 0.2f).SetLoops(2, LoopType.Yoyo);
@@ -44,7 +44,12 @@ public class BeatSystem : MonoBehaviour
             Debug.Log("음악 재시작");
             Play();
         }
-        
+        else
+        {
+            Global.GetTimingms = GetDelaytime;
+        }
+
+        Global.CheckBeat = Detection;
     }
 
     /** 음악과 노트 재생 */
@@ -62,7 +67,7 @@ public class BeatSystem : MonoBehaviour
     }
 
 
-    public float GetTiming()
+    public float GetDelaytime()
     {
         float t1 = 0, t2 = 0;
         if (nM.hitCount != nM.noteInfo.Count) t1 = Mathf.Abs(nM.noteInfo[nM.hitCount].hitTime + nM.correctionValue - sM.audioSource.time);
@@ -78,23 +83,8 @@ public class BeatSystem : MonoBehaviour
     /** 노트 판정 계산 */
     public bool Detection()
     {
-        if (nM.hitCount == nM.noteInfo.Count) //마지막 노트
-        {
-            if (nM.noteInfo[nM.hitCount - 1].hitTime + 0.1f + nM.correctionValue >= sM.audioSource.time && nM.noteInfo[nM.hitCount - 1].hitTime - 0.1f + nM.correctionValue <= sM.audioSource.time)
-                return true;
-        }
-        else if (nM.hitCount > 0)
-        {
-            if (nM.noteInfo[nM.hitCount - 1].hitTime + nM.correctionValue >= sM.audioSource.time - 0.1f)
-                return true;
-            if (nM.noteInfo[nM.hitCount].hitTime + nM.correctionValue <= sM.audioSource.time + 0.1f)
-                return true;
-        }
-        else //처음 노트
-        {
-            if (nM.noteInfo[nM.hitCount].hitTime - 0.1f + nM.correctionValue <= sM.audioSource.time)
-                return true;
-        }
+        if (GetDelaytime() <= 0.1f)
+            return true;
 
         return false;
     }
