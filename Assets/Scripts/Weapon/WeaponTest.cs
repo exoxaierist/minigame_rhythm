@@ -14,13 +14,13 @@ public class WeaponTest : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-            w?.IncRhythmEnergy();
+        //if(Input.GetKeyDown(KeyCode.Alpha1))
+        //    //w?.IncRhythmEnergy();
 
-        if (Input.GetKeyDown(KeyCode.F))
-            w?.Shoot(KeyCode.F);
-        else if(Input.GetKeyDown(KeyCode.G))
-            w?.Shoot(KeyCode.G);
+        //if (Input.GetKeyDown(KeyCode.F))
+        //    w?.Shoot(KeyCode.F);
+        //else if(Input.GetKeyDown(KeyCode.G))
+        //    w?.Shoot(KeyCode.G);
 
     }
 }

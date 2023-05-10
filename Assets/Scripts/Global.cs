@@ -35,6 +35,8 @@ public static class Global
 
     // UI Navigation
     public static UINavigationManager uiNavManager;
+    // RhythmEnergy Manager
+    public static EnergyManager energyManager;
 
     //// 에셋 참조
     public static AssetCollector assets;
