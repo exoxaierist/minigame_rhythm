@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    [Header("경고선, 레이저")]
-    [SerializeField]
-    LineRenderer dangerLine;
     [SerializeField]
     LineRenderer laser;
+    [SerializeField]
+    Transform pool;
 
     [Header("최대 거리")]
-    public int maxLen = 10;
+    public float maxLen = 10;
 
     private LayerMask mask;
 
@@ -26,25 +25,23 @@ public class Laser : Weapon
     }
     private void Update()
     {
-        CheckEnergy();
-        if (isShooting)
-            transform.position = pos;
     }
 
-    public override void Shoot(KeyCode key)
+    public override void P1ShootForward()
     {
-        //if (rhythmLevel == RhythmLevel.Zero || isShooting)
-        //    return;
+    }
+    public override void P1ShootUpDown()
+    {
+    }
+    public override void P2ShootForward()
+    {
+    }
+    public override void P2ShootUpDown()
+    {
+    }
 
-        if (key == KeyCode.F)
-            CalculateLaser(Vector3.right);
-        else if (key == KeyCode.G)
-            CalculateLaser(Vector3.up);
-
-        LaserEffectByLevel(rhythmLevel);
-        //StartCoroutine(ShootFunc());
-
-        ResetEnergy();
+    public override void ShootFail()
+    {
     }
 
     //임시
@@ -70,21 +67,51 @@ public class Laser : Weapon
     //임시
     IEnumerator ShootFunc()
     {
-        isShooting = true;
-        pos = transform.position;
+        //pos = transform.position;
 
-        dangerLine.gameObject.SetActive(true);
+        //dangerLine.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        dangerLine.gameObject.SetActive(false);
+        //dangerLine.gameObject.SetActive(false);
 
         laser.startColor = c;
         laser.endColor = c;
         laser.enabled = true;
         yield return new WaitForSeconds(0.3f);
         laser.enabled = false;
-        isShooting = false;
 
         transform.position = transform.parent.position;
+    }
+
+    private void Calculate(Vector3 dir, Vector2 pos, float len, Player player)
+    {
+        float distance = len;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position/*플레이어 위치*/ + dir, dir, len, mask);
+        if (hit.collider != null)
+        {
+            distance = Vector2.Distance(transform.position + dir, hit.point);
+            //Debug.Log(hit.collider.name + " " + distance);
+
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
+            {
+                //TODO
+                //Portal p = hit.collider.GetComponent<Portal>();
+                //포탈내의 정보 추출 후, 포탈 위치에서 재 생성
+                //Calculate()
+            }
+        }
+
+        CreateLaser(dir, pos, distance);
+    }
+
+    private void CreateLaser(Vector3 dir, Vector2 pos, float len)
+    {
+        LineRenderer beam = Instantiate(laser, pos, Quaternion.identity, pool);
+        beam.transform.position = pos;
+        beam.SetPosition(0, dir);
+        beam.SetPosition(1, dir * len + dir);
+
+        //TODO
+        //raycasting - hit player
     }
 
     //레이저 위치 및 거리 계산
@@ -112,8 +139,8 @@ public class Laser : Weapon
         laser.SetPosition(1, dir * distance + dir);
         */
 
-        dangerLine.gameObject.SetActive(true);
-        dangerLine.SetPosition(0, dir);
+        //dangerLine.gameObject.SetActive(true);
+        //dangerLine.SetPosition(0, dir);
         laser.SetPosition(0, dir);
         float distance = maxLen;
         RaycastHit2D hit = Physics2D.Raycast(transform.position + dir, dir, float.MaxValue, mask);
@@ -124,15 +151,16 @@ public class Laser : Weapon
 
             //TODO 포탈 충돌 시
         }
-        dangerLine.SetPosition(1, dir * distance + dir);
+        //dangerLine.SetPosition(1, dir * distance + dir);
         laser.SetPosition(1, dir * distance + dir);
-        dangerLine.startWidth = 0;
-        dangerLine.endWidth = 0;
-        DOTween.To(() => dangerLine.startWidth, x => dangerLine.startWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
-        DOTween.To(() => dangerLine.endWidth, x => dangerLine.endWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(dangerLine.DOColor(new Color2(Color.red, Color.red), new Color2(Color.white, Color.white), 1));
-        sequence.InsertCallback(1,() => { dangerLine.startColor = Color.blue; dangerLine.endColor = Color.blue; });
-        sequence.Append(dangerLine.DOColor(new Color2(Color.red,Color.red),new Color2(Color.blue,Color.blue),0.2f).SetDelay(0.1f));
+        //dangerLine.startWidth = 0;
+        //dangerLine.endWidth = 0;
+        //DOTween.To(() => dangerLine.startWidth, x => dangerLine.startWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
+        //DOTween.To(() => dangerLine.endWidth, x => dangerLine.endWidth = x, 0.5f, 1).SetEase(Ease.OutQuint);
+        //Sequence sequence = DOTween.Sequence();
+        //sequence.Append(dangerLine.DOColor(new Color2(Color.red, Color.red), new Color2(Color.white, Color.white), 1));
+        //sequence.InsertCallback(1,() => { dangerLine.startColor = Color.blue; dangerLine.endColor = Color.blue; });
+        //sequence.Append(dangerLine.DOColor(new Color2(Color.red,Color.red),new Color2(Color.blue,Color.blue),0.2f).SetDelay(0.1f));
     }
+
 }
