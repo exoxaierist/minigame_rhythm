@@ -11,4 +11,7 @@ public class AssetCollector : ScriptableObject
     public GameObject hpCounterUI;
     public Sprite hpCounterSpriteFull;
     public Sprite hpCounterSpriteEmpty;
+
+    [Header("공격 관련")]
+    public GameObject bullet;
 }

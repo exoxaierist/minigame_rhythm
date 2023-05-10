@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnergyManager : MonoBehaviour
@@ -11,17 +12,35 @@ public class EnergyManager : MonoBehaviour
     private void Awake()
     {
         Global.energyManager = this;
+        Global.GetP1Energy = GetP1Energy;
+        Global.GetP2Energy = GetP2Energy;
+        Global.GetP1EnergyLevel = GetP1EnergyLevel;
+        Global.GetP2EnergyLevel = GetP2EnergyLevel;
+        Global.P1AnyAction += OnP1Any;
+        Global.P2AnyAction += OnP2Any;
+        maxEnergy = Global.maxEnergy;
+        if (Global.CheckBeat == null) enabled = false;
+    }
+
+    private void OnP1Any()
+    {
+        if (Global.CheckBeat()) IncP1Energy();
+        else ResetP1Energy();
+    }
+
+    private void OnP2Any()
+    {
+        if (Global.CheckBeat()) IncP2Energy();
+        else ResetP2Energy();
     }
 
     public void IncP1Energy()
     {
-        if (p1Energy == maxEnergy) return;
         p1Energy = Mathf.Min(p1Energy + 1, maxEnergy);
         Global.OnP1EnergyChange?.Invoke();
     }
     public void IncP2Energy()
     {
-        if (p2Energy == maxEnergy) return;
         p2Energy = Mathf.Min(p2Energy + 1, maxEnergy);
         Global.OnP2EnergyChange?.Invoke();
     }
@@ -39,8 +58,10 @@ public class EnergyManager : MonoBehaviour
         Global.OnP2EnergyChange?.Invoke();
     }
 
+    private int GetP1Energy() => p1Energy;
+    private int GetP2Energy() => p2Energy;
 
-    public RhythmLevel GetP1Energy()
+    private RhythmLevel GetP1EnergyLevel()
     {
         if (p1Energy < 1) return RhythmLevel.Zero;
         else if (p1Energy < 4) return RhythmLevel.One;
@@ -48,7 +69,7 @@ public class EnergyManager : MonoBehaviour
         else return RhythmLevel.Three;
     }
 
-    public RhythmLevel GetP2Energy()
+    private RhythmLevel GetP2EnergyLevel()
     {
         if (p2Energy < 1) return RhythmLevel.Zero;
         else if (p2Energy < 4) return RhythmLevel.One;

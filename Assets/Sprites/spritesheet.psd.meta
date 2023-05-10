@@ -272,6 +272,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: bullet_default
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 53
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bb00398b863ffb428226ed9987cd4ce
+      internalID: -1719632993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -283,6 +304,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      bullet_default: -1719632993
       heart_compact_empty: -993504304
       heart_compact_full: -1631777319
       heart_empty: -1012495361

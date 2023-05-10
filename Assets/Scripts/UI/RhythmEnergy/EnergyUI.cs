@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,9 @@ using UnityEngine;
 public class EnergyUI : MonoBehaviour
 {
     public Player player;
+    [Header("카운터 설정")]
+    [SerializeField] private GameObject counterPrefab;
+    [SerializeField] public float gap = 30;
     private int tempEnergy = 0;
     private int energy = 0;
     private int level = 0;
@@ -18,25 +22,24 @@ public class EnergyUI : MonoBehaviour
         if (player == Player.Player1) Global.OnP1EnergyChange += OnEnergyChange;
         else if (player == Player.Player2) Global.OnP2EnergyChange += OnEnergyChange;
 
-        counters = GetComponentsInChildren<EnergyCounterUI>().ToList();
+        if (transform.childCount == 0)
+        {
+            CreateChildren(Global.maxEnergy);
+        }
+        else counters = GetComponentsInChildren<EnergyCounterUI>().ToList();
+
         if (counters.Count == 0) enabled = false;
-
-        Global.P1RightAction += TestEnergyUp;
-        Global.P1LeftAction += TestEnergyClear;
-        Global.P1UpAction += TestSetLevel;
-    }
-
-    // 테스트용
-    private void TestEnergyUp() { tempEnergy++; Global.OnP1EnergyChange?.Invoke(); }
-    private void TestEnergyClear() { tempEnergy = 0; Global.OnP1EnergyChange?.Invoke(); }
-    private void TestSetLevel()
-    {
-        level = (level + 1) % 4;
     }
 
     private void OnEnergyChange()
     {
-        int newEnergy = tempEnergy; // 수정필요
+        int newEnergy = player == Player.Player1?Global.GetP1Energy(): Global.GetP2Energy();
+        if(newEnergy == Global.maxEnergy && newEnergy == energy)
+        {
+            transform.DORewind();
+            transform.DOShakePosition(0.4f, new Vector3(7, 7, 0), 27).OnComplete(() => transform.DOLocalMove(Vector3.zero, 0.2f));
+            return;
+        }
         if (newEnergy > counters.Count || newEnergy == energy) return;
         if (newEnergy > energy)
         {
@@ -52,7 +55,7 @@ public class EnergyUI : MonoBehaviour
                 counters[i].SetLevel(level, 0);
                 counters[i].Deactivate();
                 transform.DORewind();
-                transform.DOShakePosition(0.4f,new Vector3(5, 5, 0), 15).OnComplete(() => transform.DOLocalMove(Vector3.zero,0.2f));
+                transform.DOShakePosition(0.4f,new Vector3(5, 5, 0), 25).OnComplete(() => transform.DOLocalMove(Vector3.zero,0.2f));
             }
         }
         energy = newEnergy;
@@ -61,11 +64,9 @@ public class EnergyUI : MonoBehaviour
 
     private int CheckLevel(int _energy)
     {
-        int newLevel = 0;
-        if (_energy > 2) newLevel = 1;
-        if (_energy > 3) newLevel = 2;
-        if (_energy > 4) newLevel = 3;
-        if (newLevel != level) SetLevel(newLevel);
+        int newLevel = (int)(player == Player.Player1 ? Global.GetP1EnergyLevel() : Global.GetP2EnergyLevel());
+        if (newLevel == level) return level;
+        SetLevel(newLevel);
         return newLevel;
     }
 
@@ -74,6 +75,19 @@ public class EnergyUI : MonoBehaviour
         for (int i = 0; i < energy; i++)
         {
             counters[i].SetLevel(level, i * 0.05f + 0.1f);
+        }
+    }
+
+    [ContextMenu("create 10")]
+    private void CreateChildrenEditor() => CreateChildren(10);
+    private void CreateChildren(int count)
+    {
+        counters = new();
+        for (int i = 0; i < count; i++)
+        {
+            EnergyCounterUI instance = Instantiate(counterPrefab, transform).GetComponent<EnergyCounterUI>();
+            counters.Add(instance);
+            instance.transform.localPosition = new(gap * i, 0, 0);
         }
     }
 }

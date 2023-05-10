@@ -17,12 +17,14 @@ public static class Global
     public static Action P1RightAction;
     public static Action P1LeftAction;
     public static Action P1SelectAction;
+    public static Action P1AnyAction;
 
     public static Action P2UpAction;
     public static Action P2DownAction;
     public static Action P2RightAction;
     public static Action P2LeftAction;
     public static Action P2SelectAction;
+    public static Action P2AnyAction;
 
     // 비트
     public static Func<float> GetTimingms; // 가장 가까운 노트까지 ms 오차
@@ -30,8 +32,13 @@ public static class Global
     public static Action OnBeat; // 비트에 맞을때마다 불리는 이벤트
 
     // 리듬 에너지
+    public static int maxEnergy = 10;
     public static Action OnP1EnergyChange;
     public static Action OnP2EnergyChange;
+    public static Func<int> GetP1Energy;
+    public static Func<int> GetP2Energy;
+    public static Func<RhythmLevel> GetP1EnergyLevel;
+    public static Func<RhythmLevel> GetP2EnergyLevel;
 
     // UI Navigation
     public static UINavigationManager uiNavManager;
@@ -49,7 +56,13 @@ public static class Global
 
 
     //// 유틸리티
-    //콜리젼 확인
+    // 카메라 진동
+    public static CameraShaker camShaker;
+    public static Action CamShakeSmall;
+    public static Action CamShakeMedium;
+    public static Action CamShakeLarge;
+
+    // 콜리젼 확인
     public static bool CheckOverlap(Vector2 dest, LayerMask mask)
     {
         return Physics2D.OverlapCircle(dest, 0.3f, mask);

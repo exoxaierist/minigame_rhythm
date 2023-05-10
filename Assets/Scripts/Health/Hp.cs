@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hp : MonoBehaviour
+public class Hp : MonoBehaviour, IReceiveAttack
 {
     [Header("UI")]
     public bool showHpUI = true;
@@ -24,18 +24,24 @@ public class Hp : MonoBehaviour
     public Action OnHpChange;
     public Action OnDeath;
 
+    private PlayerBase ownerPlayer;
+    private bool isPlayer = false;
+
+    public void OnAttack(AttackInfo info)
+    {
+        if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
+    }
+
+    private void Awake()
+    {
+        isPlayer = TryGetComponent(out ownerPlayer);
+    }
+
     private void Start()
     {
         hp = maxHp;
         if (autoParent && TryGetComponent(out GridObject gridobj)) autoParentTransform = gridobj.visual;
         if (showHpUI) hpUI = CreateHpBar();
-    }
-
-    private void Update()
-    {
-        // 테스트용
-        if (Input.GetKeyDown(KeyCode.Comma)) AddToHP(-3);
-        if (Input.GetKeyDown(KeyCode.Period)) AddToHP(2);
     }
 
     // 체력 변경할때 사용
@@ -67,7 +73,6 @@ public class Hp : MonoBehaviour
     // HP UI오브젝트 생성
     private HpUI CreateHpBar()
     {
-        print(autoParentTransform);
         GameObject instance = Instantiate(Global.assets.hpUI, autoParent?autoParentTransform:customUIParent);
         instance.transform.localPosition = hpUIOffset;
         instance.GetComponent<HpUI>().Set(maxHp,hp,hpUIType);
