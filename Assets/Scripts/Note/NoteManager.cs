@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using DG.Tweening;
+
 public class NoteManager : MonoBehaviour
 {
     [Header("노트 재생 시간")] public float notePlayingTime = 2f; // 노트가 지나가는 시간

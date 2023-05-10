@@ -1,4 +1,6 @@
 using UnityEngine;
+using Melanchall.DryWetMidi;
+using Melanchall.DryWetMidi.Core;
 
 // 스크립트에서 에셋 레퍼런싱 할 수 있게 해주는 모음집?, 뒤에 맘대로 추가
 [CreateAssetMenu(fileName ="AssetCollector")]
