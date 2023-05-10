@@ -24,9 +24,14 @@ public static class Global
     public static Action P2LeftAction;
     public static Action P2SelectAction;
 
+    // 비트
     //public static Func<int> GetTimingms; // 가장 가까운 노트까지 ms 오차
     //public static Func<bool> CheckBeat; // 현재 타이밍에 불렀을때 비트 오차에 맞는지
     //public static Action OnBeat; // 비트에 맞을때마다 불리는 이벤트
+
+    // 리듬 에너지
+    public static Action OnP1EnergyChange;
+    public static Action OnP2EnergyChange;
 
     // UI Navigation
     public static UINavigationManager uiNavManager;
