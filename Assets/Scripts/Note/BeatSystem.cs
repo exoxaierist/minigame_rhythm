@@ -14,6 +14,12 @@ public class BeatSystem : MonoBehaviour
     Transform detectionLine;
     Image detLineIma;
 
+    private void Awake()
+    {
+        Global.GetTimingms = GetDelaytime;
+        Global.CheckBeat = Detection;
+    }
+
     private void Start()
     {
         Play();
@@ -44,12 +50,7 @@ public class BeatSystem : MonoBehaviour
             Debug.Log("음악 재시작");
             Play();
         }
-        else
-        {
-            Global.GetTimingms = GetDelaytime;
-        }
-
-        Global.CheckBeat = Detection;
+        
     }
 
     /** 음악과 노트 재생 */
