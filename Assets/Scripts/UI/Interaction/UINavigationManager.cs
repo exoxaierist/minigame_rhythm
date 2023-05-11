@@ -32,13 +32,13 @@ public class UINavigationManager : MonoBehaviour
         Global.P1DownAction += OnP1MoveDown;
         Global.P1RightAction += OnP1MoveRight;
         Global.P1LeftAction += OnP1MoveLeft;
-        Global.P1SelectAction += OnP1Select;
+        Global.P1PrimaryAction += OnP1Select;
 
         Global.P2UpAction += OnP2MoveUp;
         Global.P2DownAction += OnP2MoveDown;
         Global.P2RightAction += OnP2MoveRight;
         Global.P2LeftAction += OnP2MoveLeft;
-        Global.P2SelectAction += OnP2Select;
+        Global.P2PrimaryAction += OnP2Select;
 
         p1Selector = Instantiate(p1Selector);
         p2Selector = Instantiate(p2Selector);

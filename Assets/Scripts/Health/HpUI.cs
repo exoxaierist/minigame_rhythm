@@ -9,12 +9,13 @@ public class HpUI : MonoBehaviour
     public float gap = 0.2f;
     private int maxHp = 10;
     private int hp;
-    private List<HpCounterUI> counters = new();
+    private readonly List<HpCounterUI> counters = new();
     private Vector3 origin;
 
     public void Set(int _maxHP, int _hp, HpUIType _type)
     {
         origin = transform.localPosition;
+        transform.localScale = transform.lossyScale;
         maxHp = _maxHP;
         hp = _maxHP;
         type = _type;

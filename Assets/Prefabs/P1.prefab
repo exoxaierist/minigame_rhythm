@@ -71,7 +71,7 @@ MonoBehaviour:
   player: 1
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1856
   id: unassigned
   hp: {fileID: 0}
 --- !u!61 &5471551909396279805

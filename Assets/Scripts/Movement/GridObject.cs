@@ -13,11 +13,14 @@ public class GridObject : EventObject
 
     [Header("모션입힐 오브젝트")]
     public Transform visual;
-
+    private Vector3 visualOffset;
+    private Vector3 visualScale;
 
     private void Start()
     {
         gridIncrement = Global.gridIncrement;
+        visualOffset = visual.localPosition;
+        visualScale = visual.localScale;
         SnapToGrid();
     }
 
@@ -29,15 +32,16 @@ public class GridObject : EventObject
         transform.position = transform.position * Vector2.one + dest;
         if (visual != null)
         {
-            visual.localPosition = -dest;
-            visual.DOLocalJump(Vector2.zero, 0.2f, 1, 0.1f).SetEase(Ease.OutQuad).OnComplete(() => isMoving = false);
-            visual.DOShakeScale(0.13f, new Vector3(0.1f, -0.1f, 0), 20).OnComplete(()=>transform.localScale = Vector3.one);
+            visual.localPosition = -dest + Vector2.one*visualOffset ;
+            visual.DORewind();
+            visual.DOLocalJump(visualOffset, 0.2f, 1, 0.1f).SetEase(Ease.OutQuad).OnComplete(() => isMoving = false);
+            visual.DOShakeScale(0.13f, new Vector3(0.1f, -0.1f, 0), 20).OnComplete(() => visual.localScale = visualScale);
         }
         else { isMoving = false; }
     }
 
     // 애니매이션 없이 이동
-    public void Teleport(Vector2 dest)
+    public void Teleport(Vector3 dest)
     {
         transform.position = dest;
     }

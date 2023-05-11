@@ -16,14 +16,16 @@ public static class Global
     public static Action P1DownAction;
     public static Action P1RightAction;
     public static Action P1LeftAction;
-    public static Action P1SelectAction;
+    public static Action P1PrimaryAction;
+    public static Action P1SecondaryAction;
     public static Action P1AnyAction;
 
     public static Action P2UpAction;
     public static Action P2DownAction;
     public static Action P2RightAction;
     public static Action P2LeftAction;
-    public static Action P2SelectAction;
+    public static Action P2PrimaryAction;
+    public static Action P2SecondaryAction;
     public static Action P2AnyAction;
 
     // 비트
@@ -44,6 +46,8 @@ public static class Global
     public static UINavigationManager uiNavManager;
     // RhythmEnergy Manager
     public static EnergyManager energyManager;
+    // Sprite Effect Manager
+    public static SpriteEffectManager sprEffectManager;
 
     //// 에셋 참조
     public static AssetCollector assets;

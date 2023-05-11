@@ -63,7 +63,7 @@ public class ControlledObject : GridObject
             Global.P1DownAction += MoveDown;
             Global.P1RightAction += MoveRight;
             Global.P1LeftAction += MoveLeft;
-            Global.P1SelectAction += ShootA;
+            Global.P1PrimaryAction += ShootA;
         }
         else if (player == Player.Player2)
         {

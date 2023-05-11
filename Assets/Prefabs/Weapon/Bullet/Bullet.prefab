@@ -102,6 +102,12 @@ MonoBehaviour:
   speed: 0
   lifetime: 6
   direction: {x: 0, y: 0, z: 0}
+  p1Mask:
+    serializedVersion: 2
+    m_Bits: 832
+  p2Mask:
+    serializedVersion: 2
+    m_Bits: 704
 --- !u!61 &-1491156351001884343
 BoxCollider2D:
   m_ObjectHideFlags: 0

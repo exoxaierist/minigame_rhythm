@@ -17,3 +17,4 @@ MonoBehaviour:
   hpCounterSpriteFull: {fileID: -1631777319, guid: f2fbc0dc495be044faa74051e055d059, type: 3}
   hpCounterSpriteEmpty: {fileID: -993504304, guid: f2fbc0dc495be044faa74051e055d059, type: 3}
   bullet: {fileID: 4474822564410845793, guid: dface72bb686b9c42b43d6537402b4a6, type: 3}
+  spriteEffect: {fileID: 1894089634223162377, guid: a10e0f09a19d1aa4ebc79c0e53a91ed3, type: 3}
