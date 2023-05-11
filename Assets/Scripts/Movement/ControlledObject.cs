@@ -13,7 +13,7 @@ public class ControlledObject : GridObject
 
     protected virtual void Awake()
     {
-        SubscribeToInput();
+        Global.OnCounterEnd += SubscribeToInput;
     }
 
     protected virtual void MoveUp()
@@ -33,11 +33,6 @@ public class ControlledObject : GridObject
         if (!Global.CheckOverlap(transform.position * Vector2.one + new Vector2(-1,0), collisionLayer)) MoveRelative(new Vector2(-1, 0));
     }
 
-    protected virtual void ShootA()
-    {
-
-    }
-
     // 인풋 대리자에서 제거
     protected void UnsubscribeToInput()
     {
@@ -50,7 +45,6 @@ public class ControlledObject : GridObject
         Global.P1DownAction -= MoveDown;
         Global.P1RightAction -= MoveRight;
         Global.P1LeftAction -= MoveLeft;
-        //Global.P1SpecialAction -= MoveSpecial;
     }
 
     // 인풋 대리자에 추가
@@ -63,7 +57,6 @@ public class ControlledObject : GridObject
             Global.P1DownAction += MoveDown;
             Global.P1RightAction += MoveRight;
             Global.P1LeftAction += MoveLeft;
-            Global.P1PrimaryAction += ShootA;
         }
         else if (player == Player.Player2)
         {
@@ -71,7 +64,6 @@ public class ControlledObject : GridObject
             Global.P2DownAction += MoveDown;
             Global.P2RightAction += MoveRight;
             Global.P2LeftAction += MoveLeft;
-            //Global.P2SpecialAction += MoveSpecial;
         }
     }
 

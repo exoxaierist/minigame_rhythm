@@ -9,7 +9,8 @@ public static class Global
 {
     //// 시스템
     // 이벤트
-    public static Action OnRoundStart;
+    public static Action OnCounterStart;
+    public static Action OnCounterEnd;
 
     // 입력 핸들러
     public static Action P1UpAction;

@@ -7,8 +7,8 @@ public class EventObject : MonoBehaviour
 {
     protected void EventSubscribe()
     {
-        Global.OnRoundStart += OnRoundStart;
+        Global.OnCounterEnd += OnCounterEnd;
     }
 
-    protected virtual void OnRoundStart() { }
+    protected virtual void OnCounterEnd() { }
 }
