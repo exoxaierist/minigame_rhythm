@@ -12,6 +12,8 @@ public class EnergyManager : MonoBehaviour
     private void Awake()
     {
         Global.energyManager = this;
+        if (Global.CheckBeat == null) {enabled = false; return; }
+        if (GameObject.FindGameObjectWithTag("P1") == null) {enabled = false; return; }
         Global.GetP1Energy = GetP1Energy;
         Global.GetP2Energy = GetP2Energy;
         Global.GetP1EnergyLevel = GetP1EnergyLevel;
@@ -19,7 +21,6 @@ public class EnergyManager : MonoBehaviour
         Global.P1AnyAction += OnP1Any;
         Global.P2AnyAction += OnP2Any;
         maxEnergy = Global.maxEnergy;
-        if (Global.CheckBeat == null) enabled = false;
     }
 
     private void OnP1Any()
