@@ -84,7 +84,7 @@ public class BeatSystem : MonoBehaviour
     /** 노트 판정 계산 */
     public bool Detection()
     {
-        if (GetDelaytime() <= 0.1f)
+        if (GetDelaytime() <= 0.13f)
             return true;
 
         return false;

@@ -69,7 +69,7 @@ public class NoteManager : MonoBehaviour
     {       
         Destroy(noteIndex.GetChild(1).gameObject);
         Destroy(noteIndex.GetChild(0).gameObject);      
-        correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.05f;
+        correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.08f;
         if (noteInfo.Count > hitCount) hitCount++;
         if (noteInfo.Count == hitCount)
         {

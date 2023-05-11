@@ -2406,6 +2406,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 786459363792336920, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: notePlayingTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 786459363792336922, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: songName
+      value: bgm2
+      objectReference: {fileID: 0}
     - target: {fileID: 6520418141049759616, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
       propertyPath: m_Name
       value: UI
