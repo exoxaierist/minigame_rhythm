@@ -17,17 +17,17 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rayHit = Physics2D.Raycast(transform.position + new Vector3(0, 1f, 0), transform.up,rayDistance);
-        if (rayHit)
-        {
-            Debug.Log("Hit Green " + rayHit.collider.gameObject.name);
-            Debug.DrawRay(transform.position+new Vector3(0, 1f, 0), transform.up * rayHit.distance, Color.red);
-            Debug.DrawRay(rayHit.collider.gameObject.GetComponent<Potal>().bulletPos.position + new Vector3(0, 1f, 0), transform.up * (rayDistance - rayHit.distance), Color.red);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position+ new Vector3(0, 1f, 0), transform.up * rayDistance, Color.green);
-        }
+        //rayHit = Physics2D.Raycast(transform.position + new Vector3(0, 1f, 0), transform.up,rayDistance);
+        //if (rayHit)
+        //{
+        //    Debug.Log("Hit Green " + rayHit.collider.gameObject.name);
+        //    Debug.DrawRay(transform.position+new Vector3(0, 1f, 0), transform.up * rayHit.distance, Color.red);
+        //    Debug.DrawRay(rayHit.collider.gameObject.GetComponent<Potal>().bulletPos.position + new Vector3(0, 1f, 0), transform.up * (rayDistance - rayHit.distance), Color.red);
+        //}
+        //else
+        //{
+        //    Debug.DrawRay(transform.position+ new Vector3(0, 1f, 0), transform.up * rayDistance, Color.green);
+        //}
         //Debug.DrawRay(gameObject.transform.position, gameObject.transform.up * rayDistance, Color.green);
         //if (playerType == Player.Player1 && Input.GetKeyDown(KeyCode.F))
         //{
