@@ -272,7 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429711907}
   - component: {fileID: 429711908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013304730}
   - component: {fileID: 1013304731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 1461424908}
   - component: {fileID: 1461424907}
   - component: {fileID: 1461424909}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SampleP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,6 +739,9 @@ MonoBehaviour:
   damage: 0
   player: 1
   laser: {fileID: 5475092700055546895, guid: 6f4c1ea864626534798591475038baa4, type: 3}
+  payload:
+    owner: 0
+    damage: 0
   maxLen: 10
 --- !u!1 &1488063436
 GameObject:
@@ -1012,7 +1015,7 @@ GameObject:
   - component: {fileID: 1934975090}
   - component: {fileID: 1934975094}
   - component: {fileID: 1934975095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SampleP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,6 +1130,9 @@ MonoBehaviour:
   damage: 0
   player: 2
   laser: {fileID: 5475092700055546895, guid: 6f4c1ea864626534798591475038baa4, type: 3}
+  payload:
+    owner: 0
+    damage: 0
   maxLen: 10
 --- !u!1 &1973453834
 GameObject:

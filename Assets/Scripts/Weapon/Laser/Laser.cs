@@ -49,7 +49,7 @@ public class Laser : Weapon
         if (hit.collider != null)
         {
             distance = Vector2.Distance(pos + dir, hit.point);
-            Debug.Log(hit.collider.name + " " + distance);
+            //Debug.Log(hit.collider.name + " " + distance);
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
             {
