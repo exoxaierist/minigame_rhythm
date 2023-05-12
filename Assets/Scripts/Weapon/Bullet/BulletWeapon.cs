@@ -26,12 +26,34 @@ public class BulletWeapon : MonoBehaviour
 
     public void ShootVertical()
     {
+
+        if (player == Player.Player1)
+        {
+            if (Global.energyManager.GetP1Energy() <= 0) return;
+            Global.energyManager.DecP1Energy();
+        }
+        else if (player == Player.Player2)
+        {
+            if (Global.energyManager.GetP2Energy() <= 0) return;
+            Global.energyManager.DecP2Energy();
+        }
         ShootBullet(RotateVector(Vector3.up, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.down, Random.Range(-recoil, recoil)));
     }
 
     public void ShootHorizontal()
     {
+
+        if (player == Player.Player1)
+        {
+            if (Global.energyManager.GetP1Energy() <= 0) return;
+            Global.energyManager.DecP1Energy();
+        }
+        else if (player == Player.Player2)
+        {
+            if (Global.energyManager.GetP2Energy() <= 0) return;
+            Global.energyManager.DecP2Energy();
+        }
         ShootBullet(RotateVector(Vector3.left, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.right,Random.Range(-recoil,recoil)));
     }

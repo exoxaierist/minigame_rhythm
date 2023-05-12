@@ -30,7 +30,7 @@ public class InputHandler : MonoBehaviour
         // 1P
         if (enableP1)
         {
-            if (Input.GetKeyDown(p1Up) || Input.GetKeyDown(p1Down) || Input.GetKeyDown(p1Right) || Input.GetKeyDown(p1Left) || Input.GetKeyDown(p1Primary) || Input.GetKeyDown(p1Secondary)) Global.P1AnyAction?.Invoke();
+            if (Input.GetKeyDown(p1Up) || Input.GetKeyDown(p1Down) || Input.GetKeyDown(p1Right) || Input.GetKeyDown(p1Left)) Global.P1AnyAction?.Invoke();
             if (Input.GetKeyDown(p1Up)) Global.P1UpAction?.Invoke();
             if (Input.GetKeyDown(p1Down)) Global.P1DownAction?.Invoke();
             if (Input.GetKeyDown(p1Right)) Global.P1RightAction?.Invoke();
@@ -41,7 +41,7 @@ public class InputHandler : MonoBehaviour
         // 2P
         if (enableP2)
         {
-            if(Input.GetKeyDown(p2Up)|| Input.GetKeyDown(p2Down)|| Input.GetKeyDown(p2Right)|| Input.GetKeyDown(p2Left)|| Input.GetKeyDown(p2Primary) || Input.GetKeyDown(p2Secondary)) Global.P2AnyAction?.Invoke();
+            if(Input.GetKeyDown(p2Up)|| Input.GetKeyDown(p2Down)|| Input.GetKeyDown(p2Right)|| Input.GetKeyDown(p2Left)) Global.P2AnyAction?.Invoke();
             if (Input.GetKeyDown(p2Up)) Global.P2UpAction?.Invoke();
             if (Input.GetKeyDown(p2Down)) Global.P2DownAction?.Invoke();
             if (Input.GetKeyDown(p2Right)) Global.P2RightAction?.Invoke();

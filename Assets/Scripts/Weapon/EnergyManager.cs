@@ -26,13 +26,13 @@ public class EnergyManager : MonoBehaviour
     private void OnP1Any()
     {
         if (Global.CheckBeat()) IncP1Energy();
-        else ResetP1Energy();
+        else DecP1Energy();
     }
 
     private void OnP2Any()
     {
         if (Global.CheckBeat()) IncP2Energy();
-        else ResetP2Energy();
+        else DecP2Energy();
     }
 
     public void IncP1Energy()
@@ -43,6 +43,16 @@ public class EnergyManager : MonoBehaviour
     public void IncP2Energy()
     {
         p2Energy = Mathf.Min(p2Energy + 1, maxEnergy);
+        Global.OnP2EnergyChange?.Invoke();
+    }
+    public void DecP1Energy()
+    {
+        p1Energy = Mathf.Clamp(p1Energy - 1, 0, maxEnergy);
+        Global.OnP1EnergyChange?.Invoke();
+    }
+    public void DecP2Energy()
+    {
+        p2Energy = Mathf.Clamp(p2Energy - 1, 0, maxEnergy);
         Global.OnP2EnergyChange?.Invoke();
     }
 
@@ -59,8 +69,8 @@ public class EnergyManager : MonoBehaviour
         Global.OnP2EnergyChange?.Invoke();
     }
 
-    private int GetP1Energy() => p1Energy;
-    private int GetP2Energy() => p2Energy;
+    public int GetP1Energy() => p1Energy;
+    public int GetP2Energy() => p2Energy;
 
     private RhythmLevel GetP1EnergyLevel()
     {

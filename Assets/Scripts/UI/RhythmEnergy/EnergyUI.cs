@@ -34,23 +34,25 @@ public class EnergyUI : MonoBehaviour
     private void OnEnergyChange()
     {
         int newEnergy = player == Player.Player1?Global.GetP1Energy(): Global.GetP2Energy();
-        if(newEnergy == Global.maxEnergy && newEnergy == energy)
+        if(newEnergy == Global.maxEnergy && newEnergy == energy) // 에너지 꽉찼을때
         {
             transform.DORewind();
             transform.DOShakePosition(0.4f, new Vector3(7, 7, 0), 27).OnComplete(() => transform.DOLocalMove(Vector3.zero, 0.2f));
             return;
         }
-        if (newEnergy > counters.Count || newEnergy == energy) return;
-        if (newEnergy > energy)
+        if (newEnergy > counters.Count || newEnergy == energy) return; // 에너지 변화없거나 카운터가 부족할때
+        if (newEnergy > energy) // 에너지 증가했을때
         {
             for (int i = energy; i < newEnergy; i++)
             {
                 counters[i].Activate(level,0);
             }
+            level = CheckLevel(newEnergy);
         }
-        else
+        else if(newEnergy < energy) // 에너지 적어졌을때
         {
-            for (int i = energy-1; i >= newEnergy-1 && i>=0; i--)
+            level = CheckLevel(newEnergy);
+            for (int i = Mathf.Max(0,newEnergy); i < energy; i++)
             {
                 counters[i].SetLevel(level, 0);
                 counters[i].Deactivate();
@@ -59,7 +61,6 @@ public class EnergyUI : MonoBehaviour
             }
         }
         energy = newEnergy;
-        level = CheckLevel(newEnergy);
     }
 
     private int CheckLevel(int _energy)

@@ -32,12 +32,13 @@ public class EnergyCounterUI : MonoBehaviour
     public void Deactivate()
     {
         image.DOKill();
+        image.DORewind();
         image.DOColor(deactivatedColor, 0.1f);
     }
 
     public void SetLevel(int level, float delay)
     {
-        switch (level)
+        switch (0)
         {
             case 0:
                 image.DOColor(activatedColor, 0.1f).SetDelay(delay);
