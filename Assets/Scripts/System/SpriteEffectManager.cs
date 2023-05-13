@@ -44,7 +44,7 @@ public class SpriteEffectManager : MonoBehaviour
     {
         SpriteEffect instance = GetClone();
         if (parent != null) instance.transform.SetParent(parent);
-        instance.gameObject.SetActive(true);
+        instance.enabled=true;
         instance.transform.SetPositionAndRotation(position, Quaternion.Euler(0, 0, rotation));
         
         instance.Effect(name);

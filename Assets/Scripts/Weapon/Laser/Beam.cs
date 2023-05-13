@@ -1,14 +1,15 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Beam : MonoBehaviour
+public class Beam : WeaponType
 {
     public AttackInfo payload;
-    public float length;
+    public Vector3 pos;
     public Vector3 dir;
+    public float length;
 
     [SerializeField] float holdTime = 0.3f;
     [SerializeField] float chargeTime = 0.5f;
@@ -16,25 +17,20 @@ public class Beam : MonoBehaviour
     private LineRenderer line;
     private LayerMask hitMask;
 
-    private void Start()
-    {
-        hitMask = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
-        line = GetComponent<LineRenderer>();
-        LaserSettings();
-        StartCoroutine(HitBox());
-    }
-
     //todo
     //레이저 이펙트 및 피격 판정
 
     private void LaserSettings()
     {
+        hitMask = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
+        line = GetComponent<LineRenderer>();
+
         line.startWidth = Global.gridIncrement;
         line.endWidth = Global.gridIncrement;
         line.SetPosition(0, dir);
         line.SetPosition(1, dir * length + dir);
-        Destroy(gameObject, 2f);
     }
+
     IEnumerator HitBox()
     {
         float time = 0;
@@ -44,17 +40,36 @@ public class Beam : MonoBehaviour
 
         yield return new WaitForSeconds(chargeTime);
 
+        //while (time <= holdTime)
+        {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, length, hitMask);
-        print(hit);
-            Debug.DrawLine(transform.position, Vector3.up, Color.red);
 
             if (hit.collider != null)
             {
-                //Todo
-                //상대 레이저 피격
-                Debug.Log("hit!");
+                Debug.Log(hit.collider.name);
+                //피격
+                //작동 잘함
             }
             time += Time.deltaTime;
+        }
     }
 
+
+    public override void SetInfo(Vector3 position, Vector3 direction, Player p, float len)
+    {
+        transform.position = position;
+        dir = direction;
+        length = len;
+        payload.owner = p;
+        isFree = false;
+
+        LaserSettings();
+        StartCoroutine(HitBox());
+        Invoke("Disable", 1f);
+    }
+    protected override void Disable()
+    {
+        isFree = true;
+        gameObject.SetActive(false);
+    }
 }

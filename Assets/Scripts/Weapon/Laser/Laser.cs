@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    [SerializeField]
-    Beam laser;
-    Transform pool;
-
     public AttackInfo payload;
 
     [Header("최대 거리")]
@@ -20,7 +16,6 @@ public class Laser : Weapon
     private void Start()
     {
         mask = 1 << LayerMask.NameToLayer("Portal") | 1 << LayerMask.NameToLayer("Wall");
-        pool = GameObject.Find("pool").transform;
     }
 
     public override void P1ShootForward()
@@ -61,13 +56,9 @@ public class Laser : Weapon
         CreateLaser(dir, pos, distance);
     }
 
-    private void CreateLaser(Vector3 dir, Vector2 pos, float len)
+    private void CreateLaser(Vector3 dir, Vector3 pos, float len)
     {
-        Beam beam = Instantiate(laser, pos, Quaternion.identity, pool);
-        beam.transform.position = pos;
-        beam.payload.owner = player;
-        beam.dir = dir;
-        beam.length = len;
+        Global.weaponPool.SpawnArms(Global.assets.laser, pos, dir, player, len);
     }
 
     //레이저 위치 및 거리 계산

@@ -50,6 +50,10 @@ public static class Global
     // Sprite Effect Manager
     public static SpriteEffectManager sprEffectManager;
 
+    // Weapon Pool
+    public static WeaponPool weaponPool;
+
+
     //// 에셋 참조
     public static AssetCollector assets;
 
