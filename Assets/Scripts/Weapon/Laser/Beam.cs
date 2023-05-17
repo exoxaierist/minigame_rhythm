@@ -11,8 +11,7 @@ public class Beam : WeaponType
     public Vector3 dir;
     public float length;
 
-    [SerializeField] float holdTime = 0.3f;
-    [SerializeField] float chargeTime = 0.5f;
+    [SerializeField] float chargeTime = 0.3f;
 
     private LineRenderer line;
     private LayerMask hitMask;
@@ -29,16 +28,23 @@ public class Beam : WeaponType
         line.endWidth = Global.gridIncrement;
         line.SetPosition(0, dir);
         line.SetPosition(1, dir * length + dir);
+
+        line.SetColors(Color.red, Color.red);
     }
 
     IEnumerator HitBox()
     {
-        float time = 0;
+        //float time = 0;
 
         DOTween.To(() => line.startWidth, x => line.startWidth = x, 0, chargeTime).SetEase(Ease.InCirc);
         DOTween.To(() => line.endWidth, x => line.endWidth = x, 0, chargeTime).SetEase(Ease.InCirc);
 
         yield return new WaitForSeconds(chargeTime);
+
+        line.startWidth = Global.gridIncrement;
+        line.endWidth = Global.gridIncrement;
+        //임시
+        line.SetColors(Color.blue, Color.blue);
 
         //while (time <= holdTime)
         {
@@ -50,8 +56,11 @@ public class Beam : WeaponType
                 //피격
                 //작동 잘함
             }
-            time += Time.deltaTime;
+            //time += Time.deltaTime;
         }
+
+        yield return new WaitForSeconds(0.1f);
+        Disable();
     }
 
 
@@ -65,7 +74,7 @@ public class Beam : WeaponType
 
         LaserSettings();
         StartCoroutine(HitBox());
-        Invoke("Disable", 1f);
+        //Invoke("Disable", 1f);
     }
     protected override void Disable()
     {

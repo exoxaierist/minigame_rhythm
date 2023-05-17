@@ -15,14 +15,14 @@ public class Laser : Weapon
 
     private void Start()
     {
-        mask = 1 << LayerMask.NameToLayer("Portal") | 1 << LayerMask.NameToLayer("Wall");
+        mask = 1 << LayerMask.NameToLayer("Portal") | 1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Reflect");
     }
 
     public override void P1ShootForward()
     {
         Calculate(Vector3.right, transform.position, maxLen);
     }
-    public override void P1ShootUpDown()
+    public override void P1ShootVertical()
     {
         Calculate(Vector3.up, transform.position, maxLen);
         Calculate(Vector3.down, transform.position, maxLen);
@@ -31,7 +31,7 @@ public class Laser : Weapon
     {
         Calculate(Vector3.left, transform.position, maxLen);
     }
-    public override void P2ShootUpDown()
+    public override void P2ShootVertical()
     {
         Calculate(Vector3.up, transform.position, maxLen);
         Calculate(Vector3.down, transform.position, maxLen);
@@ -50,6 +50,12 @@ public class Laser : Weapon
             {
                 Portal p = hit.collider.GetComponent<Portal>();
                 Calculate(dir, p.destination.position, len - distance);
+            }
+
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Reflect"))
+            {
+                Vector3 flectDir = Vector3.Reflect(dir, hit.normal);
+                Calculate(flectDir, hit.collider.transform.position, len - distance);
             }
         }
 
