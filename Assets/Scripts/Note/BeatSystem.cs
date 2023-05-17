@@ -16,12 +16,17 @@ public class BeatSystem : MonoBehaviour
 
     private void Awake()
     {
+        detectionLine = transform.Find("UI").Find("DetectionLine");
+        detLineIma = detectionLine.GetComponent<Image>();
+        sM = GetComponent<SongManager>();
+        mP = GetComponent<MidiFileParser>();
+        nM = GetComponent<NoteManager>();
         Global.GetTimingms = GetDelaytime;
         Global.CheckBeat = Detection;
     }
 
     private void Start()
-    {
+    {      
         Play();
     }
 
@@ -55,12 +60,7 @@ public class BeatSystem : MonoBehaviour
 
     /** 음악과 노트 재생 */
     public void Play()
-    {
-        detectionLine = transform.Find("UI").Find("DetectionLine");
-        detLineIma = detectionLine.GetComponent<Image>();
-        sM = GetComponent<SongManager>();
-        mP = GetComponent<MidiFileParser>();
-        nM = GetComponent<NoteManager>();
+    {       
         mP.GetMidiFile(songName);
         sM.Invoke("PlaySong", nM.notePlayingTime);
         nM.noteInfo = mP.GetDataFromMidi();

@@ -19,18 +19,16 @@ public class NoteManager : MonoBehaviour
     Transform tempNote;
     Transform detectionLine;
     RectTransform noteUI;
-    Image detLineIma;
     AudioSource bgm;
 
     //
     public bool isPlaying = false;
-    void Start()
+    void Awake()
     {
         bgm = GetComponent<AudioSource>();
         noteIndex = transform.Find("UI").Find("NoteIndex");
         detectionLine = transform.Find("UI").Find("DetectionLine");
         noteUI = transform.Find("UI").GetComponent<RectTransform>();
-        detLineIma = detectionLine.GetComponent<Image>();
     }
 
     /** 노트 재생(코루틴) */
