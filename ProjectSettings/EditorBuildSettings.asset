@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Testing 1/Start.unity
+    guid: cde1cf153d3184a259a3cd48a50f0e8e
+  - enabled: 1
+    path: Assets/Scenes/Testing 1/Middle.unity
+    guid: a7306c617008f46b692138c4263f8d50
+  - enabled: 1
     path: Assets/Scenes/Testing/Jo_Sample.unity
     guid: 0b067707077afd0438b0c0da607f2fdb
   m_configObjects: {}
