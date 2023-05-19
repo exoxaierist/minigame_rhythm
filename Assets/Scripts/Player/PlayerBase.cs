@@ -5,10 +5,7 @@ using UnityEngine;
 // 유닛 개발 기반
 public class PlayerBase : ControlledObject
 {
-    [Header("유닛 정보")]
-    public string id = "unassigned";
     [HideInInspector] public Hp hp;
-    public PerkBase perk;
 
     protected override void Awake()
     {
@@ -20,10 +17,35 @@ public class PlayerBase : ControlledObject
     protected virtual void OnDamage() { }
     protected virtual void OnDeath() { }
 
+    protected override void MoveUp()
+    {
+        Move(new(0, 1));
+    }
+
+    protected override void MoveDown()
+    {
+        Move(new(0, -1));
+    }
+
+    protected override void MoveRight()
+    {
+        Move(new(1, 0));
+    }
+
+    protected override void MoveLeft()
+    {
+        Move(new(-1,0));
+    }
+
+    private void Move(Vector2 target)
+    {
+        if (Global.CheckBeat() && Global.IsInField(transform.position*Vector2.one + target) && Global.CheckOverlap(transform.position * Vector2.one + target, collisionLayer)) MoveRelative(target);
+    }
+
     // 오브젝트에 같이 딸려있는 HP 컴포넌트 찾아서 이벤트 등록
     protected void CheckForHP()
     {
-        if (TryGetComponent<Hp>(out hp))
+        if (TryGetComponent(out hp))
         {
             hp.OnHeal += OnHeal;
             hp.OnDamage += OnDamage;

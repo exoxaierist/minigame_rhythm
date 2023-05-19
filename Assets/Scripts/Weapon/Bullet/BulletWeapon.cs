@@ -9,6 +9,7 @@ public class BulletWeapon : Weapon
 
     public override void P1ShootForward()
     {
+        if (!Global.CheckBeat()) return;
         if (Global.energyManager.GetP1Energy() <= 0) return;
         Global.energyManager.DecP1Energy();
 
@@ -18,6 +19,7 @@ public class BulletWeapon : Weapon
 
     public override void P1ShootVertical()
     {
+        if (!Global.CheckBeat()) return;
         if (Global.energyManager.GetP1Energy() <= 0) return;
         Global.energyManager.DecP1Energy();
 
@@ -27,6 +29,7 @@ public class BulletWeapon : Weapon
 
     public override void P2ShootForward()
     {
+        if (!Global.CheckBeat()) return;
         if (Global.energyManager.GetP2Energy() <= 0) return;
         Global.energyManager.DecP2Energy();
 
@@ -36,6 +39,7 @@ public class BulletWeapon : Weapon
 
     public override void P2ShootVertical()
     {
+        if (!Global.CheckBeat()) return;
         if (Global.energyManager.GetP2Energy() <= 0) return;
         Global.energyManager.DecP2Energy();
 
@@ -43,6 +47,7 @@ public class BulletWeapon : Weapon
         ShootBullet(RotateVector(Vector3.down, Random.Range(-recoil, recoil)));
     }
 
+    // 벡터 방향을 돌림
     private Vector3 RotateVector(Vector3 direction, float offset) => Quaternion.AngleAxis(offset, Vector3.back) * direction;
 
     private void ShootBullet(Vector3 direction)
