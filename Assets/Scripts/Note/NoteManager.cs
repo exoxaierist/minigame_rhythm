@@ -52,9 +52,9 @@ public class NoteManager : MonoBehaviour
     void CreatNote(int dir = 1)
     {
         tempNote = Instantiate(note, noteUI.anchoredPosition, Quaternion.identity).transform;
-        tempNote.GetComponent<RectTransform>().anchoredPosition = new Vector2(dir * noteUI.rect.width/2, -400);
+        tempNote.GetComponent<RectTransform>().anchoredPosition = new Vector2(dir * noteUI.rect.width/2, 0);
         tempNote.SetParent(noteIndex, false);
-        tempNote.GetComponent<Image>().DOFade(1.0f, notePlayingTime);
+        tempNote.GetComponent<Image>().DOFade(1.0f, notePlayingTime).SetDelay(0.1f);
         if (dir == 1)
         {
             tempNote.DOMoveX(detectionLine.position.x, notePlayingTime).SetEase(Ease.Linear).OnComplete(() => RemoveNote());

@@ -6,13 +6,8 @@ TagManager:
   tags:
   - P1
   - P2
-<<<<<<< Updated upstream
-  - Bullet1
-  - Bullet2
   - Bullet
-=======
   - Sensor
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
