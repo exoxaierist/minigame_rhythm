@@ -3,25 +3,29 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< Updated upstream
   tags:
   - P1
   - P2
   - Bullet
   - Sensor
+=======
+  tags: []
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - System
+  - 
   - Water
   - UI
-  - Wall
-  - P1
-  - P2
-  - Portal
-  - Glass
-  - Deco
-  - Reflect
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -42,15 +46,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1655763663
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Effects
-    uniqueID: 1304029705
-    locked: 0
-  - name: UI
-    uniqueID: 3502293427
     locked: 0
