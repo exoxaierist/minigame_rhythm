@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Beam : WeaponType
 {
-    public AttackInfo payload;
     public Vector3 pos;
     public Vector3 dir;
     public float length;
@@ -26,7 +25,7 @@ public class Beam : WeaponType
 
         line.startWidth = Global.gridIncrement;
         line.endWidth = Global.gridIncrement;
-        line.SetPosition(0, dir);
+        line.SetPosition(0, Vector3.zero);
         line.SetPosition(1, dir * length + dir);
 
         line.SetColors(Color.red, Color.red);
