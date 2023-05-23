@@ -197,10 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec13d4d818fb68843bbdae13b5359ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoil: 2
-  speed: 30
   damage: 1
   player: 1
+  recoil: 2
+  speed: 30
 --- !u!1 &492752071
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,10 +320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec13d4d818fb68843bbdae13b5359ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoil: 2
-  speed: 30
   damage: 1
   player: 2
+  recoil: 2
+  speed: 30
 --- !u!1 &1566897923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,6 +2406,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 786459363722922656, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.47735977
+      objectReference: {fileID: 0}
+    - target: {fileID: 786459363722922656, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 459.84
+      objectReference: {fileID: 0}
     - target: {fileID: 6520418141049759616, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
       propertyPath: m_Name
       value: UI

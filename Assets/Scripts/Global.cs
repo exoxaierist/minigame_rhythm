@@ -63,6 +63,16 @@ public static class Global
     public static float gridIncrement = 1;
     public static Vector2 globalOffset = Vector2.zero;
 
+    // 필드 크기 정의
+    public static Vector2 fieldExtent = new(10, 5);
+
+    // 좌표가 필드 안에 있는지 t/f반환
+    public static bool IsInField(Vector2 pos)
+    {
+        if (pos.x > 0 && pos.x <= fieldExtent.x && pos.y > 0 && pos.y <= fieldExtent.y) return true;
+        return false;
+    }
+
 
     //// 유틸리티
     // 카메라 진동
@@ -76,4 +86,7 @@ public static class Global
     {
         return Physics2D.OverlapCircle(dest, 0.3f, mask);
     }
+
+    // 콜리젼 마스크
+    public static LayerMask playerMoveColMask = LayerMask.NameToLayer("") | LayerMask.NameToLayer("");
 }
