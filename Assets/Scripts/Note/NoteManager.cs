@@ -37,7 +37,6 @@ public class NoteManager : MonoBehaviour
         isPlaying = true;
         hitCount = 0;
         correctionValue = 0;
-        yield return new WaitForEndOfFrame();
         float temp = 0;
         for (int count = 0; count < noteInfo.Count; count++)
         {
