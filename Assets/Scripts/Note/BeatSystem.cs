@@ -47,13 +47,6 @@ public class BeatSystem : MonoBehaviour
         {
             Global.OnBeat?.Invoke();
         }
-
-        if (!nM.isPlaying && !sM.audioSource.isPlaying)
-        {
-            Debug.Log("음악 재시작");
-            //Play();
-        }
-        
     }
 
     /** 음악과 노트 재생 */
@@ -68,6 +61,7 @@ public class BeatSystem : MonoBehaviour
 
     public float GetDelaytime()
     {
+        if (!nM.isPlaying) return 0;
         float t1 = 0, t2 = 0;
         if (nM.hitCount != nM.noteInfo.Count) t1 = Mathf.Abs(nM.noteInfo[nM.hitCount].hitTime + nM.correctionValue - sM.audioSource.time);
         else t1 = Mathf.Abs(nM.noteInfo[nM.hitCount-1].hitTime + nM.correctionValue - sM.audioSource.time);
@@ -82,6 +76,7 @@ public class BeatSystem : MonoBehaviour
     /** 노트 판정 계산 */
     public bool Detection()
     {
+        if (!nM.isPlaying) return false;
         if (GetDelaytime() <= 0.15f)
             return true;
 

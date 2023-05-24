@@ -28,7 +28,6 @@ public class EnergyManager : MonoBehaviour
 
     private void OnP1Any()
     {
-        print("any");
         if (Global.CheckBeat()) IncP1Energy();
         else DecP1Energy();
     }
