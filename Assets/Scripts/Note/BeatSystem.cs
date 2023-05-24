@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class BeatSystem : MonoBehaviour
 {
-    [Header("ÇöÀç °î")] public string songName = "bgm1";
+    [Header("ÇöÀç °î")] public string songName = "bgm2";
     SongManager sM;
     MidiFileParser mP;
     NoteManager nM;
@@ -15,15 +15,21 @@ public class BeatSystem : MonoBehaviour
     Image detLineIma;
 
     private void Awake()
-    {
+    {              
         detectionLine = transform.Find("UI").Find("DetectionLine");
         detLineIma = detectionLine.GetComponent<Image>();
         sM = GetComponent<SongManager>();
         mP = GetComponent<MidiFileParser>();
         nM = GetComponent<NoteManager>();
+        if (GameObject.Find("SceneManager") != null)
+        {          
+            songName = GameObject.Find("SceneManager").GetComponent<SceneChanger>().musicName;
+            if (sM.SearchSong(songName) == null)
+                mP.GetMidiFile(sM.BGM[1].name);
+        }
         Global.GetTimingms = GetDelaytime;
         Global.CheckBeat = Detection;
-        Global.OnCounterEnd += Play;
+        Global.OnCounterEnd += Play;       
     }
 
     private void Update()
@@ -48,7 +54,6 @@ public class BeatSystem : MonoBehaviour
     /** À½¾Ç°ú ³ëÆ® Àç»ý */
     public void Play()
     {       
-        mP.GetMidiFile(songName);
         sM.Invoke("PlaySong", nM.notePlayingTime);
         nM.noteInfo = mP.GetDataFromMidi();
         StartCoroutine(nM.PlayNote());

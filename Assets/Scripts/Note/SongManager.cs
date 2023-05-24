@@ -7,9 +7,14 @@ public class SongManager : MonoBehaviour
     public AudioClip[] BGM;
     public AudioSource audioSource;
 
+
     public void PlaySong()
     {
-        audioSource.clip = SearchSong(GetComponent<BeatSystem>().songName);
+        if (SearchSong(GetComponent<BeatSystem>().songName) != null)
+            audioSource.clip = SearchSong(GetComponent<BeatSystem>().songName);
+        else
+            audioSource.clip = BGM[1];
+
         audioSource.Play();
     }
 
@@ -27,4 +32,5 @@ public class SongManager : MonoBehaviour
 
         return null;
     }
+
 }
