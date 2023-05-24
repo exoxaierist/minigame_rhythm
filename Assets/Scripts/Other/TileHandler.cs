@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TileHandler : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class TileHandler : MonoBehaviour
             sprList.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());
         }
         offCol = sprList[0].color;
+        if (TryGetComponent(out TilemapRenderer tilemap)) tilemap.enabled = false;
     }
 
     private void UpdateTile()
@@ -36,11 +39,13 @@ public class TileHandler : MonoBehaviour
             bool condition = (sprite.transform.position.x+sprite.transform.position.y) % 2 == 0;
             if (switchTile?condition:!condition)
             {
-                sprite.color = randCol;
+                sprite.DOComplete();
+                sprite.DOColor(randCol, 0.1f);
             }
             else
             {
-                sprite.color = offCol;
+                sprite.DOComplete();
+                sprite.DOColor(offCol, 0.1f);
             }
         }
     }

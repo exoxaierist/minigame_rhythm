@@ -39,7 +39,8 @@ public class PlayerBase : ControlledObject
 
     private void Move(Vector2 target)
     {
-        if (Global.CheckBeat() && Global.IsInField(transform.position*Vector2.one + target) && Global.CheckOverlap(transform.position * Vector2.one + target, collisionLayer)) MoveRelative(target);
+        MoveRelative(target);
+        if (Global.CheckBeat() && Global.IsInField(transform.position*Vector2.one + target) && Global.CheckOverlap(transform.position * Vector2.one + target, collisionLayer.value)) MoveRelative(target);
     }
 
     // 오브젝트에 같이 딸려있는 HP 컴포넌트 찾아서 이벤트 등록
