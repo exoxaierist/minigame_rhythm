@@ -31,7 +31,6 @@ public class BeatSystem : MonoBehaviour
         {
             DOTween.Rewind(detectionLine);
             DOTween.Rewind(detLineIma);
-            Debug.Log(GetDelaytime());
             if (Detection())
             {
                 detectionLine.DOScale(detectionLine.localScale * 1.1f, 0.2f).SetLoops(2, LoopType.Yoyo);

@@ -73,7 +73,6 @@ public class NoteManager : MonoBehaviour
             Debug.Log("À½¾Ç Á¾·á");
             isPlaying = false;
             StopCoroutine(PlayNote());
-            return;
         }          
     }
 }
