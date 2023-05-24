@@ -82,7 +82,7 @@ public static class Global
     public static Action CamShakeLarge;
 
     // 콜리젼 확인
-    public static bool CheckOverlap(Vector2 dest, LayerMask mask)
+    public static bool CheckOverlap(Vector2 dest, int mask)
     {
         return Physics2D.OverlapCircle(dest, 0.3f, mask);
     }

@@ -16,22 +16,10 @@ public class ControlledObject : GridObject
         Global.OnCounterEnd += SubscribeToInput;
     }
 
-    protected virtual void MoveUp()
-    {
-        if(!Global.CheckOverlap(transform.position*Vector2.one + new Vector2(0,1),collisionLayer)) MoveRelative(new Vector2(0, 1));
-    }
-    protected virtual void MoveDown()
-    {
-        if (!Global.CheckOverlap(transform.position * Vector2.one + new Vector2(0, -1), collisionLayer)) MoveRelative(new Vector2(0, -1));
-    }
-    protected virtual void MoveRight()
-    {
-        if (!Global.CheckOverlap(transform.position * Vector2.one + new Vector2(1, 0), collisionLayer)) MoveRelative(new Vector2(1, 0));
-    }
-    protected virtual void MoveLeft()
-    {
-        if (!Global.CheckOverlap(transform.position * Vector2.one + new Vector2(-1,0), collisionLayer)) MoveRelative(new Vector2(-1, 0));
-    }
+    protected virtual void MoveUp() {}
+    protected virtual void MoveDown() {}
+    protected virtual void MoveRight() {}
+    protected virtual void MoveLeft() {}
 
     // 인풋 대리자에서 제거
     protected void UnsubscribeToInput()
