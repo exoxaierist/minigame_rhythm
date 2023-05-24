@@ -27,6 +27,8 @@ public class BeatSystem : MonoBehaviour
             if (sM.SearchSong(songName) == null)
                 mP.GetMidiFile(sM.BGM[1].name);
         }
+        else
+            mP.GetMidiFile(sM.BGM[1].name);
         Global.GetTimingms = GetDelaytime;
         Global.CheckBeat = Detection;
         Global.OnCounterEnd += Play;       
