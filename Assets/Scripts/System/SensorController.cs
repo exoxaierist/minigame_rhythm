@@ -8,15 +8,31 @@ public class SensorController : MonoBehaviour
     public bool isRoof;
     public bool isBottom;
     public bool isOnSensor;
-    public GameObject[] albumImg;
-    // Start is called before the first frame update
 
+    public GameObject[] albumImg;
+
+    GameObject sceneChanger;
+
+    private void Awake()
+    {
+        sceneChanger = GameObject.Find("SceneManager");
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            sceneChanger.GetComponent<SceneChanger>().GameStart();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         for(int i = 0;i<albumImg.Length;i++)
         {
             albumImg[i].gameObject.SetActive(false);
+
         }
+       
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -28,9 +44,12 @@ public class SensorController : MonoBehaviour
         {
             isBottom = true;
         }
+        collision.gameObject.GetComponent<MusicInfo>().isOnSensor = true;
         albumImg[collision.gameObject.GetComponent<MusicInfo>().musicNum].SetActive(true);
-        collision.gameObject.GetComponentInChildren<Text>().color = new Color(255, 255, 255,1);
+        collision.gameObject.GetComponentInChildren<Text>().color = new Color(255, 255, 255, 1);
+        sceneChanger.GetComponent<SceneChanger>().musicName = collision.GetComponent<MusicInfo>().musicName;
         
+
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
@@ -42,6 +61,9 @@ public class SensorController : MonoBehaviour
         {
             isBottom = false;
         }
+        collision.gameObject.GetComponent<MusicInfo>().isOnSensor = false;
+        collision.gameObject.GetComponentInChildren<Text>().color = new Color(111, 111, 111, 0.5f);
         //albumImg[collision.gameObject.GetComponent<MusicInfo>().musicNum].SetActive(false);
     }
+    
 }
