@@ -26,7 +26,7 @@ public class WeaponPool : MonoBehaviour
         return arms;
     }
 
-    public void SpawnArms(GameObject go, Vector3 position, Vector3 dir, Player p, float len) => SpawnArms(go, position, dir, p, len, transform);
+    public void SpawnArms(GameObject go, Vector3 position, Vector3 dir, Player p, float speed) => SpawnArms(go, position, dir, p, speed, transform);
     public void SpawnArms(GameObject go, Vector3 position, Vector3 dir, Player p) => SpawnArms(go, position, dir, p, 0, transform);
     public void SpawnArms(GameObject go, Vector3 position, Vector3 dir, Player p, float len, Transform parent)
     {

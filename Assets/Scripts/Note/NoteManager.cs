@@ -37,7 +37,6 @@ public class NoteManager : MonoBehaviour
         isPlaying = true;
         hitCount = 0;
         correctionValue = 0;
-        yield return new WaitForEndOfFrame();
         float temp = 0;
         for (int count = 0; count < noteInfo.Count; count++)
         {
@@ -54,7 +53,7 @@ public class NoteManager : MonoBehaviour
         tempNote = Instantiate(note, noteUI.anchoredPosition, Quaternion.identity).transform;
         tempNote.GetComponent<RectTransform>().anchoredPosition = new Vector2(dir * noteUI.rect.width/2, 0);
         tempNote.SetParent(noteIndex, false);
-        tempNote.GetComponent<Image>().DOFade(1.0f, notePlayingTime).SetDelay(0.1f);
+        tempNote.GetComponent<Image>().DOFade(1.0f, notePlayingTime);
         if (dir == 1)
         {
             tempNote.DOMoveX(detectionLine.position.x, notePlayingTime).SetEase(Ease.Linear).OnComplete(() => RemoveNote());

@@ -25,14 +25,9 @@ public class BeatSystem : MonoBehaviour
         Global.CheckBeat = Detection;
     }
 
-    private void Start()
-    {      
-        Play();
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             DOTween.Rewind(detectionLine);
             DOTween.Rewind(detLineIma);
@@ -47,9 +42,12 @@ public class BeatSystem : MonoBehaviour
                 detectionLine.DOScale(detectionLine.localScale * 1.1f, 0.2f).SetLoops(2, LoopType.Yoyo);
                 detLineIma.DOColor(Color.red, 0.25f).SetLoops(2, LoopType.Yoyo);
             }
+        }*/
+        if (nM.isPlaying && Global.CheckBeat())
+        {
+            Global.OnBeat?.Invoke();
         }
 
-        
         if (!nM.isPlaying && !sM.audioSource.isPlaying)
         {
             Debug.Log("¿Ωæ« ¿ÁΩ√¿€");
