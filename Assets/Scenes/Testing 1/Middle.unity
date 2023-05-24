@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 2
+  musicName: 
+  isOnSensor: 0
 --- !u!1 &362870682
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +792,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 3
+  musicName: 
+  isOnSensor: 0
 --- !u!1 &902090778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,6 +1008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 5
+  musicName: 
+  isOnSensor: 0
 --- !u!1 &938346536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRoof: 0
   isBottom: 0
+  isOnSensor: 0
   albumImg:
   - {fileID: 974777618}
   - {fileID: 1583395268}
@@ -2370,7 +2377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.50980395}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2749,6 +2756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 4
+  musicName: 
+  isOnSensor: 0
 --- !u!1 &2022128939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 6
+  musicName: 
+  isOnSensor: 0
 --- !u!1 &2025832270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2985,6 +2996,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 0
+  musicName: bgm1
+  isOnSensor: 0
 --- !u!1 &2067088749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 1
+  musicName: bgm2
+  isOnSensor: 0
 --- !u!1 &2091302496
 GameObject:
   m_ObjectHideFlags: 0

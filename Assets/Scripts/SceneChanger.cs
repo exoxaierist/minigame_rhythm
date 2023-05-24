@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public string musicName;
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     public void MiddleScene()
     {
         SceneManager.LoadScene(1);
+    }
+    public void GameStart()
+    {
+        SceneManager.LoadScene(2);
     }
 }

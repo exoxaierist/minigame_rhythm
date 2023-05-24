@@ -6,5 +6,7 @@ using UnityEngine.UI;
 public class MusicInfo : MonoBehaviour
 {
     public int musicNum;
+    public string musicName;
+    public bool isOnSensor;
     
 }
