@@ -64,7 +64,7 @@ public static class Global
     public static Vector2 globalOffset = Vector2.zero;
 
     // 필드 크기 정의
-    public static Vector2 fieldExtent = new(10, 5);
+    public static Vector2 fieldExtent = new(18, 12);
 
     // 좌표가 필드 안에 있는지 t/f반환
     public static bool IsInField(Vector2 pos)

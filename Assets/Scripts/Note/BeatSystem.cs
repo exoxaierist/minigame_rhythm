@@ -23,6 +23,7 @@ public class BeatSystem : MonoBehaviour
         nM = GetComponent<NoteManager>();
         Global.GetTimingms = GetDelaytime;
         Global.CheckBeat = Detection;
+        Global.OnCounterEnd += Play;
     }
 
     private void Update()
@@ -50,7 +51,7 @@ public class BeatSystem : MonoBehaviour
         if (!nM.isPlaying && !sM.audioSource.isPlaying)
         {
             Debug.Log("¿Ωæ« ¿ÁΩ√¿€");
-            Play();
+            //Play();
         }
         
     }
