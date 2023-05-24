@@ -63,7 +63,8 @@ public class NoteManager : MonoBehaviour
     }
 
     void RemoveNote()
-    {       
+    {
+        Global.OnBeat?.Invoke();
         Destroy(noteIndex.GetChild(1).gameObject);
         Destroy(noteIndex.GetChild(0).gameObject);      
         correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.08f;

@@ -43,10 +43,6 @@ public class BeatSystem : MonoBehaviour
                 detLineIma.DOColor(Color.red, 0.25f).SetLoops(2, LoopType.Yoyo);
             }
         }*/
-        if (nM.isPlaying && Global.CheckBeat())
-        {
-            Global.OnBeat?.Invoke();
-        }
     }
 
     /** 음악과 노트 재생 */
