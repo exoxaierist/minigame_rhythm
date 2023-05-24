@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    public AttackInfo payload;
-
     [Header("최대 거리")]
     public float maxLen = 10;
 

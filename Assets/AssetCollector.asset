@@ -18,4 +18,5 @@ MonoBehaviour:
   hpCounterSpriteEmpty: {fileID: -993504304, guid: f2fbc0dc495be044faa74051e055d059, type: 3}
   bullet: {fileID: 4474822564410845793, guid: dface72bb686b9c42b43d6537402b4a6, type: 3}
   laser: {fileID: 1296740597194298368, guid: 6f4c1ea864626534798591475038baa4, type: 3}
+  slug: {fileID: 5476093390150504510, guid: ce27417ba563fcc458d092495e690020, type: 3}
   spriteEffect: {fileID: 1894089634223162377, guid: a10e0f09a19d1aa4ebc79c0e53a91ed3, type: 3}

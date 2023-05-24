@@ -15,6 +15,7 @@ public class AssetCollector : ScriptableObject
     [Header("공격 관련")]
     public GameObject bullet;
     public GameObject laser;
+    public GameObject slug;
 
     [Header("이펙트")]
     public GameObject spriteEffect;
