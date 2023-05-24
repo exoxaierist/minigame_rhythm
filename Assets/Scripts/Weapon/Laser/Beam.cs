@@ -10,7 +10,7 @@ public class Beam : WeaponType
     public Vector3 dir;
     public float length;
 
-    [SerializeField] float chargeTime = 0.3f;
+    [SerializeField] float chargeTime = 0.05f;
 
     private LineRenderer line;
     private LayerMask hitMask;
@@ -33,17 +33,18 @@ public class Beam : WeaponType
 
     IEnumerator HitBox()
     {
+        Global.CamShakeSmall();
         //float time = 0;
-
-        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0, chargeTime).SetEase(Ease.InCirc);
-        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0, chargeTime).SetEase(Ease.InCirc);
+        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0, chargeTime).SetEase(Ease.OutCirc);
+        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0, chargeTime).SetEase(Ease.OutCirc);
 
         yield return new WaitForSeconds(chargeTime);
+        Global.CamShakeMedium();
 
         line.startWidth = Global.gridIncrement;
         line.endWidth = Global.gridIncrement;
         //юс╫ц
-        line.SetColors(Color.blue, Color.blue);
+        //line.SetColors(Color.blue, Color.blue);
 
         //while (time <= holdTime)
         {
@@ -58,7 +59,7 @@ public class Beam : WeaponType
             //time += Time.deltaTime;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         Disable();
     }
 

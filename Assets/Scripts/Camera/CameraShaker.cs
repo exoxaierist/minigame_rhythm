@@ -11,6 +11,7 @@ public class CameraShaker : MonoBehaviour
         Global.CamShakeSmall = ShakeSmall;
         Global.CamShakeMedium = ShakeMedium;
         Global.CamShakeLarge = ShakeLarge;
+        Global.OnBeat += ShakeSmall;
     }
 
     public void ShakeSmall() => Shake(0.03f, 0.2f, 25);

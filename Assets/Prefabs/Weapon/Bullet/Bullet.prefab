@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4474822564410845793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,6 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5c574396cd74fb495de1546011e5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFree: 1
+  payload:
+    owner: 0
+    damage: 0
   speed: 0
   lifetime: 6
   direction: {x: 0, y: 0, z: 0}
@@ -108,6 +112,9 @@ MonoBehaviour:
   p2Mask:
     serializedVersion: 2
     m_Bits: 704
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &-1491156351001884343
 BoxCollider2D:
   m_ObjectHideFlags: 0

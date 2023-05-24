@@ -52,7 +52,7 @@ public class BulletWeapon : Weapon
 
     private void ShootBullet(Vector3 direction)
     {
-        Global.CamShakeSmall();
+        Global.CamShakeMedium();
         //Bullet instance = Instantiate(Global.assets.bullet).GetComponent<Bullet>();
         Global.weaponPool.SpawnArms(Global.assets.bullet, transform.position, direction, player, speed);
         //instance.transform.position = transform.position;

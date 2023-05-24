@@ -53,7 +53,8 @@ public class BeatSystem : MonoBehaviour
 
     /** 음악과 노트 재생 */
     public void Play()
-    {       
+    {
+        mP.GetMidiFile(songName);
         sM.Invoke("PlaySong", nM.notePlayingTime);
         nM.noteInfo = mP.GetDataFromMidi();
         StartCoroutine(nM.PlayNote());
