@@ -7,6 +7,7 @@ public class UImanager : MonoBehaviour
 {
     public GameObject rulePan;
     public GameObject SettingPan;
+    public GameObject middlePan;
 
     public Transform btnGroupTrans;
     public Transform upTrans;
@@ -31,6 +32,7 @@ public class UImanager : MonoBehaviour
         {
             rulePan.SetActive(false);
             SettingPan.SetActive(false);
+            middlePan.SetActive(false);
         }
     }
     void KeyDownControl()
