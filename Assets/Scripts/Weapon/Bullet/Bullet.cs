@@ -50,8 +50,7 @@ public class Bullet : WeaponType
         payload.owner = p;
         isFree = false;
 
-        //임시 데미지 - 플레이어에 따른 데미지 해야 됨
-        payload.damage = 1;
+        payload.damage = p == Player.Player1 ? Global.GetP1Energy(): Global.GetP2Energy();
         hitMask = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
         //gameObject.layer = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P1") : 1 << LayerMask.NameToLayer("P2");
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Shotgun : WeaponType
@@ -12,6 +13,8 @@ public class Shotgun : WeaponType
         transform.rotation = Quaternion.LookRotation(direction);
         payload.owner = p;
         isFree = false;
+
+        payload.damage = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
 
         target = payload.owner == Player.Player1 ? LayerMask.NameToLayer("P2") :LayerMask.NameToLayer("P1");
         ParticleSystem ps = GetComponent<ParticleSystem>();
@@ -35,6 +38,14 @@ public class Shotgun : WeaponType
         if (other.GetComponent<PlayerBase>().isProtected)
             return;
 
-        Debug.Log("Hit");
+        OnHit(other);
+        //Debug.Log("Hit");
+    }
+
+    private void OnHit(GameObject go)
+    {
+        IReceiveAttack receiver;
+        go.TryGetComponent(out receiver);
+        receiver.OnAttack(payload);
     }
 }

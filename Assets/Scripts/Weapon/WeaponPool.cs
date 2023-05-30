@@ -14,7 +14,9 @@ public class WeaponPool : MonoBehaviour
 
     private WeaponType GetClone(GameObject go)
     {
-        foreach (WeaponType w in pool) if (w.isFree) return w;
+        foreach (WeaponType w in pool) 
+            if (w.isFree && w.wtype == go.GetComponent<WeaponType>().wtype) 
+                return w;
 
         return MakeNewWeapon(go);
     }

@@ -22,3 +22,12 @@ public enum RhythmLevel
     Two = 2,
     Three = 3,
 }
+
+public enum Wtype
+{
+    None,
+    Bullet,
+    Laser,
+    Slug,
+    Shield,
+}

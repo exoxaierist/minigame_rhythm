@@ -4887,3 +4887,4 @@ MonoBehaviour:
   payload:
     owner: 0
     damage: 0
+  wtype: 3

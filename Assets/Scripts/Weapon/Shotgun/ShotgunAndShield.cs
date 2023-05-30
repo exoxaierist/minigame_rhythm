@@ -38,6 +38,7 @@ public class ShotgunAndShield : Weapon
 
     public override void P1ShootForward() //shoot
     {
+        Global.CamShakeLarge();
         Global.weaponPool.SpawnArms(Global.assets.slug, transform.position, dir, player);
     }
 
@@ -48,6 +49,7 @@ public class ShotgunAndShield : Weapon
 
     public override void P2ShootForward() //shoot
     {
+        Global.CamShakeLarge();
         Global.weaponPool.SpawnArms(Global.assets.slug, transform.position, dir, player);
     }
 

@@ -52,9 +52,8 @@ public class Beam : WeaponType
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.name);
-                //피격
-                //작동 잘함
+                OnHit(hit);
+                //Debug.Log(hit.collider.name);
             }
             //time += Time.deltaTime;
         }
@@ -63,6 +62,12 @@ public class Beam : WeaponType
         Disable();
     }
 
+    private void OnHit(RaycastHit2D hit)
+    {
+        IReceiveAttack receiver;
+        hit.collider.gameObject.TryGetComponent(out receiver);
+        receiver.OnAttack(payload);
+    }
 
     public override void SetInfo(Vector3 position, Vector3 direction, Player p, float len)
     {
@@ -71,6 +76,8 @@ public class Beam : WeaponType
         length = len;
         payload.owner = p;
         isFree = false;
+
+        payload.damage = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
 
         LaserSettings();
         StartCoroutine(HitBox());
