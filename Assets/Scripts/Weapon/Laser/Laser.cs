@@ -8,7 +8,7 @@ public class Laser : Weapon
 {
     [Header("최대 거리")]
     public float maxLen = 10;
-
+    int maxRepeat = 2;
     private LayerMask mask;
 
     private void Start()
@@ -35,7 +35,7 @@ public class Laser : Weapon
         Calculate(Vector3.down, transform.position, maxLen);
     }
 
-    private void Calculate(Vector3 dir, Vector3 pos, float len)
+    private void Calculate(Vector3 dir, Vector3 pos, float len, int repeat = 0)
     {
         float distance = len;
         RaycastHit2D hit = Physics2D.Raycast(pos + dir, dir, len, mask);
@@ -44,15 +44,15 @@ public class Laser : Weapon
             distance = Vector2.Distance(pos + dir, hit.point);
             //Debug.Log(hit.collider.name + " " + distance);
 
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal") && repeat < maxRepeat)
             {
                 Portal p = hit.collider.GetComponent<Portal>();               
                 if (p.destination.GetComponent<Portal>().isLocking)
-                    Calculate(p.destination.GetComponent<Portal>().Direction, p.destination.position, len - distance);
+                    Calculate(p.destination.GetComponent<Portal>().Direction, p.destination.position, len - distance, repeat+1);
                 else
                 {
                     Quaternion rotationDir = p.destination.transform.rotation;
-                    Calculate(rotationDir * dir, p.destination.position, len - distance);
+                    Calculate(rotationDir * dir, p.destination.position, len - distance, repeat+1);
                 }            
             }
 
