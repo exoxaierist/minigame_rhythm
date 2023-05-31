@@ -10,12 +10,9 @@ public class SceneChanger : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-    public void MiddleScene()
-    {
-        SceneManager.LoadScene(1);
-    }
+ 
     public void GameStart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

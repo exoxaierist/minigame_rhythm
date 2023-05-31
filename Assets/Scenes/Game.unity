@@ -714,6 +714,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 832396693836386650, guid: 188eafece9bb2ae4d8d822f231848082, type: 3}
   m_PrefabInstance: {fileID: 1115039582}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &354970323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6817822231527129637, guid: ff283aecd57a6904884739b2d42f1f9f, type: 3}
+  m_PrefabInstance: {fileID: 1681587374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &354970324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354970323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56741e0796260450fbacabb49ab30376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp1: {fileID: 1737671176}
+  hp2: {fileID: 1617274003}
 --- !u!1001 &361897489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2403,6 +2422,17 @@ MonoBehaviour:
   player: 2
   recoil: 2
   speed: 30
+--- !u!114 &1617274003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3529817532394425001, guid: d2d643bed0e945b448653f4d7c12c366, type: 3}
+  m_PrefabInstance: {fileID: 1578820281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617273999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05868f502a9713e49b84947165c4b337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1626066246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 832396693836386650, guid: 188eafece9bb2ae4d8d822f231848082, type: 3}
@@ -2539,6 +2569,17 @@ MonoBehaviour:
   damage: 1
   player: 1
   maxLen: 10
+--- !u!114 &1737671176 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6772867216788208539, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
+  m_PrefabInstance: {fileID: 420941274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737671172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05868f502a9713e49b84947165c4b337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1938306249
 PrefabInstance:
   m_ObjectHideFlags: 0
