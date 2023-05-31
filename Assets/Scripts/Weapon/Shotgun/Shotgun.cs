@@ -24,7 +24,7 @@ public class Shotgun : WeaponType
         Invoke("Disable", ps.duration);
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
         isFree = true;
         gameObject.SetActive(false);
@@ -35,8 +35,9 @@ public class Shotgun : WeaponType
         if (other.layer != target)
             return;
 
-        if (other.GetComponent<PlayerBase>().isProtected)
-            return;
+        Hp hp = other.GetComponent<Hp>();
+        if (hp != null && hp.isProtected)
+            hp.ShieldUnDeploy();
 
         OnHit(other);
         //Debug.Log("Hit");

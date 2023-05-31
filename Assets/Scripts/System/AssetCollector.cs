@@ -16,6 +16,7 @@ public class AssetCollector : ScriptableObject
     public GameObject bullet;
     public GameObject laser;
     public GameObject slug;
+    public GameObject shield;
 
     [Header("¿Ã∆Â∆Æ")]
     public GameObject spriteEffect;

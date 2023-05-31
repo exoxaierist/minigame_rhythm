@@ -11,12 +11,14 @@ public class ShotgunAndShield : Weapon
     LayerMask detectMask;
 
     Vector3 dir;
+    Hp hp;
 
     private void Start()
     {
         detectRange = new Vector2(Global.gridIncrement * 7, Global.gridIncrement * 7);
         detectMask = player == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
         dir = player == Player.Player1 ? Vector3.right : Vector3.left;
+        hp = GetComponent<Hp>();
     }
 
     private void Update()
@@ -44,7 +46,7 @@ public class ShotgunAndShield : Weapon
 
     public override void P1ShootVertical() //defense
     {
-        StartCoroutine(ShieldDeploy());
+        hp.ShieldDeploy(2f);
     }
 
     public override void P2ShootForward() //shoot
@@ -55,7 +57,7 @@ public class ShotgunAndShield : Weapon
 
     public override void P2ShootVertical() //defense
     {
-        StartCoroutine(ShieldDeploy());
+        hp.ShieldDeploy(2f);
     }
 
     private Vector3 WeaponDir(float angle)
@@ -65,15 +67,5 @@ public class ShotgunAndShield : Weapon
         else if (angle <= 225) return Vector3.left;
         else if (angle <= 315) return Vector3.down;
         else return Vector3.right;
-    }
-
-    IEnumerator ShieldDeploy()
-    {
-        PlayerBase pb = GetComponent<PlayerBase>();
-        pb.isProtected = true;
-
-        yield return new WaitForSeconds(1);
-
-        pb.isProtected = false;
     }
 }

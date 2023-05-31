@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Hp : MonoBehaviour, IReceiveAttack
@@ -26,6 +28,10 @@ public class Hp : MonoBehaviour, IReceiveAttack
 
     private PlayerBase ownerPlayer;
     private bool isPlayer = false;
+
+    //½¯µå °ü·Ã
+    public bool isProtected = false;
+    private WeaponType shield;
 
     public void OnAttack(AttackInfo info)
     {
@@ -77,5 +83,23 @@ public class Hp : MonoBehaviour, IReceiveAttack
         instance.transform.localPosition = hpUIOffset;
         instance.GetComponent<HpUI>().Set(maxHp,hp,hpUIType);
         return instance.GetComponent<HpUI>();
+    }
+
+    //½¯µå
+    public void ShieldDeploy(float duration)
+    {
+        if (isProtected)
+            return;
+
+        isProtected = true;
+        shield = Global.weaponPool.SpawnArms(Global.assets.shield, transform.position, Vector3.zero, ownerPlayer.player);
+
+        Invoke("ShieldUnDeploy", duration);
+    }
+
+    public void ShieldUnDeploy()
+    {
+        isProtected = false;
+        shield.Disable();
     }
 }
