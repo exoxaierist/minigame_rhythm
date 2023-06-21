@@ -64,6 +64,10 @@ public class Beam : WeaponType
 
     private void OnHit(RaycastHit2D hit)
     {
+        Hp hp = hit.collider.gameObject.GetComponent<Hp>();
+        if (hp != null && hp.isProtected)
+            hp.ShieldUnDeploy();
+
         IReceiveAttack receiver;
         hit.collider.gameObject.TryGetComponent(out receiver);
         receiver.OnAttack(payload);
@@ -83,7 +87,7 @@ public class Beam : WeaponType
         StartCoroutine(HitBox());
         //Invoke("Disable", 1f);
     }
-    protected override void Disable()
+    public override void Disable()
     {
         isFree = true;
         gameObject.SetActive(false);

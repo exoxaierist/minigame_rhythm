@@ -9,5 +9,5 @@ public abstract class WeaponType : MonoBehaviour
     public Wtype wtype;
 
     public abstract void SetInfo(Vector3 position, Vector3 direction, Player p, float len);
-    protected abstract void Disable();
+    public abstract void Disable();
 }

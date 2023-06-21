@@ -26,7 +26,11 @@ public class Bullet : WeaponType
     private void OnHit(RaycastHit2D hit)
     {
         if (hit.collider.gameObject.layer == gameObject.layer) return;
-        
+
+        Hp hp = hit.collider.gameObject.GetComponent<Hp>();
+        if (hp != null && hp.isProtected)
+            hp.ShieldUnDeploy();
+
         transform.position = hit.point;
         IReceiveAttack receiver;
         hit.collider.gameObject.TryGetComponent(out receiver);
@@ -60,7 +64,7 @@ public class Bullet : WeaponType
         Invoke("Disable", lifetime);
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
         isFree = true;
         gameObject.SetActive(false);

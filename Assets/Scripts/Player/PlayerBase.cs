@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerBase : ControlledObject
 {
     [HideInInspector] public Hp hp;
-    public bool isProtected = false;
 
     protected override void Awake()
     {
