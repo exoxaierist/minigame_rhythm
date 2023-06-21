@@ -9,6 +9,7 @@ public class BeatSystem : MonoBehaviour
     SongManager sM;
     MidiFileParser mP;
     NoteManager nM;
+    bool gameStart = false;
 
     //
     Transform detectionLine;
@@ -51,11 +52,14 @@ public class BeatSystem : MonoBehaviour
                 detLineIma.DOColor(Color.red, 0.25f).SetLoops(2, LoopType.Yoyo);
             }
         }*/
+
+        if (gameStart && !nM.isPlaying) Play();
     }
 
     /** 음악과 노트 재생 */
     public void Play()
     {
+        if (!gameStart) gameStart = true;
         mP.GetMidiFile(songName);
         sM.Invoke("PlaySong", nM.notePlayingTime);
         nM.noteInfo = mP.GetDataFromMidi();

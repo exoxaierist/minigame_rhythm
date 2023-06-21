@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 786459363792336921, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: BGM.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 786459363792336921, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: BGM.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 76401f0e7757d0c41a827c7dab92a210, type: 3}
+    - target: {fileID: 786459363792336921, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: BGM.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 99946c19f8b9be348b44773c1589ddd9, type: 3}
+    - target: {fileID: 786459363792336922, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
+      propertyPath: songName
+      value: bgm3
+      objectReference: {fileID: 0}
     - target: {fileID: 786459363792336926, guid: f4ab10c42998d7b418749382e97a1dc8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 54

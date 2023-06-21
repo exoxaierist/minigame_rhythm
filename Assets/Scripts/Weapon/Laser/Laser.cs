@@ -46,13 +46,17 @@ public class Laser : Weapon
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal") && repeat < maxRepeat)
             {
-                Portal p = hit.collider.GetComponent<Portal>();               
-                if (p.destination.GetComponent<Portal>().isLocking)
-                    Calculate(p.destination.GetComponent<Portal>().Direction, p.destination.position, len - distance, repeat+1);
+                Portal p = hit.collider.GetComponent<Portal>().destination.GetComponent<Portal>();               
+                if (p.isLocking)
+                {
+                    Calculate(p.Direction, p.transform.position, len - distance, repeat + 1);
+                    Calculate(-(p.Direction), p.transform.position, len - distance, repeat + 1);
+                }                  
                 else
                 {
-                    Quaternion rotationDir = p.destination.transform.rotation;
-                    Calculate(rotationDir * dir, p.destination.position, len - distance, repeat+1);
+                    Quaternion rotationDir = p.transform.rotation;
+                    Calculate(rotationDir * dir, p.transform.position, len - distance, repeat+1);
+                    Calculate(rotationDir * -dir, p.transform.position, len - distance, repeat + 1);
                 }            
             }
 
