@@ -9,20 +9,22 @@ public class BulletWeapon : Weapon
 
     public override void P1ShootForward()
     {
-        //if (!Global.CheckBeat()) return;
-        //if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP1Energy() <= 0) return;
         Global.energyManager.DecP1Energy();
 
+        Global.sfx.Play(Global.assets.aShootBullet);
         ShootBullet(RotateVector(Vector3.left, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.right, Random.Range(-recoil, recoil)));
     }
 
     public override void P1ShootVertical()
     {
-        //if (!Global.CheckBeat()) return;
-        //if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP1Energy() <= 0) return;
         Global.energyManager.DecP1Energy();
 
+        Global.sfx.Play(Global.assets.aShootBullet);
         ShootBullet(RotateVector(Vector3.up, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.down, Random.Range(-recoil, recoil)));
     }
@@ -33,6 +35,7 @@ public class BulletWeapon : Weapon
         if (Global.energyManager.GetP2Energy() <= 0) return;
         Global.energyManager.DecP2Energy();
 
+        Global.sfx.Play(Global.assets.aShootBullet);
         ShootBullet(RotateVector(Vector3.left, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.right, Random.Range(-recoil, recoil)));
     }
@@ -43,6 +46,7 @@ public class BulletWeapon : Weapon
         if (Global.energyManager.GetP2Energy() <= 0) return;
         Global.energyManager.DecP2Energy();
 
+        Global.sfx.Play(Global.assets.aShootBullet);
         ShootBullet(RotateVector(Vector3.up, Random.Range(-recoil, recoil)));
         ShootBullet(RotateVector(Vector3.down, Random.Range(-recoil, recoil)));
     }

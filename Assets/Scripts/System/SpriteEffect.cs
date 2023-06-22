@@ -11,6 +11,7 @@ public class SpriteEffect : MonoBehaviour
     public void Effect(string name)
     {
         if (!TryGetComponent(out animator)) { Kill(); return; }
+        gameObject.SetActive(true);
         isFree = false;
         animator.Play(name);
     }

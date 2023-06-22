@@ -27,24 +27,24 @@ public class BeatSystemUI : MonoBehaviour
 
     void PumpSpeaker()
     {
-        if(!isPumping)
-        {
-            isPumping = true;
-            speaker[0].transform.DOScale(speaker[0].transform.localScale * 1.3f, 0.08f).OnComplete(() =>
-                speaker[0].transform.DOScale(size, 0.25f));
-            speaker[1].transform.DOScale(speaker[1].transform.localScale * 1.3f, 0.08f).OnComplete(() =>
-            speaker[1].transform.DOScale(size, 0.25f).OnComplete(() => isPumping = false));
-        }      
+        speaker[0].transform.DOComplete();
+        speaker[1].transform.DOComplete();
+        speaker[0].transform.DOShakeScale(0.3f, 0.5f, 15);
+        speaker[1].transform.DOShakeScale(0.3f, 0.5f, 15);
     }
 
 
     void AppearUI()
     {        
-        BeatUI.transform.position = BeatUI.transform.position - new Vector3(0, 100, 0);
-        BeatUI.transform.DOMove(BeatUI.transform.position + new Vector3(0, 100, 0), 1.5f);
-        BeatUI.GetComponent<Image>().DOFade(0.9f, 1);
-        speaker[0].GetComponent<Image>().DOFade(1, 1);
-        speaker[1].GetComponent<Image>().DOFade(1, 1);
+        BeatUI.transform.position = BeatUI.transform.position - new Vector3(0, -100, 0);
+        BeatUI.transform.DOMove(BeatUI.transform.position + new Vector3(0, -100, 0), 0.5f).SetEase(Ease.OutCubic);
+        BeatUI.GetComponent<Image>().DOFade(1, 0.1f);
+        speaker[0].GetComponent<Image>().DOFade(1, 0.1f);
+        speaker[1].GetComponent<Image>().DOFade(1, 0.1f);
+        speaker[0].transform.position += new Vector3(0,100,0);
+        speaker[1].transform.position += new Vector3(0,100,0);
+        speaker[0].transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutCubic).SetDelay(0.3f);
+        speaker[1].transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutCubic).SetDelay(0.3f);
         BeatUI.SetActive(true);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HpCounterUI : MonoBehaviour
 {
+    public Player player;
     private SpriteRenderer spr;
     private Sprite emptySprite;
     private Sprite fullSprite;
@@ -13,11 +14,12 @@ public class HpCounterUI : MonoBehaviour
     private Color healCol = new(0, 1, 0);
     private Color emptyCol = new(0.2f, 0.2f, 0.2f);
 
-    private void OnEnable()
+    private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
         emptySprite = Global.assets.hpCounterSpriteEmpty;
-        fullSprite = Global.assets.hpCounterSpriteFull;
+        if (player == Player.Player1) fullSprite = Global.assets.hpCounterSpriteFullP1;
+        else fullSprite = Global.assets.hpCounterSpriteFullP2;
         SetFullSprite();
     }
 
@@ -26,7 +28,10 @@ public class HpCounterUI : MonoBehaviour
     private void SetDamageColor() => spr.color = damageCol;
     private void SetHealColor() => spr.color = healCol;
 
-    private void SetEmptySprite() => spr.sprite = emptySprite;
+    public void SetEmptySprite()
+    {
+        spr.sprite = emptySprite;
+    }
     public void SetEmpty() => SetEmpty(0);
     public void SetEmpty(float delay)
     {
@@ -38,7 +43,10 @@ public class HpCounterUI : MonoBehaviour
         transform.DOShakeRotation(0.1f, new Vector3(0, 0, 20), 30).OnComplete(() => ToOrigin()).SetDelay(delay);
     }
 
-    private void SetFullSprite() => spr.sprite = fullSprite;
+    public void SetFullSprite()
+    {
+        spr.sprite = fullSprite;
+    }
     public void SetFull() => SetFull(0);
     public void SetFull(float delay)
     {

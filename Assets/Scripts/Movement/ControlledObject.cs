@@ -9,7 +9,7 @@ public class ControlledObject : GridObject
     [Header("플레이어")]
     public Player player = Player.Player1;
     [Header("충돌 레이어")]
-    public LayerMask collisionLayer;
+    public int collisionLayer;
 
     protected virtual void Awake()
     {

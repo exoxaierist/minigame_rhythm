@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpUI: {fileID: 8703906369888561978, guid: 2777edec9ca8ff243aca5d11d597d86b, type: 3}
   hpCounterUI: {fileID: 5943234233941188421, guid: 78cf247edfff3c640a649aaf3de41fda, type: 3}
-  hpCounterSpriteFull: {fileID: -1631777319, guid: f2fbc0dc495be044faa74051e055d059, type: 3}
-  hpCounterSpriteEmpty: {fileID: -993504304, guid: f2fbc0dc495be044faa74051e055d059, type: 3}
+  hpCounterSpriteFullP1: {fileID: -1180773311, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
+  hpCounterSpriteFullP2: {fileID: -2059191323, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
+  hpCounterSpriteEmpty: {fileID: 1337973428, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   bullet: {fileID: 4474822564410845793, guid: dface72bb686b9c42b43d6537402b4a6, type: 3}
   laser: {fileID: 1296740597194298368, guid: 6f4c1ea864626534798591475038baa4, type: 3}
   slug: {fileID: 5476093390150504510, guid: ce27417ba563fcc458d092495e690020, type: 3}
   shield: {fileID: 7002102185581809938, guid: 6f1ef76e82f330c4ba2d34cd772229ba, type: 3}
   spriteEffect: {fileID: 1894089634223162377, guid: a10e0f09a19d1aa4ebc79c0e53a91ed3, type: 3}
+  aCounterHigh: {fileID: 8300000, guid: 95e067a4e2412064588723ef25288df5, type: 3}
+  aCounterLow: {fileID: 8300000, guid: ef7b69f584ef7c5449d2105f6d9ab7bd, type: 3}
+  aShootBullet: {fileID: 8300000, guid: ce28fa00e3a0ff84a9513e849401fd3f, type: 3}
+  aHitWall: {fileID: 8300000, guid: 961d9affe129c4e48928af8cd9c0c89f, type: 3}
+  aHitDamage: {fileID: 8300000, guid: 40c34df9d498b6e4db0aadd1a429eecb, type: 3}

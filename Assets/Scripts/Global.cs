@@ -49,6 +49,8 @@ public static class Global
     public static EnergyManager energyManager;
     // Sprite Effect Manager
     public static SpriteEffectManager sprEffectManager;
+    // Sound Effect Handler
+    public static SoundEffectHandler sfx;
 
     // Weapon Pool
     public static WeaponPool weaponPool;
@@ -84,9 +86,12 @@ public static class Global
     // 콜리젼 확인
     public static bool CheckOverlap(Vector2 dest, int mask)
     {
-        return Physics2D.OverlapCircle(dest, 0.3f, mask);
+        Collider2D col = Physics2D.OverlapPoint(dest, mask);
+        return col != null;
     }
 
     // 콜리젼 마스크
     public static LayerMask playerMoveColMask = LayerMask.NameToLayer("") | LayerMask.NameToLayer("");
+    public static LayerMask p1MoveColMask = 1<<LayerMask.NameToLayer("P2") | 1<<LayerMask.NameToLayer("Wall") | 1<<LayerMask.NameToLayer("Portal");
+    public static LayerMask p2MoveColMask = 1<<LayerMask.NameToLayer("P1") | 1<<LayerMask.NameToLayer("Wall") | 1<<LayerMask.NameToLayer("Portal");
 }

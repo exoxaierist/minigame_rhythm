@@ -70,7 +70,11 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
 
         // ?????? ????
         if (value > 0) OnHeal?.Invoke();
-        else OnDamage?.Invoke();
+        else
+        {
+            Global.sfx.Play(Global.assets.aHitDamage);
+            OnDamage?.Invoke();
+        }
         CheckDeath();
     }
 
@@ -96,7 +100,7 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
     {
         GameObject instance = Instantiate(Global.assets.hpUI, autoParent?autoParentTransform:customUIParent);
         instance.transform.localPosition = hpUIOffset;
-        instance.GetComponent<HpUI>().Set(maxHp,hp,hpUIType);
+        instance.GetComponent<HpUI>().Set(maxHp,hp,hpUIType,ownerPlayer.player);
         return instance.GetComponent<HpUI>();
     }
 

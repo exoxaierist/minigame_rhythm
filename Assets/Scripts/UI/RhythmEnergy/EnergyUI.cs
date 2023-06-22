@@ -88,7 +88,7 @@ public class EnergyUI : MonoBehaviour
         {
             EnergyCounterUI instance = Instantiate(counterPrefab, transform).GetComponent<EnergyCounterUI>();
             counters.Add(instance);
-            instance.transform.localPosition = new(gap * i, 0, 0);
+            instance.transform.localPosition = new(0, gap*i, 0);
         }
     }
 }

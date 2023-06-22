@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class TileHandler : MonoBehaviour
 {
+    public int mode = 0;
     private List<SpriteRenderer> sprList = new();
     private bool switchTile = false;
     private int colIndex = 0;
@@ -13,6 +14,9 @@ public class TileHandler : MonoBehaviour
     public Color col1;
     public Color col2;
     public Color col3;
+    [Space(10)]
+    public Sprite empty;
+    public Sprite full;
 
     private void Awake()
     {
@@ -39,13 +43,27 @@ public class TileHandler : MonoBehaviour
             bool condition = (sprite.transform.position.x+sprite.transform.position.y) % 2 == 0;
             if (switchTile?condition:!condition)
             {
-                sprite.DOComplete();
-                sprite.DOColor(randCol, 0.1f);
+                if(mode == 0)
+                {
+                    sprite.DOComplete();
+                    sprite.DOColor(randCol, 0.2f).SetDelay(0.1f);
+                }
+                else
+                {
+                    sprite.sprite = full;
+                }
             }
             else
             {
-                sprite.DOComplete();
-                sprite.DOColor(offCol, 0.1f);
+                if (mode == 0)
+                {
+                    sprite.DOComplete();
+                    sprite.DOColor(offCol, 0.2f);
+                }
+                else
+                {
+                    sprite.sprite = empty;
+                }
             }
         }
     }

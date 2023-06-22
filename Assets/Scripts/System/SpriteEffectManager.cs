@@ -15,6 +15,7 @@ public class SpriteEffectManager : MonoBehaviour
     private SpriteEffect GetClone() 
     {
         foreach (SpriteEffect effect in pool) if (effect.isFree) return effect;
+        print("asdf");
         MakePool(1);
         foreach (SpriteEffect effect in pool) if (effect.isFree) return effect;
         return null;

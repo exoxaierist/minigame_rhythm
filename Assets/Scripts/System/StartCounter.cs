@@ -24,8 +24,16 @@ public class StartCounter : MonoBehaviour
         for (int i = 3; i >= 0; i--)
         {
             Global.OnCounterStart?.Invoke();
-            if (i == 0) { text.text = "GO!"; }
-            else text.text = i.ToString();
+            if (i == 0)
+            {
+                Global.sfx.Play(Global.assets.aCounterHigh);
+                text.text = "GO!";
+            }
+            else
+            {
+                Global.sfx.Play(Global.assets.aCounterLow);
+                text.text = i.ToString();
+            }
             transform.DORewind();
             transform.DOShakePosition(0.3f,30, 40);
             yield return new WaitForSecondsRealtime(0.4f);

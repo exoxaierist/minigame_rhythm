@@ -9,7 +9,8 @@ public class AssetCollector : ScriptableObject
     [Header("HP바 UI")]
     public GameObject hpUI;
     public GameObject hpCounterUI;
-    public Sprite hpCounterSpriteFull;
+    public Sprite hpCounterSpriteFullP1;
+    public Sprite hpCounterSpriteFullP2;
     public Sprite hpCounterSpriteEmpty;
 
     [Header("공격 관련")]
@@ -20,4 +21,11 @@ public class AssetCollector : ScriptableObject
 
     [Header("이펙트")]
     public GameObject spriteEffect;
+
+    [Header("소리효과")] //구분위해 앞에 a붙힘
+    public AudioClip aCounterHigh;
+    public AudioClip aCounterLow;
+    public AudioClip aShootBullet;
+    public AudioClip aHitWall;
+    public AudioClip aHitDamage;
 }

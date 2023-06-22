@@ -11,7 +11,7 @@ public enum Player
 public enum HpUIType
 {
     Counter,
-    Slider,
+    Fixed,
 }
 
 //¸®µë ·¹º§
