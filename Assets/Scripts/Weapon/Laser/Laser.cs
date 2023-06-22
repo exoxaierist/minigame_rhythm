@@ -48,15 +48,15 @@ public class Laser : Weapon
             {
                 Portal p = hit.collider.GetComponent<Portal>().destination.GetComponent<Portal>();               
                 if (p.isLocking)
-                {
-                    Calculate(p.Direction, p.transform.position, len - distance, repeat + 1);
-                    Calculate(-(p.Direction), p.transform.position, len - distance, repeat + 1);
+                {                
+                    Calculate(RotateVector(p.Direction, p.RotationValue), p.transform.position, len - distance, repeat + 1);
+                    Calculate(RotateVector(-p.Direction, p.RotationValue), p.transform.position, len - distance, repeat + 1);
                 }                  
                 else
                 {
                     Quaternion rotationDir = p.transform.rotation;
-                    Calculate(rotationDir * dir, p.transform.position, len - distance, repeat+1);
-                    Calculate(rotationDir * -dir, p.transform.position, len - distance, repeat + 1);
+                    Calculate(RotateVector(rotationDir * dir, p.RotationValue), p.transform.position, len - distance, repeat+1);
+                    Calculate(RotateVector(rotationDir * -dir, p.RotationValue), p.transform.position, len - distance, repeat + 1);
                 }            
             }
 
@@ -68,6 +68,13 @@ public class Laser : Weapon
         }
 
         CreateLaser(dir, pos, distance);
+    }
+
+    Vector3 RotateVector(Vector3 vector, float angle)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        return rotation * vector;
     }
 
     private void CreateLaser(Vector3 dir, Vector3 pos, float len)

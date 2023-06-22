@@ -9,10 +9,5 @@ public class Portal : MonoBehaviour
     [Header("방향 고정 및 방향")]
     public bool isLocking = false;
     public Vector2 Direction = Vector2.down;   
-
-    private void Start()
-    {
-        if(!isLocking) transform.rotation = Quaternion.Euler(0, 0, RotationValue);
-    }
 }
 
