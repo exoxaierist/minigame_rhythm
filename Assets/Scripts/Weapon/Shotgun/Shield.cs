@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class Shield : WeaponType
 {
-    private Vector3 pos;
+    Hp hp;
 
     private void Update()
     {
-        transform.position = pos;
+        transform.position = hp.transform.position;
     }
 
     public override void SetInfo(Vector3 position, Vector3 direction, Player p, float duration)
     {
         isFree = false;
-        pos = position;
+        transform.position = position;
         payload.owner = p;
 
         transform.localScale = Vector3.zero;
@@ -24,6 +24,11 @@ public class Shield : WeaponType
             sp.color = new Color(0, 0.2f, 1, 0.5f);
 
         transform.DOScale(Vector3.one, 0.5f);
+    }
+
+    public void SetUser(Hp hp)
+    {
+        this.hp = hp;
     }
 
     public override void Disable()

@@ -7,3 +7,8 @@ public interface IReceiveAttack
 {
     public void OnAttack(AttackInfo info) { }
 }
+
+public interface IItemUser
+{
+    public void UseItem(ItemType itemType);
+}

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Hp : MonoBehaviour, IReceiveAttack
+public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
 {
     [Header("UI")]
     public bool showHpUI = true;
@@ -33,14 +33,25 @@ public class Hp : MonoBehaviour, IReceiveAttack
     public bool isProtected = false;
     private WeaponType shield;
 
+    //Item
+    private ItemFunc itemFunc;
+
     public void OnAttack(AttackInfo info)
     {
         if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
     }
 
+    public void UseItem(ItemType itemType)
+    {
+        IEnumerator routine = itemFunc.itemDic[itemType];
+        if (routine == null) { Debug.Log("item null"); return; }
+        StartCoroutine(routine);
+    }
+
     private void Awake()
     {
         isPlayer = TryGetComponent(out ownerPlayer);
+        itemFunc = GetComponent<ItemFunc>();
     }
 
     private void Start()
@@ -97,6 +108,8 @@ public class Hp : MonoBehaviour, IReceiveAttack
 
         isProtected = true;
         shield = Global.weaponPool.SpawnArms(Global.assets.shield, transform.position, Vector3.zero, ownerPlayer.player);
+        Shield s = shield as Shield;
+        s.SetUser(this);
 
         Invoke("ShieldUnDeploy", duration);
     }

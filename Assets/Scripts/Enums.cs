@@ -31,3 +31,11 @@ public enum Wtype
     Slug,
     Shield,
 }
+
+public enum ItemType
+{
+    //itemName
+    item1 = 0,
+    item2 = 1,
+    item3 = 2,
+}
