@@ -29,7 +29,7 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
     private PlayerBase ownerPlayer;
     private bool isPlayer = false;
 
-    //½¯µå °ü·Ã
+    //???? ????
     public bool isProtected = false;
     private WeaponType shield;
 
@@ -104,7 +104,7 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
         return instance.GetComponent<HpUI>();
     }
 
-    //½¯µå
+    //????
     public void ShieldDeploy(float duration)
     {
         if (isProtected)

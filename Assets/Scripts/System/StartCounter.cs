@@ -12,7 +12,7 @@ public class StartCounter : MonoBehaviour
     public float startDelay = 2;
 
     private void Start() => Invoke(nameof(Initialize), startDelay);
-
+    
     public void Initialize() => StartCoroutine(InitCoroutine());
 
     private IEnumerator InitCoroutine()
