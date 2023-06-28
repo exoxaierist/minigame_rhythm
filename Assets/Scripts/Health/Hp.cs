@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
+public class Hp : MonoBehaviour, IReceiveAttack
 {
     [Header("UI")]
     public bool showHpUI = true;
@@ -39,13 +39,6 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
     public void OnAttack(AttackInfo info)
     {
         if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
-    }
-
-    public void UseItem(ItemType itemType)
-    {
-        IEnumerator routine = itemFunc.itemDic[itemType];
-        if (routine == null) { Debug.Log("item null"); return; }
-        StartCoroutine(routine);
     }
 
     private void Awake()

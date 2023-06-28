@@ -27,3 +27,10 @@ MonoBehaviour:
   aShootBullet: {fileID: 8300000, guid: ce28fa00e3a0ff84a9513e849401fd3f, type: 3}
   aHitWall: {fileID: 8300000, guid: 961d9affe129c4e48928af8cd9c0c89f, type: 3}
   aHitDamage: {fileID: 8300000, guid: 40c34df9d498b6e4db0aadd1a429eecb, type: 3}
+  item: {fileID: 7459990735481118363, guid: a01f37b0156515148acc9258b2475484, type: 3}
+  itemImg:
+  - {fileID: 0}
+  - {fileID: 7482667652216324306, guid: 3f3dce00232443b4f9ece4df1e38f5ab, type: 3}
+  - {fileID: 21300000, guid: f082e69f825d0aa44b687e592731c0a8, type: 3}
+  - {fileID: -368236129, guid: 0ed7e88554fd77847bc5fbca6353a930, type: 3}
+  - {fileID: 21300000, guid: 8272ea7c59da847458432e7c88bf7766, type: 3}

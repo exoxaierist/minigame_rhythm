@@ -5,13 +5,56 @@ using UnityEngine;
 
 public class ItemFunc : MonoBehaviour
 {
-    public Dictionary<ItemType, IEnumerator> itemDic = new Dictionary<ItemType, IEnumerator>();
+    ItemType ownedItem = ItemType.None;
+
+    [SerializeField] SpriteRenderer itemSlot;
 
     private void Awake()
     {
-        itemDic.Add(ItemType.item1, Item1());
-        itemDic.Add(ItemType.item2, Item2());
-        itemDic.Add(ItemType.item3, Item3());
+        ownedItem = ItemType.None;
+        Player p = GetComponent<PlayerBase>().player;
+        if(p == Player.Player1)
+        {
+            Global.P1UseItem -= UseItem;
+            Global.P1UseItem += UseItem;
+        }
+        else if (p == Player.Player2)
+        {
+            Global.P2UseItem -= UseItem;
+            Global.P2UseItem += UseItem;
+        }
+    }
+
+    public void StoreItem(ItemType itype)
+    {
+        ownedItem = itype;
+
+        //쉴드 같이 먹자마자 사용이면 사용 후 바로 리턴
+        if (itype == ItemType.Shield) { UseItem(); return; }
+
+        ChangeItemSlot(itype);
+    }
+
+    public void UseItem()
+    {
+        // TODO 사이사이에 아이템별 함수 작성
+        switch (ownedItem)
+        {
+            case ItemType.item1:
+                break;
+            case ItemType.item2:
+                break;
+            case ItemType.item3:
+                break;
+        }
+
+        ownedItem = ItemType.None;
+        ChangeItemSlot(ItemType.None);
+    }
+
+    public void ChangeItemSlot(ItemType item)
+    {
+        itemSlot.sprite = Global.assets.itemImg[(int)item];
     }
 
     IEnumerator Item1()

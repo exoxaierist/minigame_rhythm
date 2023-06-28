@@ -35,7 +35,9 @@ public enum Wtype
 public enum ItemType
 {
     //itemName
-    item1 = 0,
-    item2 = 1,
-    item3 = 2,
+    None = 0,
+    item1 = 1,
+    item2 = 2,
+    item3 = 3,
+    Shield = 4,
 }

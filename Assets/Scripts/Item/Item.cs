@@ -8,34 +8,33 @@ public class Item : MonoBehaviour
     [SerializeField]
     ItemType it;
 
+    public bool isFree = true;
+
     public void Init()
     {
+        isFree = false;
         int itemCount = Enum.GetValues(typeof(ItemType)).Length;
-        it = (ItemType)UnityEngine.Random.Range(0, itemCount);
+        it = (ItemType)UnityEngine.Random.Range(1, itemCount);
 
         //юс╫ц
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        switch (it)
-        {
-            case ItemType.item1:
-                sr.color = Color.red;
-                break;
-            case ItemType.item2:
-                sr.color = Color.green;
-                break;
-            case ItemType.item3:
-                sr.color = Color.blue;
-                break;
-        }
+        sr.sprite = Global.assets.itemImg[(int)it];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IItemUser iu = collision.gameObject.GetComponentInParent<IItemUser>();
-        if (iu == null)
+        ItemFunc iFunc = collision.gameObject.GetComponent<ItemFunc>();
+        if (iFunc == null)
             return;
 
-        iu.UseItem(it);
-        Destroy(gameObject);
+        iFunc.StoreItem(it);
+
+        Disable();
+    }
+
+    public void Disable()
+    {
+        isFree = true;
+        gameObject.SetActive(false);
     }
 }
