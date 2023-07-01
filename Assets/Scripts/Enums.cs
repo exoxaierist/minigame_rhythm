@@ -36,8 +36,10 @@ public enum ItemType
 {
     //itemName
     None = 0,
-    item1 = 1,
-    item2 = 2,
-    item3 = 3,
-    Shield = 4,
+    Shield = 1,
+    Faint = 2,
+    Heal = 3,
+    MaxEnergy = 4,
+    ChangeEnergy = 5,
+    Bang = 6,
 }

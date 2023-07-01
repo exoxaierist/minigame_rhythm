@@ -13,12 +13,14 @@ public class Item : MonoBehaviour
     public void Init()
     {
         isFree = false;
+        gameObject.SetActive(true);
         int itemCount = Enum.GetValues(typeof(ItemType)).Length;
         it = (ItemType)UnityEngine.Random.Range(1, itemCount);
 
-        //юс╫ц
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = Global.assets.itemImg[(int)it];
+
+        Invoke("Disable", 5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

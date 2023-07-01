@@ -38,6 +38,13 @@ public class Hp : MonoBehaviour, IReceiveAttack
 
     public void OnAttack(AttackInfo info)
     {
+        if (isProtected)
+        {
+            ShieldUnDeploy();
+            if (ownerPlayer.player == Player.Player1) Global.energyManager.IncP1Energy();
+            else if(ownerPlayer.player == Player.Player2) Global.energyManager.IncP2Energy();
+        }
+
         if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
     }
 
@@ -103,6 +110,8 @@ public class Hp : MonoBehaviour, IReceiveAttack
         if (isProtected)
             return;
 
+        if (ownerPlayer.player == Player.Player1) Global.energyManager.DecP1Energy();
+        else if (ownerPlayer.player == Player.Player2) Global.energyManager.DecP2Energy();
         isProtected = true;
         shield = Global.weaponPool.SpawnArms(Global.assets.shield, transform.position, Vector3.zero, ownerPlayer.player);
         Shield s = shield as Shield;
@@ -115,5 +124,7 @@ public class Hp : MonoBehaviour, IReceiveAttack
     {
         isProtected = false;
         shield.Disable();
+
+        shield = null;
     }
 }

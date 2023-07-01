@@ -72,6 +72,30 @@ public class EnergyManager : MonoBehaviour
         Global.OnP2EnergyChange?.Invoke();
     }
 
+    public void ChangeEnergy()
+    {
+        int temp = p2Energy;
+        p2Energy = p1Energy;
+        p1Energy = temp;
+
+        Global.OnP1EnergyChange?.Invoke();
+        Global.OnP2EnergyChange?.Invoke();
+    }
+
+    public void EnergyMax(Player player)
+    {
+        if(player == Player.Player1)
+        {
+            p1Energy = maxEnergy;
+            Global.OnP1EnergyChange?.Invoke();
+        }
+        else if(player == Player.Player2)
+        {
+            p2Energy = maxEnergy;
+            Global.OnP2EnergyChange?.Invoke();
+        }
+    }
+
     public int GetP1Energy() => p1Energy;
     public int GetP2Energy() => p2Energy;
 

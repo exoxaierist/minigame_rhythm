@@ -6,7 +6,8 @@ public class ItemSpawner : MonoBehaviour
 {
     private List<Item> pool = new();
 
-    [SerializeField] float spawnTime;
+    [SerializeField] float spawnTime = 10f; 
+    [SerializeField] List<Vector3> spawnPos = new List<Vector3>();
 
     private void Start()
     {
@@ -33,10 +34,10 @@ public class ItemSpawner : MonoBehaviour
             if (item.isFree)
                 return item;
 
-        return MakeNewWeapon(go);
+        return MakeNewItem(go);
     }
 
-    private Item MakeNewWeapon(GameObject go)
+    private Item MakeNewItem(GameObject go)
     {
         Item item = Instantiate(go, transform).GetComponent<Item>();
         pool.Add(item);
@@ -45,9 +46,9 @@ public class ItemSpawner : MonoBehaviour
 
     private Vector3 GetSpawnPos()
     {
-        //일단 가운데 출몰
-        Vector3 v = Global.fieldExtent/2;
+        int range = spawnPos.Count;
+        int randomPos = Random.Range(0, range);
 
-        return v;
+        return spawnPos[randomPos];
     }
 }

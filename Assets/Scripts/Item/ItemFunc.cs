@@ -6,13 +6,17 @@ using UnityEngine;
 public class ItemFunc : MonoBehaviour
 {
     ItemType ownedItem = ItemType.None;
+    Player p = Player.Player1;
 
     [SerializeField] SpriteRenderer itemSlot;
+    Hp hp;
 
     private void Awake()
     {
         ownedItem = ItemType.None;
-        Player p = GetComponent<PlayerBase>().player;
+        p = GetComponent<PlayerBase>().player;
+        hp = GetComponent<Hp>();
+
         if(p == Player.Player1)
         {
             Global.P1UseItem -= UseItem;
@@ -30,21 +34,35 @@ public class ItemFunc : MonoBehaviour
         ownedItem = itype;
 
         //쉴드 같이 먹자마자 사용이면 사용 후 바로 리턴
-        if (itype == ItemType.Shield) { UseItem(); return; }
+        if (itype == ItemType.Faint || itype == ItemType.Heal || itype == ItemType.Bang) 
+        {
+            UseItem();
+            return; 
+        }
 
-        ChangeItemSlot(itype);
+        ChangeItemSlot(ownedItem);
     }
 
     public void UseItem()
     {
-        // TODO 사이사이에 아이템별 함수 작성
         switch (ownedItem)
         {
-            case ItemType.item1:
+            case ItemType.Shield:
+                int energy = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
+                if (energy == 0) return;
+                ShieldItem();
                 break;
-            case ItemType.item2:
+            case ItemType.MaxEnergy:
+                MaxEnergyItem();
                 break;
-            case ItemType.item3:
+            case ItemType.ChangeEnergy:
+                ChangeEnergyItem();
+                break;
+            case ItemType.Heal:
+                hp.AddToHP(1);
+                break;
+            case ItemType.Bang:
+                hp.AddToHP(-1);
                 break;
         }
 
@@ -57,27 +75,18 @@ public class ItemFunc : MonoBehaviour
         itemSlot.sprite = Global.assets.itemImg[(int)item];
     }
 
-    IEnumerator Item1()
+    private void ShieldItem()
     {
-        yield return null;
-        Hp hp = GetComponent<Hp>();
-        if (hp != null)
-            Debug.Log("item1");
+        hp.ShieldDeploy(5f);
     }
 
-    IEnumerator Item2()
+    private void MaxEnergyItem()
     {
-        yield return null;
-        Hp hp = GetComponent<Hp>();
-        if (hp != null)
-            Debug.Log("item1");
+        Global.energyManager.EnergyMax(p);
     }
 
-    IEnumerator Item3()
+    private void ChangeEnergyItem()
     {
-        yield return null;
-        Hp hp = GetComponent<Hp>();
-        if (hp != null)
-            Debug.Log("item1");
+        Global.energyManager.ChangeEnergy();
     }
 }
