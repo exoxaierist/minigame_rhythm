@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = Global.assets.itemImg[(int)it];
 
-        Invoke("Disable", 5f);
+        Invoke(nameof(Disable), 5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
