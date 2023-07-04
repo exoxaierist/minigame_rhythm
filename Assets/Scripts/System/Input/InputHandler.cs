@@ -17,6 +17,7 @@ public class InputHandler : MonoBehaviour
     public KeyCode p1Left = KeyCode.A;
     public KeyCode p1Primary = KeyCode.G;
     public KeyCode p1Secondary = KeyCode.F;
+    public KeyCode p1UseItem = KeyCode.H;
     [Header("2P")]
     public KeyCode p2Up = KeyCode.UpArrow;
     public KeyCode p2Down = KeyCode.DownArrow;
@@ -24,6 +25,7 @@ public class InputHandler : MonoBehaviour
     public KeyCode p2Left = KeyCode.LeftArrow;
     public KeyCode p2Primary = KeyCode.Slash;
     public KeyCode p2Secondary = KeyCode.Period;
+    public KeyCode p2UseItem = KeyCode.Comma;
 
     private void Update()
     {
@@ -37,6 +39,7 @@ public class InputHandler : MonoBehaviour
             if (Input.GetKeyDown(p1Left)) Global.P1LeftAction?.Invoke();
             if (Input.GetKeyDown(p1Primary)) Global.P1PrimaryAction?.Invoke();
             if (Input.GetKeyDown(p1Secondary)) Global.P1SecondaryAction?.Invoke();
+            if (Input.GetKeyDown(p1UseItem)) Global.P1UseItem?.Invoke();
         }
         // 2P
         if (enableP2)
@@ -48,6 +51,7 @@ public class InputHandler : MonoBehaviour
             if (Input.GetKeyDown(p2Left)) Global.P2LeftAction?.Invoke();
             if (Input.GetKeyDown(p2Primary)) Global.P2PrimaryAction?.Invoke();
             if (Input.GetKeyDown(p2Secondary)) Global.P2SecondaryAction?.Invoke();
+            if (Input.GetKeyDown(p2UseItem)) Global.P2UseItem?.Invoke();
         }
     }
 }

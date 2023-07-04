@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
+public class Hp : MonoBehaviour, IReceiveAttack
 {
     [Header("UI")]
     public bool showHpUI = true;
@@ -38,14 +38,14 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
 
     public void OnAttack(AttackInfo info)
     {
-        if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
-    }
+        if (isProtected)
+        {
+            ShieldUnDeploy();
+            if (ownerPlayer.player == Player.Player1) Global.energyManager.IncP1Energy();
+            else if(ownerPlayer.player == Player.Player2) Global.energyManager.IncP2Energy();
+        }
 
-    public void UseItem(ItemType itemType)
-    {
-        IEnumerator routine = itemFunc.itemDic[itemType];
-        if (routine == null) { Debug.Log("item null"); return; }
-        StartCoroutine(routine);
+        if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
     }
 
     private void Awake()
@@ -110,6 +110,8 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
         if (isProtected)
             return;
 
+        if (ownerPlayer.player == Player.Player1) Global.energyManager.DecP1Energy();
+        else if (ownerPlayer.player == Player.Player2) Global.energyManager.DecP2Energy();
         isProtected = true;
         shield = Global.weaponPool.SpawnArms(Global.assets.shield, transform.position, Vector3.zero, ownerPlayer.player);
         Shield s = shield as Shield;
@@ -122,5 +124,7 @@ public class Hp : MonoBehaviour, IReceiveAttack, IItemUser
     {
         isProtected = false;
         shield.Disable();
+
+        shield = null;
     }
 }

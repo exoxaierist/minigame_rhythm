@@ -35,7 +35,11 @@ public enum Wtype
 public enum ItemType
 {
     //itemName
-    item1 = 0,
-    item2 = 1,
-    item3 = 2,
+    None = 0,
+    Shield = 1,
+    Faint = 2,
+    Heal = 3,
+    MaxEnergy = 4,
+    ChangeEnergy = 5,
+    Bang = 6,
 }

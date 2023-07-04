@@ -20,6 +20,7 @@ public static class Global
     public static Action P1PrimaryAction;
     public static Action P1SecondaryAction;
     public static Action P1AnyAction;
+    public static Action P1UseItem;
 
     public static Action P2UpAction;
     public static Action P2DownAction;
@@ -28,6 +29,7 @@ public static class Global
     public static Action P2PrimaryAction;
     public static Action P2SecondaryAction;
     public static Action P2AnyAction;
+    public static Action P2UseItem;
 
     // 비트
     public static Func<float> GetTimingms; // 가장 가까운 노트까지 ms 오차
@@ -52,8 +54,9 @@ public static class Global
     // Sound Effect Handler
     public static SoundEffectHandler sfx;
 
-    // Weapon Pool
+    // Pools
     public static WeaponPool weaponPool;
+    public static ItemSpawner itemSpawner;
 
 
     //// 에셋 참조

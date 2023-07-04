@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    [Header("최대 거리")]
+    [Header("???? ????")]
     public float maxLen = 10;
     int maxRepeat = 2;
     private LayerMask mask;
@@ -56,7 +56,7 @@ public class Laser : Weapon
                 {
                     Quaternion rotationDir = p.transform.rotation;
                     Calculate(RotateVector(rotationDir * dir, p.RotationValue), p.transform.position, len - distance, repeat+1);
-                    Calculate(RotateVector(rotationDir * -dir, p.RotationValue), p.transform.position, len - distance, repeat + 1);
+                    //Calculate(RotateVector(rotationDir * -dir, p.RotationValue), p.transform.position, len - distance, repeat + 1);
                 }            
             }
 
@@ -82,7 +82,7 @@ public class Laser : Weapon
         Global.weaponPool.SpawnArms(Global.assets.laser, pos, dir, player, len);
     }
 
-    //레이저 위치 및 거리 계산
+    //?????? ???? ?? ???? ????
     //private void CalculateLaser(Vector3 dir)
     //{     
           //dangerLine.SetPosition(1, dir * distance + dir);

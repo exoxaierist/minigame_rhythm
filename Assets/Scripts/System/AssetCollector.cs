@@ -1,6 +1,8 @@
 using UnityEngine;
 using Melanchall.DryWetMidi;
 using Melanchall.DryWetMidi.Core;
+using System.Collections.Generic;
+using System;
 
 // 스크립트에서 에셋 레퍼런싱 할 수 있게 해주는 모음집?, 뒤에 맘대로 추가
 [CreateAssetMenu(fileName ="AssetCollector")]
@@ -28,4 +30,8 @@ public class AssetCollector : ScriptableObject
     public AudioClip aShootBullet;
     public AudioClip aHitWall;
     public AudioClip aHitDamage;
+
+    [Header("아이템")]
+    public GameObject item;
+    public List<Sprite> itemImg;
 }

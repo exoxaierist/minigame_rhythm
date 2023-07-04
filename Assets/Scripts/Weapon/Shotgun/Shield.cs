@@ -23,7 +23,7 @@ public class Shield : WeaponType
         if (sp != null)
             sp.color = new Color(0, 0.2f, 1, 0.5f);
 
-        transform.DOScale(Vector3.one, 0.5f);
+        transform.DOScale(Vector3.one, 0.05f);
     }
 
     public void SetUser(Hp hp)
