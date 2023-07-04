@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager instance;
-    public Hp[] hp = new Hp[2];
+    public GameObject[] player = new GameObject[2];
     public int[] score = new int[2];
+    Vector3[] startingPos = new Vector3[2];
     ScoreUI scoreUI;
     private void Awake()
     {
@@ -25,8 +26,9 @@ public class RoundManager : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             int playerIndex = i;
-            hp[i] = GameObject.Find("P" + (i + 1).ToString()).GetComponent<Hp>();
-            hp[i].OnDeath += () => Win(1 - playerIndex);
+            player[i] = GameObject.Find("P" + (i + 1).ToString());
+            player[i].GetComponent<Hp>().OnDeath += () => Win(1 - playerIndex);
+            startingPos[i] = player[i].transform.position;
         }
     }
   
@@ -37,13 +39,22 @@ public class RoundManager : MonoBehaviour
         StartCoroutine(Delay());
     }
 
+    public void Reset()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            player[i].transform.position = startingPos[i];
+            player[i].GetComponent<Hp>().HpReturn();
+        }
+    }
+
     IEnumerator Delay()
     {
         if (BeatSystem.instance.gameStart)
         {
             BeatSystem.instance.Stop();
-            yield return new WaitForSeconds(3f);
-            for (int i = 0; i < 2; i++) hp[i].HpReturn();
+            yield return new WaitForSeconds(3f);         
+            Reset();
             Global.OnCounterEnd?.Invoke();
         }
         else Debug.Log("게임이 시작되지 않았습니다.");

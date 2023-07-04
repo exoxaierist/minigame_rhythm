@@ -97,7 +97,11 @@ public class BeatSystem : MonoBehaviour
     /** 노트 판정 계산 */
     public bool Detection()
     {
-        if (!nM.isPlaying) return false;
+        if (!nM.isPlaying || !sM.audioSource.isPlaying)
+        {
+            return false;
+            Debug.Log("ㄴㄴ");
+        }
         if (GetDelaytime() <= 0.15f)
             return true;
 

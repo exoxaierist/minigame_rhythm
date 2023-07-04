@@ -18,16 +18,9 @@ public class Faint : MonoBehaviour
         this.Target = GameObject.Find("P" + target.ToString()).transform;
     }
 
-    void followTarget()
-    {
-        if (Target == null) return;
-
-        Vector2 direction = (Target.position - transform.position).normalized;
-        transform.Translate(direction * speed);
-    }
-
     private void MoveTowardsTarget()
     {
+        if (Target == null) return;
         Vector2 targetPosition = Target.position;
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
         Vector2 moveDistance = direction * speed;
@@ -43,6 +36,5 @@ public class Faint : MonoBehaviour
             col.GetComponent<Hp>().AddToHP(-2);
             Destroy(this.gameObject);
         }
-        else Debug.Log(col.name);
     }
 }
