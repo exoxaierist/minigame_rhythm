@@ -16,8 +16,8 @@ public class BeatSystemUI : MonoBehaviour
         BeatUI.SetActive(false);
         speaker[0] = BeatUI.transform.Find("Speaker1").gameObject;
         speaker[1] = BeatUI.transform.Find("Speaker2").gameObject;
-        size = speaker[0].transform.localScale;
-        Global.OnBeat += PumpSpeaker;
+        size = speaker[0].transform.localScale;        
+        Global.OnBeat += PumpSpeaker;        
         Global.OnCounterEnd += AppearUI;
         BeatUI.GetComponent<Image>().DOFade(0f, 0);
         speaker[0].GetComponent<Image>().DOFade(0f, 0);
@@ -47,4 +47,5 @@ public class BeatSystemUI : MonoBehaviour
         speaker[1].transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutCubic).SetDelay(0.3f);
         BeatUI.SetActive(true);
     }
+
 }

@@ -20,7 +20,6 @@ public class NoteManager : MonoBehaviour
     Transform detectionLine;
     RectTransform noteUI;
     AudioSource bgm;
-
     //
     public bool isPlaying = false;
     void Awake()
@@ -34,6 +33,7 @@ public class NoteManager : MonoBehaviour
     /** 노트 재생(코루틴) */
     public IEnumerator PlayNote()
     {
+        if (isPlaying) ResetNote();
         isPlaying = true;
         hitCount = 0;
         correctionValue = 0;
@@ -41,6 +41,8 @@ public class NoteManager : MonoBehaviour
         for (int count = 0; count < noteInfo.Count; count++)
         {
             yield return new WaitForSeconds(noteInfo[count].hitTime - temp - correctionValue / 10);
+            if (!isPlaying)
+                yield break;
             temp = noteInfo[count].hitTime;
             CreatNote();
         }
@@ -62,8 +64,21 @@ public class NoteManager : MonoBehaviour
         else tempNote.DOMoveX(detectionLine.position.x, notePlayingTime).SetEase(Ease.Linear);      
     }
 
-    void RemoveNote()
+    public void ResetNote()
     {
+        noteInfo = null;
+        StopCoroutine(PlayNote());
+        foreach (Transform child in noteIndex)
+        {
+            Destroy(child.gameObject);
+        }
+        isPlaying = false;
+        hitCount = 0;
+        Debug.Log("StopNote");
+    }
+    
+    void RemoveNote()
+    {       
         Global.OnBeat?.Invoke();
         Destroy(noteIndex.GetChild(1).gameObject);
         Destroy(noteIndex.GetChild(0).gameObject);      
