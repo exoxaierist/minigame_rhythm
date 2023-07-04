@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
 {
     public DoorType dt;
     Animator[] doorAni;
+    int door4Point;
     int doorPoint;
     private void Awake()
     {
@@ -20,39 +21,47 @@ public class Door : MonoBehaviour
     }
     void IsDoor1()
     {
+        
         doorPoint += 1;
+        if(doorPoint %4 == 0)
+        {
+            door4Point += 1;
+        }
         for(int k=0 ; k <doorAni.Length;k++)
         {
-            BoxCollider2D childBox = doorAni[k].transform.GetChild(0).GetComponent<BoxCollider2D>();
-            if (doorPoint % 2 == 0)
+            if (door4Point % 2 == 0)
             {
                 doorAni[k].SetBool("doorOpen", false);
-                childBox.enabled = false;
+                doorAni[k].gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                
             }
             else
             {
                 doorAni[k].SetBool("doorOpen", true);
-                childBox.enabled = true;
+                doorAni[k].gameObject.GetComponent<BoxCollider2D>().enabled = true;
             }
-                
+
         }
         
     }
     void IsDoor2()
     {
         doorPoint += 1;
+        if (doorPoint % 4 == 0)
+        {
+            door4Point += 1;
+        }
         for (int k = 0; k < doorAni.Length; k++)
         {
-            BoxCollider2D childBox = doorAni[k].transform.GetChild(0).GetComponent<BoxCollider2D>();
-            if (doorPoint % 2 != 0)
+            if (door4Point % 2 != 0)
             {
                 doorAni[k].SetBool("doorOpen", false);
-                childBox.enabled = false;
+                doorAni[k].gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
             else
             {
                 doorAni[k].SetBool("doorOpen", true);
-                childBox.enabled = true;
+                doorAni[k].gameObject.GetComponent<BoxCollider2D>().enabled = true;
             }
 
         }
