@@ -15,14 +15,6 @@ public class RoundManager : MonoBehaviour
         if(GameObject.Find("UI").transform.Find("ScoreUI").gameObject.GetComponent<ScoreUI>() != null)
             scoreUI = GameObject.Find("UI").transform.Find("ScoreUI").gameObject.GetComponent<ScoreUI>();
         var obj = FindObjectsOfType<RoundManager>();
-        if (obj.Length == 1)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {           
-            Destroy(gameObject);
-        }
         for (int i = 0; i < 2; i++)
         {
             int playerIndex = i;
