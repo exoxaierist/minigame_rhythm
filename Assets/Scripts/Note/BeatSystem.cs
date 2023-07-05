@@ -5,34 +5,38 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class BeatSystem : MonoBehaviour
 {
+    public static BeatSystem instance;
     [Header("현재 곡")] public string songName = "bgm2";
     SongManager sM;
     MidiFileParser mP;
     NoteManager nM;
-    bool gameStart = false;
+    public bool gameStart = false;
 
     //
     Transform detectionLine;
-    Image detLineIma;
 
     private void Awake()
-    {              
+    {
+        instance = this;
         detectionLine = transform.Find("UI").Find("DetectionLine");
-        detLineIma = detectionLine.GetComponent<Image>();
         sM = GetComponent<SongManager>();
         mP = GetComponent<MidiFileParser>();
         nM = GetComponent<NoteManager>();
         if (GameObject.Find("SceneManager") != null)
-        {          
+        {
             songName = GameObject.Find("SceneManager").GetComponent<SceneChanger>().musicName;
             if (sM.SearchSong(songName) == null)
                 mP.GetMidiFile(sM.BGM[1].name);
         }
         else
             mP.GetMidiFile(sM.BGM[1].name);
-        Global.GetTimingms = GetDelaytime;
-        Global.CheckBeat = Detection;
-        Global.OnCounterEnd += Play;       
+        
+        Global.GetTimingms += GetDelaytime;
+        
+        Global.CheckBeat += Detection;
+        
+        Global.OnCounterEnd += Play;
+
     }
 
     private void Update()
@@ -59,13 +63,22 @@ public class BeatSystem : MonoBehaviour
     /** 음악과 노트 재생 */
     public void Play()
     {
+        if (nM.isPlaying) Stop();
         if (!gameStart) gameStart = true;
         mP.GetMidiFile(songName);
+        sM.canPlay = true;
         sM.Invoke("PlaySong", nM.notePlayingTime);
         nM.noteInfo = mP.GetDataFromMidi();
         StartCoroutine(nM.PlayNote());
     }
 
+    public void Stop()
+    {
+        gameStart = false;
+        sM.audioSource.Stop();
+        sM.canPlay = false;
+        nM.ResetNote();
+    }
 
     public float GetDelaytime()
     {
@@ -84,11 +97,16 @@ public class BeatSystem : MonoBehaviour
     /** 노트 판정 계산 */
     public bool Detection()
     {
-        if (!nM.isPlaying) return false;
+        if (!nM.isPlaying || !sM.audioSource.isPlaying)
+        {
+            return false;
+            Debug.Log("ㄴㄴ");
+        }
         if (GetDelaytime() <= 0.15f)
             return true;
 
         return false;
     }
+
 
 }

@@ -5,29 +5,24 @@ using TMPro;
 using DG.Tweening;
 public class ScoreUI : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject scoreText;
-    int score = 0;
-    void Start()
-    {
-        player = GameObject.Find("P" + scoreText.name);
-        player.GetComponent<Hp>().OnDeath += IncreaseScore;
-    }
+    public GameObject[] scoreText = new GameObject[2];
 
-    void IncreaseScore()
+    public void ShowUI(int player = -1)
     {
-        if(!scoreText.transform.parent.gameObject.activeSelf) Invoke("HideUI", 2f);
-        scoreText.transform.parent.gameObject.SetActive(true);
-        score++;
-        scoreText.transform.DOMoveY(scoreText.transform.position.y + 50, 0.2f).OnComplete(() =>
+        if(!scoreText[0].transform.parent.gameObject.activeSelf) Invoke("HideUI", 2f);
+        scoreText[0].transform.parent.gameObject.SetActive(true);      
+        if(player != -1)
         {
-            scoreText.transform.DOMoveY(scoreText.transform.position.y - 50, 0.2f);
-            scoreText.GetComponent<TMP_Text>().text = score.ToString();          
-        });        
+            scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y + 50, 0.2f).OnComplete(() =>
+            {
+                scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y - 50, 0.2f);
+                scoreText[player].GetComponent<TMP_Text>().text = RoundManager.instance.score[player].ToString();
+            });
+        }            
     }
 
-    void HideUI()
+    public void HideUI()
     {
-        scoreText.transform.parent.gameObject.SetActive(false);
+        scoreText[0].transform.parent.gameObject.SetActive(false);
     }
 }

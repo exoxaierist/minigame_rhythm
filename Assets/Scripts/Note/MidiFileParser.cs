@@ -17,7 +17,12 @@ public class MidiFileParser : MonoBehaviour
     /** Midi파일 불러오기 */
     public void GetMidiFile(string name)
     {
-        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + name + ".mid");
+        if(MidiFile.Read(Application.streamingAssetsPath + "/" + name + ".mid") != null)
+        {
+            midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + name + ".mid");
+        }
+        else
+            midiFile = MidiFile.Read(Application.streamingAssetsPath + "/bgm1.mid");
     }
 
     /** Midi파일로부터 정보 불러오기 */
