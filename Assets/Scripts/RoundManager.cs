@@ -34,9 +34,12 @@ public class RoundManager : MonoBehaviour
   
     public void Win(int player)
     {
-        score[player] += 1;
-        if(scoreUI != null) scoreUI.ShowUI(player);
-        StartCoroutine(Delay());
+        if(BeatSystem.instance.gameStart)
+        {
+            score[player] += 1;
+            if (scoreUI != null) scoreUI.ShowUI(player);
+            StartCoroutine(Delay());
+        }       
     }
 
     public void Reset()
@@ -44,7 +47,7 @@ public class RoundManager : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             player[i].transform.position = startingPos[i];
-            player[i].GetComponent<Hp>().HpReturn();
+            player[i].GetComponent<Hp>().AddToHP(10);
         }
     }
 
