@@ -6,13 +6,20 @@ public class ItemSpawner : MonoBehaviour
 {
     private List<Item> pool = new();
 
-    [SerializeField] float spawnTime = 10f; 
-    [SerializeField] List<Vector3> spawnPos = new List<Vector3>();
+    [SerializeField] float spawnTime = 10f;
+    [SerializeField] Transform spawnObj = null;
+    [SerializeField] List<Transform> spawnPos = new List<Transform>();
 
     private void Start()
     {
         Global.itemSpawner = this;
 
+        if(spawnObj == null)
+            spawnObj = transform.GetChild(0);
+        for (int i = 0; i < spawnObj.childCount; i++)
+            spawnPos.Add(spawnObj.GetChild(i));
+
+        //Debug.Log(spawnPos.Count);
         StartCoroutine(Spawn());
     }
 
@@ -49,6 +56,6 @@ public class ItemSpawner : MonoBehaviour
         int range = spawnPos.Count;
         int randomPos = Random.Range(0, range);
 
-        return spawnPos[randomPos];
+        return spawnPos[randomPos].position;
     }
 }
