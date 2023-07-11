@@ -62,7 +62,7 @@ public class Laser : Weapon
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Reflect"))
             {
-                Vector3 flectDir = Vector3.Reflect(dir, hit.normal);
+                Vector3 flectDir = hit.transform.TransformDirection(Vector3.up);
                 Calculate(flectDir, hit.collider.transform.position, len - distance);
             }
         }
