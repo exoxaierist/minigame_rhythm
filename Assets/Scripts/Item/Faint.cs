@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Faint : MonoBehaviour
+public class Faint : GridObject
 {
     private Transform Target;
     public float speed = 1;
-
-    private void Awake()
+    private bool touch = false;
+    public void Awake()
     {
         Global.OnBeat += MoveTowardsTarget;
     }
@@ -21,15 +21,24 @@ public class Faint : MonoBehaviour
     private void MoveTowardsTarget()
     {
         if (Target == null) return;
-        Vector2 targetPosition = Target.position;
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        Vector2 moveDistance = direction * speed;
-
-        transform.DOMove((Vector2)transform.position + moveDistance, 0.2f);
+        float targetX = Target.transform.position.x;
+        float targetY = Target.transform.position.y;
+        float relativeValue = Mathf.Abs(targetX - transform.position.x) - Mathf.Abs(targetY - transform.position.y);
+        if(relativeValue > 0)
+        {
+            if (targetX > transform.position.x) MoveRelative(new Vector2(1, 0));
+            else MoveRelative(new Vector2(-1, 0));
+        }
+        else if(relativeValue < 0)
+        {
+            if (targetY > transform.position.y) MoveRelative(new Vector2(0, 1));
+            else MoveRelative(new Vector2(0, -1));
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
+        
         if (Target != null && col.gameObject == Target.gameObject)
         {
             Global.OnBeat -= MoveTowardsTarget;

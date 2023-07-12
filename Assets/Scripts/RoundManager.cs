@@ -40,6 +40,8 @@ public class RoundManager : MonoBehaviour
         {
             player[i].transform.position = startingPos[i];
             player[i].GetComponent<Hp>().AddToHP(10);
+            Global.energyManager.ResetP1Energy();
+            Global.energyManager.ResetP2Energy();
         }
     }
 

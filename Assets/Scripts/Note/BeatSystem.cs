@@ -39,26 +39,6 @@ public class BeatSystem : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DOTween.Rewind(detectionLine);
-            DOTween.Rewind(detLineIma);
-            if (Detection())
-            {
-                detectionLine.DOScale(detectionLine.localScale * 1.1f, 0.2f).SetLoops(2, LoopType.Yoyo);
-                detLineIma.DOColor(Color.green, 0.25f).SetLoops(2, LoopType.Yoyo);
-            }
-            else
-            {
-                detectionLine.DOScale(detectionLine.localScale * 1.1f, 0.2f).SetLoops(2, LoopType.Yoyo);
-                detLineIma.DOColor(Color.red, 0.25f).SetLoops(2, LoopType.Yoyo);
-            }
-        }*/
-
-        if (gameStart && !nM.isPlaying) Play();
-    }
 
     /** 음악과 노트 재생 */
     public void Play()
@@ -100,7 +80,6 @@ public class BeatSystem : MonoBehaviour
         if (!nM.isPlaying || !sM.audioSource.isPlaying)
         {
             return false;
-            Debug.Log("ㄴㄴ");
         }
         if (GetDelaytime() <= 0.15f)
             return true;
