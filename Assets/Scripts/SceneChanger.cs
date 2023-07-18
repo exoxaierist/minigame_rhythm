@@ -13,6 +13,6 @@ public class SceneChanger : MonoBehaviour
  
     public void GameStart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(Random.Range(1,4));
     }
 }
