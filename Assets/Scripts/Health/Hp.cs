@@ -117,7 +117,7 @@ public class Hp : MonoBehaviour, IReceiveAttack
         Shield s = shield as Shield;
         s.SetUser(this);
 
-        Invoke("ShieldUnDeploy", duration);
+        Invoke(nameof(ShieldUnDeploy), duration);
     }
 
     public void ShieldUnDeploy()

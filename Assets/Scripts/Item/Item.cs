@@ -8,6 +8,9 @@ public class Item : MonoBehaviour
     [SerializeField]
     ItemType it;
 
+    [SerializeField]
+    float disabledTime = 5.0f;
+
     public bool isFree = true;
 
     public void Init()
@@ -20,10 +23,10 @@ public class Item : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = Global.assets.itemImg[(int)it];
 
-        Invoke(nameof(Disable), 5f);
+        Invoke(nameof(Disable), disabledTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         ItemFunc iFunc = collision.gameObject.GetComponent<ItemFunc>();
         if (iFunc == null)

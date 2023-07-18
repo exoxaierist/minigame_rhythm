@@ -34,7 +34,7 @@ public enum Wtype
 
 public enum ItemType
 {
-    //itemName
+    //itemName - 이대로 아이템 AssetCollector의 이미지 순서
     None = 0,
     Shield = 1,
     Faint = 2,

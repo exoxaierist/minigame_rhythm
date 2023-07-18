@@ -33,7 +33,7 @@ public class ItemFunc : MonoBehaviour
     {
         ownedItem = itype;
 
-        //쉴드 같이 먹자마자 사용이면 사용 후 바로 리턴
+        //faint 같이 먹자마자 사용이면 사용 후 바로 리턴
         if (itype == ItemType.Faint || itype == ItemType.Heal || itype == ItemType.Bang) 
         {
             UseItem();
@@ -64,6 +64,9 @@ public class ItemFunc : MonoBehaviour
             case ItemType.Bang:
                 hp.AddToHP(-1);
                 break;
+            case ItemType.Faint:
+                FaintItem();
+                break;
         }
 
         ownedItem = ItemType.None;
@@ -88,5 +91,12 @@ public class ItemFunc : MonoBehaviour
     private void ChangeEnergyItem()
     {
         Global.energyManager.ChangeEnergy();
+    }
+
+    private void FaintItem()
+    {
+        GameObject faint = Instantiate(Global.assets.Faint);
+        faint.transform.position = transform.position;
+        faint.GetComponent<Faint>().setTarget(p);
     }
 }

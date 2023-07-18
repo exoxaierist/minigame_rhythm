@@ -8,6 +8,8 @@ public class PlayerBase : ControlledObject
 {
     [HideInInspector] public Hp hp;
 
+    public bool fainted = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -42,6 +44,9 @@ public class PlayerBase : ControlledObject
 
     private void Move(Vector2 target)
     {
+        if (fainted)
+            return;
+
         if (Global.CheckBeat() && !Global.CheckOverlap(transform.position * Vector2.one + target, collisionLayer)) MoveRelative(target);
         else
         {
