@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicNum: 2
-  musicName: 
+  musicName: test
   isOnSensor: 0
 --- !u!61 &580170369
 BoxCollider2D:
