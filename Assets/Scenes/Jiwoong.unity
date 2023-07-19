@@ -9505,22 +9505,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4169256818733924940, guid: d2d643bed0e945b448653f4d7c12c366, type: 3}
   m_PrefabInstance: {fileID: 1793559607}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1793559609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793559608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec13d4d818fb68843bbdae13b5359ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  player: 2
-  recoil: 2
-  speed: 30
 --- !u!114 &1793559614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9534,6 +9518,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 1231662017}
+--- !u!114 &1793559619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793559608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6398c40d6fb21b34e86af968161709df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  player: 2
+  maxLen: 10
 --- !u!1 &1812722315
 GameObject:
   m_ObjectHideFlags: 0
