@@ -55,8 +55,7 @@ public class BeatSystem : MonoBehaviour
     public void Stop()
     {
         gameStart = false;
-        sM.audioSource.Stop();
-        sM.canPlay = false;
+        sM.setVolume(-40, 3);
         nM.ResetNote();
     }
 
