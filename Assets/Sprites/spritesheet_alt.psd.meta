@@ -1049,6 +1049,300 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p1_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62eb8dc51eec4be44b3c5cc808eaeedc
+      internalID: 1940257675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p1_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0f48af1a6ef454da115a13f03bcc4e
+      internalID: -1849098038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p1_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e1ad7fd8302b6c4a8ab6b90740473f4
+      internalID: -920013608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p2_0
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a919629758440984087d21ef2046273a
+      internalID: 307154925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p2_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47839a2155bbe0e4e928c327747fe455
+      internalID: -1024944320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_portalbright_p2_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f39b8edab83b5c40863062971025126
+      internalID: -1620365726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uipanel_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 9
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 6, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e838429a5bf504daf0757978dcf035
+      internalID: 453188421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uipanel_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 9
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 5, z: 3, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a262e23f21f70764aaeceb07818a0b4d
+      internalID: -69108214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uipanel_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 9
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0aea0e0d8c59d42b05a2c7bfc6ee5a
+      internalID: 205584312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uicheckbox
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e59e2aba543db642aae295ee79d9f00
+      internalID: 403197587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uicheckmark
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 4
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b9b19b5d37c3e1438046b623b9d6825
+      internalID: -1578017760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uiknob
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a79e25acf303ec4598e278f09f13356
+      internalID: 2139079672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_uislider
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1
+        width: 16
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d02b949c3a49d846a1bba35a4ee5927
+      internalID: -2000584340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_arrow
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 0
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8e4982e2bc82a43b57b627560c8157
+      internalID: -279640266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1060,6 +1354,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      a_arrow: -279640266
       a_audience: 251137673
       a_bound_corner: 538489936
       a_bound_edge: -777082043
@@ -1077,12 +1372,25 @@ TextureImporter:
       a_portal_p2_0: -805318347
       a_portal_p2_1: -351013463
       a_portal_p2_2: -1519548249
+      a_portalbright_p1_0: 1940257675
+      a_portalbright_p1_1: -1849098038
+      a_portalbright_p1_2: -920013608
+      a_portalbright_p2_0: 307154925
+      a_portalbright_p2_1: -1024944320
+      a_portalbright_p2_2: -1620365726
       a_skull: 1232656102
       a_ui_beatcenter: 1360435833
       a_ui_energyp1: 2070194805
       a_ui_energyp2: 1723981643
       a_ui_note: 37349863
       a_ui_speaker: -303642714
+      a_uicheckbox: 403197587
+      a_uicheckmark: -1578017760
+      a_uiknob: 2139079672
+      a_uipanel_0: 453188421
+      a_uipanel_1: -69108214
+      a_uipanel_2: 205584312
+      a_uislider: -2000584340
       a_wall_base: -1529762908
       a_wall_column: 1781399557
       a_wall_corner: 23426541
