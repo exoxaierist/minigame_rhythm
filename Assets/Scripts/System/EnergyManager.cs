@@ -26,13 +26,13 @@ public class EnergyManager : MonoBehaviour
         maxEnergy = Global.maxEnergy;
     }
 
-    private void OnP1Any()
+    public void OnP1Any()
     {
         if (Global.CheckBeat()) IncP1Energy();
         else DecP1Energy();
     }
 
-    private void OnP2Any()
+    public void OnP2Any()
     {
         if (Global.CheckBeat()) IncP2Energy();
         else DecP2Energy();

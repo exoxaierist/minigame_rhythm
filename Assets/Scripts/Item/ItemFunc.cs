@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemFunc : MonoBehaviour
 {
     ItemType ownedItem = ItemType.None;
     Player p = Player.Player1;
 
-    [SerializeField] SpriteRenderer itemSlot;
+    [SerializeField] Image itemSlot;
     Hp hp;
 
     private void Awake()
@@ -19,31 +20,49 @@ public class ItemFunc : MonoBehaviour
 
         if(p == Player.Player1)
         {
-            Global.P1UseItem -= UseItem;
-            Global.P1UseItem += UseItem;
+            Global.P1UseItem -= UseOwnedItem;
+            Global.P1UseItem += UseOwnedItem;
+            itemSlot = GameObject.FindGameObjectWithTag("P1ItemSlot").GetComponent<Image>();
         }
         else if (p == Player.Player2)
         {
-            Global.P2UseItem -= UseItem;
-            Global.P2UseItem += UseItem;
+            Global.P2UseItem -= UseOwnedItem;
+            Global.P2UseItem += UseOwnedItem;
+            itemSlot = GameObject.FindGameObjectWithTag("P2ItemSlot").GetComponent<Image>();
         }
     }
 
     public void StoreItem(ItemType itype)
     {
-        ownedItem = itype;
-
         //faint 같이 먹자마자 사용이면 사용 후 바로 리턴
-        if (itype == ItemType.Faint || itype == ItemType.Heal || itype == ItemType.Bang) 
+        if (itype == ItemType.Faint || itype == ItemType.Heal || itype == ItemType.Bang)
         {
-            UseItem();
-            return; 
+            UseBurstItem(itype);
+            return;
         }
 
-        ChangeItemSlot(ownedItem);
+        ChangeItemSlot(itype);
     }
 
-    public void UseItem()
+    //즉발 아이템
+    public void UseBurstItem(ItemType itype)
+    {
+        switch (itype)
+        {
+            case ItemType.Heal:
+                hp.AddToHP(1);
+                break;
+            case ItemType.Bang:
+                hp.AddToHP(-1);
+                break;
+            case ItemType.Faint:
+                FaintItem();
+                break;
+        }
+    }
+
+    //사용 아이템
+    public void UseOwnedItem()
     {
         switch (ownedItem)
         {
@@ -58,23 +77,14 @@ public class ItemFunc : MonoBehaviour
             case ItemType.ChangeEnergy:
                 ChangeEnergyItem();
                 break;
-            case ItemType.Heal:
-                hp.AddToHP(1);
-                break;
-            case ItemType.Bang:
-                hp.AddToHP(-1);
-                break;
-            case ItemType.Faint:
-                FaintItem();
-                break;
         }
 
-        ownedItem = ItemType.None;
         ChangeItemSlot(ItemType.None);
     }
 
     public void ChangeItemSlot(ItemType item)
     {
+        ownedItem = item;
         itemSlot.sprite = Global.assets.itemImg[(int)item];
     }
 

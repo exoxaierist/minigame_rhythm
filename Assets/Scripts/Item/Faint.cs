@@ -63,12 +63,22 @@ public class Faint : GridObject
         pb.fainted = true;
         transform.position = Target.position + new Vector3(0, 0.2f, 0);
 
+        if (pb.player == Player.Player1)
+            Global.P1AnyAction -= Global.energyManager.OnP1Any;
+        else if (pb.player == Player.Player2)
+            Global.P2AnyAction -= Global.energyManager.OnP2Any;
+
         while (true)
         {
             yield return null;
             if (count > 2)
                 break;
         }
+
+        if (pb.player == Player.Player1)
+            Global.P1AnyAction += Global.energyManager.OnP1Any;
+        else if (pb.player == Player.Player2)
+            Global.P2AnyAction += Global.energyManager.OnP2Any;
 
         pb.fainted = false;
         Global.OnBeat -= Count2Rhythm;

@@ -26,11 +26,14 @@ public class Item : MonoBehaviour
         Invoke(nameof(Disable), disabledTime);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         ItemFunc iFunc = collision.gameObject.GetComponent<ItemFunc>();
         if (iFunc == null)
+        {
+            Debug.Log("Nul");
             return;
+        }
 
         iFunc.StoreItem(it);
 

@@ -15,8 +15,8 @@ public class InputHandler : MonoBehaviour
     public KeyCode p1Down = KeyCode.S;
     public KeyCode p1Right = KeyCode.D;
     public KeyCode p1Left = KeyCode.A;
-    public KeyCode p1Primary = KeyCode.G;
-    public KeyCode p1Secondary = KeyCode.F;
+    public KeyCode p1Primary = KeyCode.F;
+    public KeyCode p1Secondary = KeyCode.G;
     public KeyCode p1UseItem = KeyCode.H;
     [Header("2P")]
     public KeyCode p2Up = KeyCode.UpArrow;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7459990735481118360}
   - component: {fileID: 7459990735481118364}
   - component: {fileID: 7459990735481118367}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,4 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   it: 0
+  disabledTime: 5
   isFree: 1

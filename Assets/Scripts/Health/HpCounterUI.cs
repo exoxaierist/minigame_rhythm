@@ -2,11 +2,12 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HpCounterUI : MonoBehaviour
 {
     public Player player;
-    private SpriteRenderer spr;
+    private Image spr;
     private Sprite emptySprite;
     private Sprite fullSprite;
     private Vector3 origin;
@@ -16,7 +17,7 @@ public class HpCounterUI : MonoBehaviour
 
     private void Start()
     {
-        spr = GetComponent<SpriteRenderer>();
+        spr = GetComponent<Image>();
         emptySprite = Global.assets.hpCounterSpriteEmpty;
         if (player == Player.Player1) fullSprite = Global.assets.hpCounterSpriteFullP1;
         else fullSprite = Global.assets.hpCounterSpriteFullP2;

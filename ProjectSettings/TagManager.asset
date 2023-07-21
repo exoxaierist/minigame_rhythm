@@ -6,6 +6,10 @@ TagManager:
   tags:
   - P1
   - P2
+  - P2HP
+  - P1HP
+  - P1ItemSlot
+  - P2ItemSlot
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - Portal
   - Reflect
   - Wall
-  - 
+  - Item
   - 
   - 
   - 

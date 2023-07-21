@@ -30,7 +30,7 @@ MonoBehaviour:
   item: {fileID: 7459990735481118363, guid: a01f37b0156515148acc9258b2475484, type: 3}
   Faint: {fileID: 7582767708024264728, guid: df8a3cb105723144f8df96344096f3ce, type: 3}
   itemImg:
-  - {fileID: 0}
+  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 1547043276, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: 1827971683, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: 496536126, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}

@@ -17,20 +17,38 @@ public class Laser : Weapon
     }
 
     public override void P1ShootForward()
-    {
+    { 
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP1Energy() <= 0) return;
+        Global.energyManager.DecP1Energy();
+
         Calculate(Vector3.right, transform.position, maxLen);
+        Calculate(Vector3.left, transform.position, maxLen);
     }
     public override void P1ShootVertical()
     {
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP1Energy() <= 0) return;
+        Global.energyManager.DecP1Energy();
+
         Calculate(Vector3.up, transform.position, maxLen);
         Calculate(Vector3.down, transform.position, maxLen);
     }
     public override void P2ShootForward()
     {
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP2Energy() <= 0) return;
+        Global.energyManager.DecP2Energy();
+
         Calculate(Vector3.left, transform.position, maxLen);
+        Calculate(Vector3.right, transform.position, maxLen);
     }
     public override void P2ShootVertical()
     {
+        if (!Global.CheckBeat()) return;
+        if (Global.energyManager.GetP2Energy() <= 0) return;
+        Global.energyManager.DecP2Energy();
+
         Calculate(Vector3.up, transform.position, maxLen);
         Calculate(Vector3.down, transform.position, maxLen);
     }
