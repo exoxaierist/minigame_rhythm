@@ -7371,6 +7371,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1226559018, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
+    - target: {fileID: 4413262970387466669, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413262970387466669, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413262970387466669, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413262970387466669, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5169969863937449977, guid: 4cb6d6b49bc29684281b6f46ccec454c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -7473,6 +7489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48deecd3096dcb48bfebcdfa8b3d961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownedItem: 0
+  p: 1
   itemSlot: {fileID: 0}
 --- !u!1 &1640079484
 GameObject:
@@ -8066,6 +8084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48deecd3096dcb48bfebcdfa8b3d961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownedItem: 0
+  p: 1
   itemSlot: {fileID: 0}
 --- !u!114 &1793559619
 MonoBehaviour:

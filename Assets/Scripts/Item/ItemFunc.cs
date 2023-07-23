@@ -6,17 +6,21 @@ using UnityEngine.UI;
 
 public class ItemFunc : MonoBehaviour
 {
-    ItemType ownedItem = ItemType.None;
-    Player p = Player.Player1;
+    [SerializeField] ItemType ownedItem = ItemType.None;
+    [SerializeField] Player p = Player.Player1;
 
     [SerializeField] Image itemSlot;
     Hp hp;
+    Laser laser;
+
+    int crossCount = 0;
 
     private void Awake()
     {
         ownedItem = ItemType.None;
         p = GetComponent<PlayerBase>().player;
         hp = GetComponent<Hp>();
+        laser = GetComponent<Laser>();
 
         if(p == Player.Player1)
         {
@@ -77,6 +81,13 @@ public class ItemFunc : MonoBehaviour
             case ItemType.ChangeEnergy:
                 ChangeEnergyItem();
                 break;
+            case ItemType.Cross:
+                if (crossCount > 0) return;
+                Global.OnBeat += CrossItem;
+                break;
+            case ItemType.Chorus:
+                ChorusItem();
+                break;
         }
 
         ChangeItemSlot(ItemType.None);
@@ -88,6 +99,7 @@ public class ItemFunc : MonoBehaviour
         itemSlot.sprite = Global.assets.itemImg[(int)item];
     }
 
+    #region "아이템 효과"
     private void ShieldItem()
     {
         hp.ShieldDeploy(5f);
@@ -109,4 +121,33 @@ public class ItemFunc : MonoBehaviour
         faint.transform.position = transform.position;
         faint.GetComponent<Faint>().setTarget(p);
     }
+
+    private void CrossItem()
+    {
+        if(crossCount >= 4)
+        {
+            Global.OnBeat -= CrossItem;
+            crossCount = 0;
+            return;
+        }
+
+        //int energy = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
+        if(laser == null)
+        {
+            Global.OnBeat -= CrossItem;
+            crossCount = 0;
+            return;
+        }
+
+        //Action a = p == Player.Player1 ? Global.energyManager.DecP1Energy : Global.energyManager.DecP2Energy;
+        //a.Invoke();
+        laser.CrossLaser();
+        crossCount++;
+    }
+
+    private void ChorusItem()
+    {
+
+    }
+    #endregion
 }

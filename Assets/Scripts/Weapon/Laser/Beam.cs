@@ -77,7 +77,7 @@ public class Beam : WeaponType
         payload.owner = p;
         isFree = false;
 
-        payload.damage = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
+        payload.damage = 1; //p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
 
         LaserSettings();
         StartCoroutine(HitBox());
