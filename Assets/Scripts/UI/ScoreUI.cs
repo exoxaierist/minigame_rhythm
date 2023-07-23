@@ -20,7 +20,7 @@ public class ScoreUI : MonoBehaviour
         scoreText[0].transform.parent.gameObject.SetActive(true);      
         if(player != -1)
         {
-            if(RoundManager.instance.score[player] != RoundManager.instance.maxScore) winnerText.text = "P"+(player+1)+" Win!";
+            if(RoundManager.instance.score[player] != RoundManager.instance.maxScore) winnerText.text = "Round " + (RoundManager.instance.score[0] + RoundManager.instance.score[1]);
             else winnerText.text = "P" + (player + 1) + " Win!\nCongratulation!";
             scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y + 50, 0.2f).OnComplete(() =>
             {
@@ -32,6 +32,7 @@ public class ScoreUI : MonoBehaviour
 
     public void HideUIEffect()
     {
+        GameObject.Find("UI").transform.Find("BeatUI").GetComponent<BeatSystemUI>().HideUI();
         transform.Find("background").GetComponent<Image>().DOFade(1.5f, 1).OnComplete(() =>
         {
             HideUI();
