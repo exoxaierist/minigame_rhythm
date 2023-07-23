@@ -38,7 +38,7 @@ public class StartCounter : MonoBehaviour
             transform.DOShakePosition(0.3f,30, 40);
             yield return new WaitForSecondsRealtime(0.4f);
         }
-        transform.DOLocalMoveY(500, 0.3f).SetEase(Ease.InQuad);
+        transform.DOLocalMoveY(500, 0.3f).SetEase(Ease.InQuad).OnComplete(() => transform.localPosition = new Vector3(0, -15, 0));
         text.DOColor(new(1, 1, 1, 0), 0.3f);
         Global.OnCounterEnd?.Invoke();
     }

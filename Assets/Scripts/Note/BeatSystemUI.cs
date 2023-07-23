@@ -7,8 +7,6 @@ public class BeatSystemUI : MonoBehaviour
 {
     public GameObject BeatUI;
     GameObject[] speaker = new GameObject[2];
-    Vector3 size;
-    bool isPumping = false;
 
     private void Awake()
     {
@@ -16,7 +14,7 @@ public class BeatSystemUI : MonoBehaviour
         BeatUI.SetActive(false);
         speaker[0] = BeatUI.transform.Find("Speaker1").gameObject;
         speaker[1] = BeatUI.transform.Find("Speaker2").gameObject;
-        size = speaker[0].transform.localScale;        
+        Debug.Log(speaker[0].name);
         Global.OnBeat += PumpSpeaker;        
         Global.OnCounterEnd += AppearUI;
         BeatUI.GetComponent<Image>().DOFade(0f, 0);

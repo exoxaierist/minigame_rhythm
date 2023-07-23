@@ -16,11 +16,12 @@ public class ScoreUI : MonoBehaviour
 
     public void ShowUI(int player = -1)
     {
-        if(!scoreText[0].transform.parent.gameObject.activeSelf) Invoke("HideUIEffect", 2f);
+        if(!scoreText[0].transform.parent.gameObject.activeSelf && RoundManager.instance.maxScore != RoundManager.instance.score[player]) Invoke("HideUIEffect", 2f);
         scoreText[0].transform.parent.gameObject.SetActive(true);      
         if(player != -1)
         {
-            winnerText.text = "P"+(player+1)+" Win!";
+            if(RoundManager.instance.score[player] != RoundManager.instance.maxScore) winnerText.text = "P"+(player+1)+" Win!";
+            else winnerText.text = "P" + (player + 1) + " Win!\nCongratulation!";
             scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y + 50, 0.2f).OnComplete(() =>
             {
                 scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y - 50, 0.2f);

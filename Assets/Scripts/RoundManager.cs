@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class RoundManager : MonoBehaviour
 {
-    public int maxScore = 3;
+    public int maxScore = 2;
     public static RoundManager instance;
     public GameObject[] player = new GameObject[2];
     public int[] score = new int[2];
@@ -29,13 +29,11 @@ public class RoundManager : MonoBehaviour
     {
         if(BeatSystem.instance.gameStart)
         {
-            if (BeatSystem.instance.gameStart && score[player] + 1 != maxScore)
-            {
-                score[player] += 1;
-                if (scoreUI != null) scoreUI.ShowUI(player);
-                StartCoroutine(Delay());
-            }
-            else scoreUI.ShowUI(player);
+            score[player] += 1;
+            if (scoreUI != null) scoreUI.ShowUI(player);
+            BeatSystem.instance.Stop();
+            if (score[player] != maxScore) StartCoroutine(Delay());
+            else StartCoroutine(ExitGame());
         }       
     }
 
@@ -52,14 +50,15 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator Delay()
     {
-        if (BeatSystem.instance.gameStart)
-        {
-            BeatSystem.instance.Stop();
-            yield return new WaitForSeconds(3f);         
-            Reset();
-            GameObject.Find("UI").transform.Find("GameStartCounter").GetComponent<StartCounter>().Initialize();
-        }
-        else Debug.Log("게임이 시작되지 않았습니다.");
+        yield return new WaitForSeconds(3f);
+        Reset();
+        GameObject.Find("UI").transform.Find("GameStartCounter").GetComponent<StartCounter>().Initialize();
+    }
+
+    IEnumerator ExitGame()
+    {
+        yield return new WaitForSeconds(3);
+        GameManager.instance.ChangeScene("Start");
     }
 
 }
