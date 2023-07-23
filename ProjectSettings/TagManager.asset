@@ -6,10 +6,16 @@ TagManager:
   tags:
   - P1
   - P2
+<<<<<<< Updated upstream
   - P2HP
   - P1HP
   - P1ItemSlot
   - P2ItemSlot
+=======
+  - Sensor
+  - TopBtn
+  - BottomBtn
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

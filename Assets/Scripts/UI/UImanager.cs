@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UIType { Music,Map};
+
 public class UImanager : MonoBehaviour
 {
     public GameObject rulePan;
     public GameObject SettingPan;
     public GameObject middlePan;
 
-    public Transform btnGroupTrans;
-    public Transform upTrans;
-    public Transform downTrans;
+    public Transform[] btnGroupTrans;
+    public Transform[] upTrans;
+    public Transform[] downTrans;
 
-    public SensorController sensCtrl;
+    public SensorController[] sensCtrl;
 
-    public Image sparkleImg;
+    public Image[] sparkleImg;
 
     bool upGetKeyDown;
     bool downGetKeyDown;
+
+    public int UITypenNum;
     private void Update()
     {
         UIOff();
@@ -30,20 +34,35 @@ public class UImanager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            rulePan.SetActive(false);
-            SettingPan.SetActive(false);
-            middlePan.SetActive(false);
+            if (UITypenNum == 1)
+            {
+                UITypenNum -= 1;
+                sparkleImg[1].color = new Color(255, 255, 255, 0);
+                SensorController.mapSelect = false;
+            }
+                
+            else
+            {
+                rulePan.SetActive(false);
+                SettingPan.SetActive(false);
+                middlePan.SetActive(false);
+            }
+            
+        }
+        if(SensorController.mapSelect)
+        {
+            sparkleImg[0].color = new Color(255, 255, 255, 0);
         }
     }
     void KeyDownControl()
     {
 
-        if (Input.GetKeyDown(KeyCode.W) && sensCtrl.isRoof == false && !upGetKeyDown)
+        if (Input.GetKeyDown(KeyCode.W) && sensCtrl[UITypenNum].isRoof == false && !upGetKeyDown)
         {
             StartCoroutine(KeyDelay("Up"));
 
         }
-        else if (Input.GetKeyDown(KeyCode.S) && sensCtrl.isBottom == false && !downGetKeyDown)
+        else if (Input.GetKeyDown(KeyCode.S) && sensCtrl[UITypenNum].isBottom == false && !downGetKeyDown)
         {
             StartCoroutine(KeyDelay("Down"));
 
@@ -55,12 +74,12 @@ public class UImanager : MonoBehaviour
     {
         if(upGetKeyDown)
         {
-            btnGroupTrans.position = Vector3.Lerp(btnGroupTrans.position,upTrans.position,20*Time.deltaTime);
+            btnGroupTrans[UITypenNum].position = Vector3.Lerp(btnGroupTrans[UITypenNum].position,upTrans[UITypenNum].position,20*Time.deltaTime);
             
         }
         else if (downGetKeyDown)
         {
-            btnGroupTrans.position = Vector3.Lerp(btnGroupTrans.position, downTrans.position, 20 * Time.deltaTime);
+            btnGroupTrans[UITypenNum].position = Vector3.Lerp(btnGroupTrans[UITypenNum].position, downTrans[UITypenNum].position, 20 * Time.deltaTime);
         }
     }
 
@@ -71,15 +90,15 @@ public class UImanager : MonoBehaviour
         {
             sparkleCount += 0.01f;
             yield return new WaitForSeconds(0.0005f);
-            sparkleImg.color = new Color(255, 255, 255, sparkleCount);
+            sparkleImg[UITypenNum].color = new Color(255, 255, 255, sparkleCount);
         }
         if(sparkleCount >=1f)
         {
-            while(sparkleCount>0)
+            while (sparkleCount > 0)
             {
                 sparkleCount -= 0.01f;
                 yield return new WaitForSeconds(0.0005f);
-                sparkleImg.color = new Color(255, 255, 255, sparkleCount);
+                sparkleImg[UITypenNum].color = new Color(255, 255, 255, sparkleCount);
             }
         }
 
@@ -93,8 +112,8 @@ public class UImanager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             upGetKeyDown = false;
             StartCoroutine(SparkleTime());
-            upTrans.position += new Vector3(0, 140, 0);
-            downTrans.position += new Vector3(0, 140, 0);
+            upTrans[UITypenNum].position += new Vector3(0, 140, 0);
+            downTrans[UITypenNum].position += new Vector3(0, 140, 0);
         }
             
         else
@@ -103,8 +122,8 @@ public class UImanager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             downGetKeyDown = false;
             StartCoroutine(SparkleTime());
-            downTrans.position += new Vector3(0, -140, 0);
-            upTrans.position += new Vector3(0, -140, 0);
+            downTrans[UITypenNum].position += new Vector3(0, -140, 0);
+            upTrans[UITypenNum].position += new Vector3(0, -140, 0);
         }
             
     }
