@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -98,6 +99,17 @@ public class Laser : Weapon
     private void CreateLaser(Vector3 dir, Vector3 pos, float len)
     {
         Global.weaponPool.SpawnArms(Global.assets.laser, pos, dir, player, len);
+    }
+
+    public void CrossLaser()
+    {
+        Vector3 direction = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.up;
+
+        for (int i = 0; i < 4; i++)
+        {
+            direction = Quaternion.AngleAxis(90, Vector3.forward) * direction;
+            Calculate(direction, transform.position, maxLen);
+        }
     }
 
     //?????? ???? ?? ???? ????

@@ -42,4 +42,6 @@ public enum ItemType
     MaxEnergy = 4,
     ChangeEnergy = 5,
     Bang = 6,
+    Cross = 7,
+    Chorus = 8,
 }
