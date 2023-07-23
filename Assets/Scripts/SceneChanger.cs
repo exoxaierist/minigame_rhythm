@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public string musicName;
+    public int MapNum;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -13,6 +14,6 @@ public class SceneChanger : MonoBehaviour
  
     public void GameStart()
     {
-        SceneManager.LoadScene(Random.Range(1,4));
+        SceneManager.LoadScene(MapNum);
     }
 }

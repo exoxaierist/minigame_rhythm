@@ -8,8 +8,13 @@ public class SensorController : MonoBehaviour
     public bool isRoof;
     public bool isBottom;
     public bool isOnSensor;
+    static public bool mapSelect;
 
+    public UIType uitype;
+
+    public UImanager UIm;
     public GameObject[] albumImg;
+    public GameObject[] mapImg;
 
     GameObject sceneChanger;
 
@@ -22,42 +27,99 @@ public class SensorController : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            sceneChanger.GetComponent<SceneChanger>().GameStart();
+            if(uitype == UIType.Music)
+            {
+                mapSelect = true;
+                UIm.UITypenNum += 1;
+                
+            }
+
+
+            if (UIm.UITypenNum > 1)
+            {
+                UIm.UITypenNum = 1;
+                sceneChanger.GetComponent<SceneChanger>().GameStart();
+            }
+                
         }
+        if(uitype == UIType.Map && !mapSelect)
+        {
+            for (int i = 0; i < mapImg.Length; i++)
+            {
+                mapImg[i].gameObject.SetActive(false);
+
+            }
+        }
+        if (uitype == UIType.Music && mapSelect)
+        {
+            for (int i = 0; i < albumImg.Length; i++)
+            {
+                albumImg[i].gameObject.SetActive(false);
+
+            }
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        for(int i = 0;i<albumImg.Length;i++)
+        if(UIm.UITypenNum ==0)
         {
-            albumImg[i].gameObject.SetActive(false);
+            for (int i = 0; i < albumImg.Length; i++)
+            {
+                albumImg[i].gameObject.SetActive(false);
 
+            }
+        }
+        else
+        {
+            for (int i = 0; i < mapImg.Length; i++)
+            {
+                mapImg[i].gameObject.SetActive(false);
+
+            }
         }
        
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Music7")
+        if(collision.gameObject.tag == "BottomBtn")
         {
             isRoof = true;
         }
-        else if(collision.gameObject.name == "Music1")
+        else if(collision.gameObject.tag == "TopBtn")
         {
             isBottom = true;
         }
-        collision.gameObject.GetComponent<MusicInfo>().isOnSensor = true;
-        albumImg[collision.gameObject.GetComponent<MusicInfo>().musicNum].SetActive(true);
-        collision.gameObject.GetComponentInChildren<Text>().color = new Color(255, 255, 255, 1);
-        sceneChanger.GetComponent<SceneChanger>().musicName = collision.GetComponent<MusicInfo>().musicName;
-        
 
+        collision.gameObject.GetComponent<MusicInfo>().isOnSensor = true;
+
+        if(uitype == UIType.Music)
+        {
+            sceneChanger.GetComponent<SceneChanger>().musicName = collision.GetComponent<MusicInfo>().musicName;
+        }
+        else if(uitype == UIType.Map)
+            sceneChanger.GetComponent<SceneChanger>().MapNum = collision.GetComponent<MusicInfo>().mapNum+1;
+
+        if (UIm.UITypenNum == 0&&uitype == UIType.Music&&!mapSelect)
+            albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
+
+        if(UIm.UITypenNum == 1&& uitype == UIType.Map&&mapSelect)
+            mapImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
+
+
+        if ( (int)uitype == UIm.UITypenNum)
+            collision.gameObject.GetComponentInChildren<Text>().color = new Color(255, 255, 255, 1);
+
+        if((int)uitype != UIm.UITypenNum)//uitype == UIType.Map && !mapSelect
+            collision.gameObject.GetComponentInChildren<Text>().color = new Color(111, 111, 111, 0.5f);
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Music7")
+        if (collision.gameObject.tag == "BottomBtn")
         {
             isRoof = false;
         }
-        else if (collision.gameObject.name == "Music1")
+        else if (collision.gameObject.tag == "TopBtn")
         {
             isBottom = false;
         }
