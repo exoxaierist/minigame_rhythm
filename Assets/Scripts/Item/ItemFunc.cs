@@ -13,8 +13,6 @@ public class ItemFunc : MonoBehaviour
     Hp hp;
     Laser laser;
 
-    int crossCount = 0;
-
     private void Awake()
     {
         ownedItem = ItemType.None;
@@ -34,6 +32,8 @@ public class ItemFunc : MonoBehaviour
             Global.P2UseItem += UseOwnedItem;
             itemSlot = GameObject.FindGameObjectWithTag("P2ItemSlot").GetComponent<Image>();
         }
+
+        Global.OnReset += () => { ChangeItemSlot(ItemType.None); };
     }
 
     public void StoreItem(ItemType itype)
@@ -82,8 +82,8 @@ public class ItemFunc : MonoBehaviour
                 ChangeEnergyItem();
                 break;
             case ItemType.Cross:
-                if (crossCount > 0) return;
-                Global.OnBeat += CrossItem;
+                if (!Global.CheckBeat()) return;
+                CrossItem();
                 break;
             case ItemType.Chorus:
                 ChorusItem();
@@ -124,30 +124,15 @@ public class ItemFunc : MonoBehaviour
 
     private void CrossItem()
     {
-        if(crossCount >= 4)
-        {
-            Global.OnBeat -= CrossItem;
-            crossCount = 0;
-            return;
-        }
-
-        //int energy = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
         if(laser == null)
-        {
-            Global.OnBeat -= CrossItem;
-            crossCount = 0;
             return;
-        }
-
-        //Action a = p == Player.Player1 ? Global.energyManager.DecP1Energy : Global.energyManager.DecP2Energy;
-        //a.Invoke();
         laser.CrossLaser();
-        crossCount++;
     }
 
     private void ChorusItem()
     {
-
+        Chorus chorus = Instantiate(Global.assets.Chorus).GetComponent<Chorus>();
+        chorus.Init(p, laser.maxLen, transform.position);
     }
     #endregion
 }

@@ -11,6 +11,7 @@ public static class Global
     // 이벤트
     public static Action OnCounterStart;
     public static Action OnCounterEnd;
+    public static Action OnReset;
 
     // 입력 핸들러
     public static Action P1UpAction;

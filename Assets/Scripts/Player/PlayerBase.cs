@@ -16,6 +16,7 @@ public class PlayerBase : ControlledObject
         CheckForHP();
         if (player == Player.Player1) collisionLayer = Global.p1MoveColMask;
         else collisionLayer = Global.p2MoveColMask;
+        Global.OnReset += () => { fainted = false; };
     }
 
     protected virtual void OnHeal() { }

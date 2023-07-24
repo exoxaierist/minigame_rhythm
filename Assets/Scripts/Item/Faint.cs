@@ -12,9 +12,14 @@ public class Faint : GridObject
     [SerializeField]
     private short count;
 
+    Coroutine faintCo;
+    PlayerBase pb;
+
     public void Awake()
     {
         Global.OnBeat += MoveTowardsTarget;
+        Global.OnBeat -= ResetFunc;
+        Global.OnBeat += ResetFunc;
     }
 
     public void setTarget(Player player)
@@ -52,14 +57,14 @@ public class Faint : GridObject
             Global.OnBeat -= MoveTowardsTarget;
 
             GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine(MakeTargetFaint());
+            faintCo = StartCoroutine(MakeTargetFaint());
         }
     }
 
     IEnumerator MakeTargetFaint()
     {
         count = 0;
-        PlayerBase pb = Target.GetComponent<PlayerBase>();
+        pb = Target.GetComponent<PlayerBase>();
         pb.fainted = true;
         transform.position = Target.position + new Vector3(0, 0.2f, 0);
 
@@ -82,6 +87,26 @@ public class Faint : GridObject
 
         pb.fainted = false;
         Global.OnBeat -= Count2Rhythm;
+        Global.OnReset -= ResetFunc;
+        Destroy(gameObject);
+    }
+
+    private void ResetFunc()
+    {
+        if (faintCo == null || gameObject == null) return;
+
+        StopCoroutine(faintCo);
+        faintCo = null;
+        Global.OnBeat -= MoveTowardsTarget;
+
+        if (pb.player == Player.Player1)
+            Global.P1AnyAction += Global.energyManager.OnP1Any;
+        else if (pb.player == Player.Player2)
+            Global.P2AnyAction += Global.energyManager.OnP2Any;
+
+        pb.fainted = false;
+        Global.OnBeat -= Count2Rhythm;
+        Global.OnReset -= ResetFunc;
         Destroy(gameObject);
     }
 }

@@ -10,9 +10,12 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] Transform spawnObj = null;
     [SerializeField] List<Transform> spawnPos = new List<Transform>();
 
+    Coroutine spawnCo;
+
     private void Start()
     {
         Global.itemSpawner = this;
+        Global.OnReset += ResetFunc;
 
         if(spawnObj == null)
             spawnObj = transform.GetChild(0);
@@ -20,7 +23,7 @@ public class ItemSpawner : MonoBehaviour
             spawnPos.Add(spawnObj.GetChild(i));
 
         //Debug.Log(spawnPos.Count);
-        StartCoroutine(Spawn());
+        spawnCo = StartCoroutine(Spawn());
     }
 
     IEnumerator Spawn()
@@ -57,5 +60,21 @@ public class ItemSpawner : MonoBehaviour
         int randomPos = Random.Range(0, range);
 
         return spawnPos[randomPos].position;
+    }
+
+    private void ResetFunc()
+    {
+        if (spawnCo == null)
+            return;
+
+        StopCoroutine(spawnCo);
+        spawnCo = null;
+        foreach (Item item in pool)
+        {
+            if(!item.isFree)
+                item.Disable();
+        }
+
+        spawnCo = StartCoroutine(Spawn());
     }
 }

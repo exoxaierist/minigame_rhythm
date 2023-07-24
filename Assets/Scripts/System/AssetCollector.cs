@@ -34,5 +34,6 @@ public class AssetCollector : ScriptableObject
     [Header("æ∆¿Ã≈€")]
     public GameObject item;
     public GameObject Faint;
+    public GameObject Chorus;
     public List<Sprite> itemImg;
 }
