@@ -10,6 +10,9 @@ TagManager:
   - P1HP
   - P1ItemSlot
   - P2ItemSlot
+  - Sensor
+  - TopBtn
+  - BottomBtn
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SensorController : MonoBehaviour
 {
@@ -108,10 +109,10 @@ public class SensorController : MonoBehaviour
 
 
         if ( (int)uitype == UIm.UITypenNum)
-            collision.gameObject.GetComponentInChildren<Text>().color = new Color(255, 255, 255, 1);
+            collision.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color(255, 255, 255, 1);
 
         if((int)uitype != UIm.UITypenNum)//uitype == UIType.Map && !mapSelect
-            collision.gameObject.GetComponentInChildren<Text>().color = new Color(111, 111, 111, 0.5f);
+            collision.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color(111, 111, 111, 0.5f);
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
@@ -124,7 +125,7 @@ public class SensorController : MonoBehaviour
             isBottom = false;
         }
         collision.gameObject.GetComponent<MusicInfo>().isOnSensor = false;
-        collision.gameObject.GetComponentInChildren<Text>().color = new Color(111, 111, 111, 0.5f);
+        collision.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color(111, 111, 111, 0.5f);
         //albumImg[collision.gameObject.GetComponent<MusicInfo>().musicNum].SetActive(false);
     }
     
