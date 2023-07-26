@@ -39,6 +39,9 @@ public class UImanager : MonoBehaviour
                 UITypenNum -= 1;
                 sparkleImg[1].color = new Color(255, 255, 255, 0);
                 SensorController.mapSelect = false;
+                sensCtrl[1].GetComponent<BoxCollider2D>().enabled = false;
+                sensCtrl[0].GetComponent<BoxCollider2D>().enabled = true;
+                StartCoroutine("SparkleTime");
             }
                 
             else
@@ -57,12 +60,12 @@ public class UImanager : MonoBehaviour
     void KeyDownControl()
     {
 
-        if (Input.GetKeyDown(KeyCode.W) && sensCtrl[UITypenNum].isRoof == false && !upGetKeyDown)
+        if (Input.GetKeyDown(KeyCode.S) && sensCtrl[UITypenNum].isRoof == false && !upGetKeyDown)
         {
             StartCoroutine(KeyDelay("Up"));
 
         }
-        else if (Input.GetKeyDown(KeyCode.S) && sensCtrl[UITypenNum].isBottom == false && !downGetKeyDown)
+        else if (Input.GetKeyDown(KeyCode.W) && sensCtrl[UITypenNum].isBottom == false && !downGetKeyDown)
         {
             StartCoroutine(KeyDelay("Down"));
 
@@ -83,7 +86,7 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    IEnumerator SparkleTime()
+    public IEnumerator SparkleTime()
     {
         float sparkleCount = 0;
         while(sparkleCount<1)
