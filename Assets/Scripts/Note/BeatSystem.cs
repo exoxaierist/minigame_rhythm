@@ -11,7 +11,7 @@ public class BeatSystem : MonoBehaviour
     MidiFileParser mP;
     NoteManager nM;
     public bool gameStart = false;
-
+    public bool CurrentBeatStatus = false;
 
     private void Awake()
     {
@@ -36,6 +36,11 @@ public class BeatSystem : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (CurrentBeatStatus && !Detection()) Global.OnLastTiming?.Invoke();
+        CurrentBeatStatus = Detection();
+    }
 
     /** 음악과 노트 재생 */
     public void Play()
@@ -84,5 +89,11 @@ public class BeatSystem : MonoBehaviour
         return false;
     }
 
+    /** 노트 마지막 판정 체크 */
+    public bool CheckEndBeat()
+    {
+        
 
+        return false;
+    }
 }
