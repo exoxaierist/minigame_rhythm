@@ -16,6 +16,7 @@ public class SensorController : MonoBehaviour
     public UImanager UIm;
     public GameObject[] albumImg;
     public GameObject[] mapImg;
+    public BoxCollider2D[] sensors;
 
     GameObject sceneChanger;
 
@@ -32,7 +33,9 @@ public class SensorController : MonoBehaviour
             {
                 mapSelect = true;
                 UIm.UITypenNum += 1;
-                
+                UIm.StartCoroutine("SparkleTime");
+                sensors[1].enabled = true;
+                sensors[0].enabled = false;
             }
 
 
@@ -97,15 +100,16 @@ public class SensorController : MonoBehaviour
         if(uitype == UIType.Music)
         {
             sceneChanger.GetComponent<SceneChanger>().musicName = collision.GetComponent<MusicInfo>().musicName;
+            if (UIm.UITypenNum == 0 &&!mapSelect)
+                albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
         }
         else if(uitype == UIType.Map)
-            sceneChanger.GetComponent<SceneChanger>().MapNum = collision.GetComponent<MusicInfo>().mapNum+1;
-
-        if (UIm.UITypenNum == 0&&uitype == UIType.Music&&!mapSelect)
-            albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
-
-        if(UIm.UITypenNum == 1&& uitype == UIType.Map&&mapSelect)
-            mapImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
+        {
+            sceneChanger.GetComponent<SceneChanger>().MapNum = collision.GetComponent<MusicInfo>().mapNum + 1;
+            if (UIm.UITypenNum == 1 && mapSelect)
+                mapImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
+        }
+            
 
 
         if ( (int)uitype == UIm.UITypenNum)
@@ -113,6 +117,8 @@ public class SensorController : MonoBehaviour
 
         if((int)uitype != UIm.UITypenNum)//uitype == UIType.Map && !mapSelect
             collision.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color(111, 111, 111, 0.5f);
+
+        
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
@@ -124,6 +130,7 @@ public class SensorController : MonoBehaviour
         {
             isBottom = false;
         }
+        
         collision.gameObject.GetComponent<MusicInfo>().isOnSensor = false;
         collision.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color(111, 111, 111, 0.5f);
         //albumImg[collision.gameObject.GetComponent<MusicInfo>().musicNum].SetActive(false);

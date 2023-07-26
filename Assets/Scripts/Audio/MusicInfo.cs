@@ -8,5 +8,4 @@ public class MusicInfo : MonoBehaviour
     public int mapNum;
     public string musicName;
     public bool isOnSensor;
-    
 }
