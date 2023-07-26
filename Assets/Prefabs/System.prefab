@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6528026800834794096}
   - component: {fileID: 4349657105266338928}
   - component: {fileID: 2533277009004534159}
-  - component: {fileID: 8260380825095336277}
-  - component: {fileID: 349968358}
+  - component: {fileID: 536356520}
+  - component: {fileID: 8189245721431931150}
   m_Layer: 3
   m_Name: System
   m_TagString: Untagged
@@ -148,19 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnergy: 10
---- !u!114 &8260380825095336277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6817822231527129637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db67ec462080432489f7ebedd7aaaa34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &349968358
+--- !u!114 &536356520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,6 +161,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxInstance: {fileID: 8721109586790873813, guid: d46f32112fda9984a9e9310e5a83f387, type: 3}
+--- !u!114 &8189245721431931150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817822231527129637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56741e0796260450fbacabb49ab30376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxScore: 2
+  player:
+  - {fileID: 0}
+  - {fileID: 0}
+  score: 0000000000000000
 --- !u!1001 &6100643421826860676
 PrefabInstance:
   m_ObjectHideFlags: 0

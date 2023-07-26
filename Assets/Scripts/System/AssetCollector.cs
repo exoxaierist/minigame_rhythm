@@ -23,6 +23,7 @@ public class AssetCollector : ScriptableObject
 
     [Header("이펙트")]
     public GameObject spriteEffect;
+    public GameObject laserEffect;
 
     [Header("소리효과")] //구분위해 앞에 a붙힘
     public AudioClip aCounterHigh;

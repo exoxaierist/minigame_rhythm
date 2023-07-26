@@ -22,6 +22,7 @@ MonoBehaviour:
   slug: {fileID: 5476093390150504510, guid: ce27417ba563fcc458d092495e690020, type: 3}
   shield: {fileID: 7002102185581809938, guid: 6f1ef76e82f330c4ba2d34cd772229ba, type: 3}
   spriteEffect: {fileID: 1894089634223162377, guid: a10e0f09a19d1aa4ebc79c0e53a91ed3, type: 3}
+  laserEffect: {fileID: 4687988471403303155, guid: bac6b44cf007be44b9a215c1c3d00538, type: 3}
   aCounterHigh: {fileID: 8300000, guid: 95e067a4e2412064588723ef25288df5, type: 3}
   aCounterLow: {fileID: 8300000, guid: ef7b69f584ef7c5449d2105f6d9ab7bd, type: 3}
   aShootBullet: {fileID: 8300000, guid: ce28fa00e3a0ff84a9513e849401fd3f, type: 3}

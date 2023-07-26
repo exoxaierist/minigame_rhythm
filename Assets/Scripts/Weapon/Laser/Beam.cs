@@ -15,47 +15,79 @@ public class Beam : WeaponType
     private LineRenderer line;
     private LayerMask hitMask;
 
-    //todo
-    //레이저 이펙트 및 피격 판정
+    private Color applyCol;
+    private Color p1Color = new(0, 0.43f, 0.89f);
+    private Color p2Color = new(0.956f, 0.25f, 0.11f);
+
+    private SpriteRenderer circleStart;
+    private SpriteRenderer circleEnd;
+
+
+    public void LaserStart()
+    {
+        line.SetPosition(0, dir * 0.8f);
+        //circleStart.transform.localPosition = line.GetPosition(0);
+        circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0);
+        circleStart.DOFade(1, chargeTime);
+        circleStart.transform.localScale = new(4f, 4f, 4f);
+        circleStart.transform.DOScale(0.4f, chargeTime);
+    }
 
     private void LaserSettings()
     {
+        if (payload.owner == Player.Player2) applyCol = p2Color;
+        else applyCol = p1Color;
         hitMask = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
         line = GetComponent<LineRenderer>();
 
-        line.startWidth = Global.gridIncrement;
-        line.endWidth = Global.gridIncrement;
         line.SetPosition(0, Vector3.zero);
-        line.SetPosition(1, dir * length + dir);
+        line.SetPosition(1, dir * (length+1));
 
-        line.SetColors(Color.red, Color.red);
+        line.startColor = applyCol;
+        line.endColor = applyCol;
+
+        circleStart = Instantiate(Global.assets.laserEffect,transform).GetComponent<SpriteRenderer>();
+        circleEnd = Instantiate(Global.assets.laserEffect,transform).GetComponent<SpriteRenderer>();
+
+        circleStart.transform.localScale = new(0.4f, 0.4f, 0.4f);
+        circleEnd.transform.localScale = new(0f, 0f, 0f);
+
+        circleStart.transform.position = transform.position + line.GetPosition(0);
+        circleEnd.transform.position = transform.position + line.GetPosition(1);
+
+        circleStart.color = applyCol;
+        circleEnd.color = applyCol;
     }
 
     IEnumerator HitBox()
     {
         Global.CamShakeSmall();
         //float time = 0;
-        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0, chargeTime).SetEase(Ease.OutCirc);
-        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0, chargeTime).SetEase(Ease.OutCirc);
+
+        line.startWidth = 0f;
+        line.endWidth = 0f;
+
+        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
+        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
 
         yield return new WaitForSeconds(chargeTime);
         Global.CamShakeMedium();
 
-        line.startWidth = Global.gridIncrement;
-        line.endWidth = Global.gridIncrement;
-        //임시
-        //line.SetColors(Color.blue, Color.blue);
+        line.startWidth = 0.4f;
+        line.endWidth = 0.4f;
 
-        //while (time <= holdTime)
+        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0.1f, chargeTime).SetEase(Ease.InCirc);
+        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0.1f, chargeTime).SetEase(Ease.InCirc);
+
+        circleStart.transform.localScale = new(0.4f, 0.4f, 0.4f);
+        circleStart.transform.localPosition = line.GetPosition(0);
+        circleEnd.transform.localScale = new(0.4f, 0.4f, 0.4f);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, length, hitMask);
+
+        if (hit)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, length, hitMask);
-
-            if (hit.collider != null)
-            {
-                OnHit(hit);
-                //Debug.Log(hit.collider.name);
-            }
-            //time += Time.deltaTime;
+            OnHit(hit);
         }
 
         yield return new WaitForSeconds(0.3f);
@@ -87,5 +119,7 @@ public class Beam : WeaponType
     {
         isFree = true;
         gameObject.SetActive(false);
+        Destroy(circleStart);
+        Destroy(circleEnd);
     }
 }
