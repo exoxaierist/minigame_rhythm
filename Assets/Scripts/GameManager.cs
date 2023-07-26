@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Reflection;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,10 +23,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeScene(string name)
+    public void ChangeScene(int mapNumber)
     {
-        if (!Application.CanStreamedLevelBeLoaded(name)) return;
-        SceneManager.LoadScene(name);
+        if (!Application.CanStreamedLevelBeLoaded(mapNumber)) return;
+        SceneManager.LoadScene(mapNumber);
+    }
+
+    public void UnloadCurrentScene()
+    {
+        UnloadStaticValues();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.UnloadSceneAsync(currentSceneIndex);
     }
 
     public void SetTimeScale(float value)
@@ -38,10 +46,26 @@ public class GameManager : MonoBehaviour
         AudioListener.pause = value;
     }
 
-    public void GameContinue() 
+    public void ContinueGame() 
     {
         SetSound(false);
         SetTimeScale(1);
     }
 
+    public void UnloadStaticValues()
+    {
+        FieldInfo[] staticFields = typeof(Global).GetFields(BindingFlags.Public | BindingFlags.Static);
+
+        foreach (var field in staticFields)
+        {
+            Debug.Log($"Variable Name: {field.Name}");
+            if (field.FieldType == typeof(int) || field.FieldType == typeof(float) || field.FieldType == typeof(LayerMask) || field.FieldType == typeof(Vector2)) 
+                continue;
+            field.SetValue(null, null);
+        }
+
+        RoundManager.instance = null;
+        BeatSystem.instance = null;
+        GameManager.instance = null;
+    }
 }

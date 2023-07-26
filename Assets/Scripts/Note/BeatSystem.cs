@@ -12,13 +12,10 @@ public class BeatSystem : MonoBehaviour
     NoteManager nM;
     public bool gameStart = false;
 
-    //
-    Transform detectionLine;
 
     private void Awake()
     {
         instance = this;
-        detectionLine = transform.Find("UI").Find("DetectionLine");
         sM = GetComponent<SongManager>();
         mP = GetComponent<MidiFileParser>();
         nM = GetComponent<NoteManager>();
@@ -43,6 +40,7 @@ public class BeatSystem : MonoBehaviour
     /** 음악과 노트 재생 */
     public void Play()
     {
+        sM.audioSource.Stop();
         if (nM.isPlaying) Stop();
         if (!gameStart) gameStart = true;
         mP.GetMidiFile(songName);

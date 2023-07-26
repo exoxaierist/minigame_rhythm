@@ -26,7 +26,7 @@ public class ScoreUI : MonoBehaviour
             {
                 scoreText[player].transform.DOMoveY(scoreText[player].transform.position.y - 50, 0.2f);
                 scoreText[player].GetComponent<TMP_Text>().text = RoundManager.instance.score[player].ToString();
-            });          
+            });
         }            
     }
 

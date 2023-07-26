@@ -12,7 +12,7 @@ public class RoundManager : MonoBehaviour
     ScoreUI scoreUI;
     private void Awake()
     {
-        RoundManager.instance = this;
+        if(RoundManager.instance == null) RoundManager.instance = this;
         if(GameObject.Find("UI").transform.Find("ScoreUI").gameObject.GetComponent<ScoreUI>() != null)
             scoreUI = GameObject.Find("UI").transform.Find("ScoreUI").gameObject.GetComponent<ScoreUI>();
         var obj = FindObjectsOfType<RoundManager>();
@@ -29,7 +29,7 @@ public class RoundManager : MonoBehaviour
     {
         if(BeatSystem.instance.gameStart)
         {
-            score[player] += 1;
+            score[player] += 1;            
             if (scoreUI != null) scoreUI.ShowUI(player);
             BeatSystem.instance.Stop();
             if (score[player] != maxScore) StartCoroutine(Delay());
@@ -58,7 +58,8 @@ public class RoundManager : MonoBehaviour
     IEnumerator ExitGame()
     {
         yield return new WaitForSeconds(3);
-        GameManager.instance.ChangeScene("Start");
+        GameManager.instance.ChangeScene(0);
+        GameManager.instance.UnloadCurrentScene();       
     }
 
 }
