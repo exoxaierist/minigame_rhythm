@@ -27,9 +27,9 @@ public class Beam : WeaponType
     {
         line.SetPosition(0, dir * 0.8f);
         //circleStart.transform.localPosition = line.GetPosition(0);
-        circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0);
-        circleStart.DOFade(1, chargeTime);
-        circleStart.transform.localScale = new(4f, 4f, 4f);
+        circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0.4f);
+        circleStart.DOFade(0, chargeTime);
+        circleStart.transform.localScale = new(6f, 6f, 6f);
         circleStart.transform.DOScale(0.4f, chargeTime);
     }
 
@@ -49,7 +49,7 @@ public class Beam : WeaponType
         circleStart = Instantiate(Global.assets.laserEffect,transform).GetComponent<SpriteRenderer>();
         circleEnd = Instantiate(Global.assets.laserEffect,transform).GetComponent<SpriteRenderer>();
 
-        circleStart.transform.localScale = new(0.4f, 0.4f, 0.4f);
+        circleStart.transform.localScale = new(0f, 0f, 0f);
         circleEnd.transform.localScale = new(0f, 0f, 0f);
 
         circleStart.transform.position = transform.position + line.GetPosition(0);
