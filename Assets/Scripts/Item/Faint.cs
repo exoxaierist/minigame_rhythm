@@ -17,6 +17,7 @@ public class Faint : GridObject
 
     public void Awake()
     {
+        Global.OnBeat -= MoveTowardsTarget;
         Global.OnBeat += MoveTowardsTarget;
         Global.OnBeat -= ResetFunc;
         Global.OnBeat += ResetFunc;
@@ -53,6 +54,9 @@ public class Faint : GridObject
         
         if (Target != null && col.gameObject == Target.gameObject)
         {
+            Global.OnBeat -= Count2Rhythm;
+            Global.OnBeat += MoveTowardsTarget;
+
             Global.OnBeat += Count2Rhythm;
             Global.OnBeat -= MoveTowardsTarget;
 

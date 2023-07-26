@@ -39,6 +39,8 @@ public class RoundManager : MonoBehaviour
 
     public void Reset()
     {
+        Global.OnReset.Invoke();
+
         for (int i = 0; i < 2; i++)
         {
             player[i].transform.position = startingPos[i];

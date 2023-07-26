@@ -20,10 +20,7 @@ public class Chorus : MonoBehaviour
 
     public void Init(Player player, float laserLength, Vector3 position)
     {
-        transform.position = position+ Vector3.up*1;
-        transform.localScale = new Vector3(0.5f, 1, 1);
-        transform.DOScaleX(1, 0.05f);
-        transform.DOMoveY(position.y, 0.05f).SetEase(Ease.InBack);
+        transform.position = position;
 
         mask = 1 << LayerMask.NameToLayer("Portal") | 1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Reflect");
         sr = GetComponent<SpriteRenderer>();

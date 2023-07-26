@@ -33,7 +33,8 @@ public class ItemFunc : MonoBehaviour
             itemSlot = GameObject.FindGameObjectWithTag("P2ItemSlot").GetComponent<Image>();
         }
 
-        Global.OnReset += () => { ChangeItemSlot(ItemType.None); };
+        Global.OnReset -= ResetFunc;
+        Global.OnReset += ResetFunc;
     }
 
     public void StoreItem(ItemType itype)
@@ -68,6 +69,8 @@ public class ItemFunc : MonoBehaviour
     //사용 아이템
     public void UseOwnedItem()
     {
+        if (!Global.CheckBeat()) return;
+
         switch (ownedItem)
         {
             case ItemType.Shield:
@@ -82,7 +85,6 @@ public class ItemFunc : MonoBehaviour
                 ChangeEnergyItem();
                 break;
             case ItemType.Cross:
-                if (!Global.CheckBeat()) return;
                 CrossItem();
                 break;
             case ItemType.Chorus:
@@ -135,4 +137,9 @@ public class ItemFunc : MonoBehaviour
         chorus.Init(p, laser.maxLen, transform.position);
     }
     #endregion
+
+    private void ResetFunc()
+    {
+        ChangeItemSlot(ItemType.None);
+    }
 }

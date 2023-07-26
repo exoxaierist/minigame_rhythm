@@ -19,7 +19,9 @@ public class PlayerBase : ControlledObject
         CheckForHP();
         if (player == Player.Player1) collisionLayer = Global.p1MoveColMask;
         else collisionLayer = Global.p2MoveColMask;
-        Global.OnReset += () => { fainted = false; };
+
+        Global.OnReset -= ResetFunc;
+        Global.OnReset += ResetFunc;
     }
 
     protected virtual void OnHeal() { }
@@ -77,6 +79,12 @@ public class PlayerBase : ControlledObject
             hp.OnDeath += OnDeath;
         }
     }
+
+    private void ResetFunc()
+    {
+        fainted = false;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))

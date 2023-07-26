@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Laser : Weapon
 {
-    public float maxLen = 10;
+    public float maxLen = 1000;
     int maxRepeat = 2;
     private LayerMask mask;
     public Color col;
@@ -40,6 +40,7 @@ public class Laser : Weapon
         if (!Global.CheckBeat()) return;
         if (Global.energyManager.GetP2Energy() <= 0) return;
         Global.energyManager.DecP2Energy();
+
 
         Calculate(Vector3.left, transform.position, maxLen);
         Calculate(Vector3.right, transform.position, maxLen);

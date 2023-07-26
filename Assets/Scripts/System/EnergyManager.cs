@@ -21,6 +21,8 @@ public class EnergyManager : MonoBehaviour
         Global.GetP2Energy = GetP2Energy;
         Global.GetP1EnergyLevel = GetP1EnergyLevel;
         Global.GetP2EnergyLevel = GetP2EnergyLevel;
+        Global.P1AnyAction -= OnP1Any;
+        Global.P2AnyAction -= OnP2Any;
         Global.P1AnyAction += OnP1Any;
         Global.P2AnyAction += OnP2Any;
         maxEnergy = Global.maxEnergy;
