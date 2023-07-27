@@ -13,7 +13,6 @@ public class NoteManager : MonoBehaviour
     public List<midiInfo> noteInfo = new List<midiInfo>();
     public int hitCount = 0; // 지나간 노트 수
     public float correctionValue = 0; // 보정 값  
-    
     //호출용 변수
     Transform noteIndex;
     Transform tempNote;
@@ -78,11 +77,11 @@ public class NoteManager : MonoBehaviour
     }
     
     void RemoveNote()
-    {       
+    {
+        correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.01f;
         Global.OnBeat?.Invoke();
         Destroy(noteIndex.GetChild(1).gameObject);
-        Destroy(noteIndex.GetChild(0).gameObject);      
-        correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.08f;
+        Destroy(noteIndex.GetChild(0).gameObject);            
         if (noteInfo.Count > hitCount) hitCount++;
         if (noteInfo.Count == hitCount)
         {

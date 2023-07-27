@@ -66,14 +66,14 @@ public class BeatSystem : MonoBehaviour
     {
         if (!nM.isPlaying) return 0;
         float t1 = 0, t2 = 0;
-        if (nM.hitCount != nM.noteInfo.Count) t1 = Mathf.Abs(nM.noteInfo[nM.hitCount].hitTime + nM.correctionValue - sM.audioSource.time);
-        else t1 = Mathf.Abs(nM.noteInfo[nM.hitCount-1].hitTime + nM.correctionValue - sM.audioSource.time);
+        if (nM.hitCount != nM.noteInfo.Count) t1 = Mathf.Abs(nM.noteInfo[nM.hitCount].hitTime - sM.audioSource.time);
+        else t1 = Mathf.Abs(nM.noteInfo[nM.hitCount-1].hitTime  - sM.audioSource.time);
         if (nM.hitCount != 0)
         {
-            t2 = Mathf.Abs(nM.noteInfo[nM.hitCount - 1].hitTime + nM.correctionValue - sM.audioSource.time);
-            if (t2 < t1) return t2;
+            t2 = Mathf.Abs(nM.noteInfo[nM.hitCount - 1].hitTime  - sM.audioSource.time);
+            if (t2 < t1) return t2 - nM.correctionValue;
         }
-        return t1;
+        return t1 - nM.correctionValue;
     }
 
     /** 노트 판정 계산 */
@@ -89,11 +89,4 @@ public class BeatSystem : MonoBehaviour
         return false;
     }
 
-    /** 노트 마지막 판정 체크 */
-    public bool CheckEndBeat()
-    {
-        
-
-        return false;
-    }
 }
