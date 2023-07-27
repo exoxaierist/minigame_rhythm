@@ -13,6 +13,7 @@ public class NoteManager : MonoBehaviour
     public List<midiInfo> noteInfo = new List<midiInfo>();
     public int hitCount = 0; // 지나간 노트 수
     public float correctionValue = 0; // 보정 값  
+    
     //호출용 변수
     Transform noteIndex;
     Transform tempNote;
