@@ -9,10 +9,12 @@ public abstract class Weapon : MonoBehaviour
 {
     public int damage = 1;
     public Player player = Player.Player1;
+    protected PlayerBase owner;
 
     private void Awake()
     {
-        player = GetComponent<PlayerBase>().player;
+        owner = GetComponent<PlayerBase>();
+        player = owner.player;
         if (player == Player.Player1)
         {
             Global.P1PrimaryAction -= P1ShootForward;

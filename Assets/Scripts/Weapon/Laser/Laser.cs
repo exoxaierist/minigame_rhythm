@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -18,9 +19,11 @@ public class Laser : Weapon
     }
 
     public override void P1ShootForward()
-    { 
-        if (!Global.CheckBeat()) return;
+    {
+        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
         if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (owner.actionCount > 0) return;
+        else owner.actionCount++;
         Global.energyManager.DecP1Energy();
 
         Calculate(Vector3.right, transform.position, maxLen);
@@ -28,8 +31,10 @@ public class Laser : Weapon
     }
     public override void P1ShootVertical()
     {
-        if (!Global.CheckBeat()) return;
+        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
         if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (owner.actionCount > 0) return;
+        else owner.actionCount++; 
         Global.energyManager.DecP1Energy();
 
         Calculate(Vector3.up, transform.position, maxLen);
@@ -37,8 +42,10 @@ public class Laser : Weapon
     }
     public override void P2ShootForward()
     {
-        if (!Global.CheckBeat()) return;
+        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
         if (Global.energyManager.GetP2Energy() <= 0) return;
+        if (owner.actionCount > 0) return;
+        else owner.actionCount++; 
         Global.energyManager.DecP2Energy();
 
 
@@ -47,8 +54,10 @@ public class Laser : Weapon
     }
     public override void P2ShootVertical()
     {
-        if (!Global.CheckBeat()) return;
+        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
         if (Global.energyManager.GetP2Energy() <= 0) return;
+        if (owner.actionCount > 0) return;
+        else owner.actionCount++; 
         Global.energyManager.DecP2Energy();
 
         Calculate(Vector3.up, transform.position, maxLen);
@@ -58,10 +67,10 @@ public class Laser : Weapon
     private void Calculate(Vector3 dir, Vector3 pos, float len, int repeat = 0)
     {
         float distance = len;
-        RaycastHit2D hit = Physics2D.Raycast(pos+dir, dir, len, mask);
+        RaycastHit2D hit = Physics2D.Raycast(pos, dir, len, mask);
         if (hit.collider != null)
         {
-            distance = Vector2.Distance(pos+dir, hit.point);
+            distance = Vector2.Distance(pos, hit.point);
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal") && repeat < maxRepeat)
             {
@@ -77,14 +86,12 @@ public class Laser : Weapon
                     Calculate(RotateVector(rotationDir * dir, p.RotationValue), p.transform.position, len - distance, repeat+1);
                     //Calculate(RotateVector(rotationDir * -dir, p.RotationValue), p.transform.position, len - distance, repeat + 1);
                 }
-                distance += 0.5f;
             }
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Reflect"))
             {
                 Vector3 flectDir = hit.transform.TransformDirection(Vector3.up);
                 Calculate(flectDir, hit.collider.transform.position, len - distance);
-                distance += 0.5f;
             }
         }
 

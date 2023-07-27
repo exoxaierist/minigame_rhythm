@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemFunc : MonoBehaviour
 {
+    protected PlayerBase owner;
     [SerializeField] ItemType ownedItem = ItemType.None;
     [SerializeField] Player p = Player.Player1;
 
@@ -15,8 +16,9 @@ public class ItemFunc : MonoBehaviour
 
     private void Awake()
     {
+        owner = GetComponent<PlayerBase>();
         ownedItem = ItemType.None;
-        p = GetComponent<PlayerBase>().player;
+        p = owner.player;
         hp = GetComponent<Hp>();
         laser = GetComponent<Laser>();
 
@@ -52,6 +54,7 @@ public class ItemFunc : MonoBehaviour
     //즉발 아이템
     public void UseBurstItem(ItemType itype)
     {
+
         switch (itype)
         {
             case ItemType.Heal:
@@ -69,7 +72,13 @@ public class ItemFunc : MonoBehaviour
     //사용 아이템
     public void UseOwnedItem()
     {
-        if (!Global.CheckBeat()) return;
+        if (!Global.CheckBeat())
+        {
+            if (p == Player.Player1) Global.OnP1MissBeat?.Invoke();
+            else Global.OnP2MissBeat?.Invoke();
+        }
+        if (owner.actionCount > 0) return;
+        else owner.actionCount++;
 
         switch (ownedItem)
         {

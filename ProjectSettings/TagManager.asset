@@ -53,3 +53,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: WallSide
+    uniqueID: 4169968827
+    locked: 0
+  - name: Item
+    uniqueID: 1838726797
+    locked: 0
+  - name: Player
+    uniqueID: 2256930883
+    locked: 0
+  - name: WallTop
+    uniqueID: 4080806385
+    locked: 0
+  - name: Hover
+    uniqueID: 1545641093
+    locked: 0
+  - name: Laser
+    uniqueID: 1765132177
+    locked: 0

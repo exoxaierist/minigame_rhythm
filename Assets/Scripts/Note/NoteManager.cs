@@ -13,6 +13,7 @@ public class NoteManager : MonoBehaviour
     public List<midiInfo> noteInfo = new List<midiInfo>();
     public int hitCount = 0; // 지나간 노트 수
     public float correctionValue = 0; // 보정 값  
+    public Image beatEffect;
     
     //호출용 변수
     Transform noteIndex;
@@ -80,6 +81,11 @@ public class NoteManager : MonoBehaviour
     void RemoveNote()
     {       
         Global.OnBeat?.Invoke();
+        beatEffect.transform.DOComplete();
+        beatEffect.color = new(beatEffect.color.r, beatEffect.color.g, beatEffect.color.b, 0.5f);
+        beatEffect.DOFade(0, 0.3f);
+        beatEffect.transform.localScale = Vector3.zero;
+        beatEffect.transform.DOScale(1, 0.3f).SetEase(Ease.OutCubic);
         Destroy(noteIndex.GetChild(1).gameObject);
         Destroy(noteIndex.GetChild(0).gameObject);      
         correctionValue = bgm.time - noteInfo[hitCount].hitTime - 0.08f;
