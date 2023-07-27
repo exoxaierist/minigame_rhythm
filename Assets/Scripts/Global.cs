@@ -37,6 +37,8 @@ public static class Global
     public static Func<bool> CheckBeat; // 현재 타이밍에 불렀을때 비트 오차에 맞는지
     public static Action OnBeat; // 비트에 맞을때마다 불리는 이벤트
     public static Action OnLastTiming; // 비트 마지막 타이밍에 불리는 이벤트
+    public static Action OnP1MissBeat;
+    public static Action OnP2MissBeat;
 
     // 리듬 에너지
     public static int maxEnergy = 10;
@@ -82,6 +84,11 @@ public static class Global
 
 
     //// 유틸리티
+    // 색
+    public static readonly Color whiteColor = new(0.86f, 0.85f, 0.78f);
+    public static readonly Color p1Color = new(0, 0.43f, 0.89f);
+    public static readonly Color p2Color = new(0.956f, 0.25f, 0.11f);
+
     // 카메라 진동
     public static CameraShaker camShaker;
     public static Action CamShakeSmall;

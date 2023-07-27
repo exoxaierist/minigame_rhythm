@@ -9,8 +9,9 @@ public class PlayerBase : ControlledObject
     [HideInInspector] public Hp hp;
 
     public bool fainted = false;
+    readonly List<string> movemem = new();
 
-    List<string> movemem = new List<string>();
+    public int actionCount = 0;
 
     protected override void Awake()
     {
@@ -22,6 +23,7 @@ public class PlayerBase : ControlledObject
 
         Global.OnReset -= ResetFunc;
         Global.OnReset += ResetFunc;
+        Global.OnLastTiming += CheckDoNothing;
     }
 
     protected virtual void OnHeal() { }
@@ -30,6 +32,8 @@ public class PlayerBase : ControlledObject
 
     protected override void MoveUp()
     {
+        if (!Global.CheckBeat() && actionCount > 0) return;
+        actionCount++;
         Move(new(0, 1));
         movemem.RemoveAt(0);
         movemem.Add("MoveUp");
@@ -37,6 +41,8 @@ public class PlayerBase : ControlledObject
 
     protected override void MoveDown()
     {
+        if (!Global.CheckBeat() && actionCount > 0) return;
+        actionCount++;
         Move(new(0, -1));
         movemem.RemoveAt(0);
         movemem.Add("MoveDown");
@@ -44,6 +50,8 @@ public class PlayerBase : ControlledObject
 
     protected override void MoveRight()
     {
+        if (!Global.CheckBeat() && actionCount > 0) return;
+        actionCount++;
         Move(new(1, 0));
         movemem.RemoveAt(0);
         movemem.Add("MoveRight");
@@ -51,6 +59,8 @@ public class PlayerBase : ControlledObject
 
     protected override void MoveLeft()
     {
+        if (!Global.CheckBeat() && actionCount > 0) return;
+        actionCount++;
         Move(new(-1,0));
         movemem.RemoveAt(0);
         movemem.Add("MoveLeft");
@@ -64,8 +74,8 @@ public class PlayerBase : ControlledObject
         if (Global.CheckBeat() && !Global.CheckOverlap(transform.position * Vector2.one + target, collisionLayer)) MoveRelative(target);
         else
         {
-            if (player == Player.Player1) Global.energyManager.DecP1Energy();
-            else Global.energyManager.DecP2Energy();
+            if (player == Player.Player1) { Global.energyManager.DecP1Energy(); Global.OnP1MissBeat?.Invoke(); }
+            else { Global.energyManager.DecP2Energy(); Global.OnP2MissBeat?.Invoke(); }
         }
     }
 
@@ -105,5 +115,15 @@ public class PlayerBase : ControlledObject
                     break;
             }
         }
+    }
+
+    private void CheckDoNothing()
+    {
+        if(actionCount == 0)
+        {
+            if (player == Player.Player1) Global.energyManager.DecP1Energy();
+            else Global.energyManager.DecP2Energy();
+        }
+        actionCount = 0;
     }
 }

@@ -16,8 +16,6 @@ public class Beam : WeaponType
     private LayerMask hitMask;
 
     private Color applyCol;
-    private Color p1Color = new(0, 0.43f, 0.89f);
-    private Color p2Color = new(0.956f, 0.25f, 0.11f);
 
     private SpriteRenderer circleStart;
     private SpriteRenderer circleEnd;
@@ -25,7 +23,7 @@ public class Beam : WeaponType
 
     public void LaserStart()
     {
-        line.SetPosition(0, dir * 0.8f);
+        line.SetPosition(0, dir * 0.5f);
         //circleStart.transform.localPosition = line.GetPosition(0);
         circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0.4f);
         circleStart.DOFade(0, chargeTime);
@@ -35,13 +33,13 @@ public class Beam : WeaponType
 
     private void LaserSettings()
     {
-        if (payload.owner == Player.Player2) applyCol = p2Color;
-        else applyCol = p1Color;
+        if (payload.owner == Player.Player2) applyCol = Global.p2Color;
+        else applyCol = Global.p1Color;
         hitMask = payload.owner == Player.Player1 ? 1 << LayerMask.NameToLayer("P2") : 1 << LayerMask.NameToLayer("P1");
         line = GetComponent<LineRenderer>();
 
-        line.SetPosition(0, Vector3.zero);
-        line.SetPosition(1, dir * (length+1));
+        line.SetPosition(0, dir*0.5f);
+        line.SetPosition(1, dir * (length));
 
         line.startColor = applyCol;
         line.endColor = applyCol;
@@ -79,9 +77,10 @@ public class Beam : WeaponType
         DOTween.To(() => line.startWidth, x => line.startWidth = x, 0.1f, chargeTime).SetEase(Ease.InCirc);
         DOTween.To(() => line.endWidth, x => line.endWidth = x, 0.1f, chargeTime).SetEase(Ease.InCirc);
 
-        circleStart.transform.localScale = new(0.4f, 0.4f, 0.4f);
+        circleStart.transform.localScale = new(0.5f, 0.5f, 0.5f);
         circleStart.transform.localPosition = line.GetPosition(0);
-        circleEnd.transform.localScale = new(0.4f, 0.4f, 0.4f);
+        circleStart.color = applyCol;
+        circleEnd.transform.localScale = new(0.5f, 0.5f, 0.5f);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, length, hitMask);
 
