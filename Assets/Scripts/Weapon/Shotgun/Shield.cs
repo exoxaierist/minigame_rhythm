@@ -6,24 +6,31 @@ using UnityEngine;
 public class Shield : WeaponType
 {
     Hp hp;
+    Vector3 posAdjust = new Vector3(0, 0, 1f);
+    SpriteRenderer sp;
 
-    private void Update()
+    private void LateUpdate()
     {
-        transform.position = hp.transform.position;
+        transform.position = hp.transform.position + posAdjust;
     }
 
     public override void SetInfo(Vector3 position, Vector3 direction, Player p, float duration)
     {
         isFree = false;
-        transform.position = position;
+        transform.position = position + posAdjust;
         payload.owner = p;
 
         transform.localScale = Vector3.zero;
-        SpriteRenderer sp = GetComponent<SpriteRenderer>();
+        sp = GetComponent<SpriteRenderer>();
         if (sp != null)
-            sp.color = new Color(0, 0.2f, 1, 0.5f);
+            sp.color = new Color(1f, 1f, 0, 0.4f);
 
-        transform.DOScale(Vector3.one* 1.2f, 0.05f);
+        transform.DOScale(Vector3.one* 1.5f, 0.05f);
+    }
+
+    public void OnDefence()
+    {
+        sp.transform.DOScale(3f, 0.05f).SetEase(Ease.OutExpo);
     }
 
     public void SetUser(Hp hp)

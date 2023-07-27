@@ -76,6 +76,7 @@ public class ItemFunc : MonoBehaviour
         {
             if (p == Player.Player1) Global.OnP1MissBeat?.Invoke();
             else Global.OnP2MissBeat?.Invoke();
+            return;
         }
         if (owner.actionCount > 0) return;
         else owner.actionCount++;
@@ -113,7 +114,7 @@ public class ItemFunc : MonoBehaviour
     #region "아이템 효과"
     private void ShieldItem()
     {
-        hp.ShieldDeploy(5f);
+        hp.ShieldDeploy(3f);
     }
 
     private void MaxEnergyItem()
@@ -145,7 +146,7 @@ public class ItemFunc : MonoBehaviour
         Chorus chorus = Instantiate(Global.assets.Chorus).GetComponent<Chorus>();
         chorus.Init(p, laser.maxLen, transform.position);
     }
-    #endregion
+    #endregion  
 
     private void ResetFunc()
     {

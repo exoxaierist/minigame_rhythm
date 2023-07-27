@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -32,9 +33,17 @@ public class ItemSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnTime);
 
+            while(spawnPos.Any(x => x.gameObject.activeSelf == false))
+                yield return new WaitForSeconds(spawnTime);
+
             Item i = GetClone(Global.assets.item);
-            i.transform.position = GetSpawnPos();
-            i.Init();
+
+            Transform pos = GetSpawnPos();
+            if (pos.gameObject.activeSelf)
+            {
+                i.Init(pos);
+                pos.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -54,12 +63,12 @@ public class ItemSpawner : MonoBehaviour
         return item;
     }
 
-    private Vector3 GetSpawnPos()
+    private Transform GetSpawnPos()
     {
         int range = spawnPos.Count;
         int randomPos = Random.Range(0, range);
 
-        return spawnPos[randomPos].position;
+        return spawnPos[randomPos];
     }
 
     private void ResetFunc()

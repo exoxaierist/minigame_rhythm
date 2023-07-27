@@ -40,7 +40,9 @@ public class Hp : MonoBehaviour, IReceiveAttack
     {
         if (isProtected)
         {
-            ShieldUnDeploy();
+            Shield s = (Shield)shield;
+            s.OnDefence();
+            Invoke(nameof(ShieldUnDeploy), 0.05f);
 
             if (ownerPlayer.player == Player.Player1) Global.energyManager.IncP1Energy();
             else if(ownerPlayer.player == Player.Player2) Global.energyManager.IncP2Energy();
