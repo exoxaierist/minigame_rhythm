@@ -21,7 +21,7 @@ public class SongManager : MonoBehaviour
 
     public AudioClip SearchSong(string name)
     {
-        BGM = GameObject.Find("MusicList").GetComponent<MusicList>().BGM;
+        if(GameObject.Find("MusicList") != null) BGM = GameObject.Find("MusicList").GetComponent<MusicList>().BGM;
         foreach(AudioClip clip in BGM)
         {
             if(clip.name == name)
