@@ -321,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.y
@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11523,7 +11523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7649270002310689886, guid: fdde451cc359b4a76bf8351450b79365, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11977,7 +11977,6 @@ MonoBehaviour:
   damage: 1
   player: 2
   maxLen: 1000
-  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1955203457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17424,7 +17423,6 @@ MonoBehaviour:
   damage: 1
   player: 1
   maxLen: 1000
-  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2118090930
 MonoBehaviour:
   m_ObjectHideFlags: 0
