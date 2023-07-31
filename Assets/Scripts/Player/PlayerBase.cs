@@ -12,6 +12,7 @@ public class PlayerBase : ControlledObject
     readonly List<string> movemem = new();
 
     public int actionCount = 0;
+    public Vector3 originscale;
 
     protected override void Awake()
     {
@@ -20,6 +21,8 @@ public class PlayerBase : ControlledObject
         CheckForHP();
         if (player == Player.Player1) collisionLayer = Global.p1MoveColMask;
         else collisionLayer = Global.p2MoveColMask;
+
+        originscale = transform.localScale;
 
         Global.OnReset -= ResetFunc;
         Global.OnReset += ResetFunc;
