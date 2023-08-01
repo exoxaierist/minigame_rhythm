@@ -81,6 +81,8 @@ public class ItemFunc : MonoBehaviour
         if (owner.actionCount > 0) return;
         else owner.actionCount++;
 
+        Global.sfx.Play(Global.assets.aUseItem);
+
         switch (ownedItem)
         {
             case ItemType.Shield:

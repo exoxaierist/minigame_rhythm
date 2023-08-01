@@ -20,8 +20,8 @@ public class Laser : Weapon
 
     public override void P1ShootForward()
     {
-        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
-        if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (!Global.CheckBeat()) { Global.OnP1MissBeat?.Invoke(); return; }
+        if (Global.energyManager.GetP1Energy() <= 0) { Global.sfx.Play(Global.assets.aNotEnoughEnergy); return; }
         if (owner.actionCount > 0) return;
         else owner.actionCount++;
         Global.energyManager.DecP1Energy();
@@ -31,8 +31,8 @@ public class Laser : Weapon
     }
     public override void P1ShootVertical()
     {
-        if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
-        if (Global.energyManager.GetP1Energy() <= 0) return;
+        if (!Global.CheckBeat()) { Global.OnP1MissBeat?.Invoke(); return; }
+        if (Global.energyManager.GetP1Energy() <= 0) { Global.sfx.Play(Global.assets.aNotEnoughEnergy); return; }
         if (owner.actionCount > 0) return;
         else owner.actionCount++; 
         Global.energyManager.DecP1Energy();
@@ -43,7 +43,7 @@ public class Laser : Weapon
     public override void P2ShootForward()
     {
         if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
-        if (Global.energyManager.GetP2Energy() <= 0) return;
+        if (Global.energyManager.GetP2Energy() <= 0) { Global.sfx.Play(Global.assets.aNotEnoughEnergy); return; }
         if (owner.actionCount > 0) return;
         else owner.actionCount++; 
         Global.energyManager.DecP2Energy();
@@ -55,7 +55,7 @@ public class Laser : Weapon
     public override void P2ShootVertical()
     {
         if (!Global.CheckBeat()) { Global.OnP2MissBeat?.Invoke(); return; }
-        if (Global.energyManager.GetP2Energy() <= 0) return;
+        if (Global.energyManager.GetP2Energy() <= 0) { Global.sfx.Play(Global.assets.aNotEnoughEnergy); return; }
         if (owner.actionCount > 0) return;
         else owner.actionCount++; 
         Global.energyManager.DecP2Energy();

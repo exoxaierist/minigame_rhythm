@@ -47,10 +47,16 @@ public class Hp : MonoBehaviour, IReceiveAttack
             if (ownerPlayer.player == Player.Player1) Global.energyManager.IncP1Energy();
             else if(ownerPlayer.player == Player.Player2) Global.energyManager.IncP2Energy();
 
+            Global.sfx.Play(Global.assets.aShieldDefense);
+
             return;
         }
 
-        if (isPlayer && info.owner != ownerPlayer.player) AddToHP(-info.damage);
+        if (isPlayer && info.owner != ownerPlayer.player)
+        {
+            Global.sfx.Play(Global.assets.aLaserHit);
+            AddToHP(-info.damage);
+        }
     }
 
     private void Awake()

@@ -60,6 +60,7 @@ public class Beam : WeaponType
     IEnumerator HitBox()
     {
         Global.CamShakeSmall();
+        Global.sfx.Play(Global.assets.aLaserFire);
         //float time = 0;
 
         line.startWidth = 0f;

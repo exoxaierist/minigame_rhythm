@@ -31,6 +31,15 @@ public class AssetCollector : ScriptableObject
     public AudioClip aShootBullet;
     public AudioClip aHitWall;
     public AudioClip aHitDamage;
+    public AudioClip aTeleport;
+    public AudioClip aLaserFire;
+    public AudioClip aLaserHit;
+    public AudioClip aNotEnoughEnergy;
+    public AudioClip aGainEnergy;
+    public AudioClip aMissBeat;
+    public AudioClip aGetItem;
+    public AudioClip aUseItem;
+    public AudioClip aShieldDefense;
 
     [Header("æ∆¿Ã≈€")]
     public GameObject item;

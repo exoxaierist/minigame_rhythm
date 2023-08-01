@@ -27,6 +27,9 @@ public class PlayerBase : ControlledObject
         Global.OnReset -= ResetFunc;
         Global.OnReset += ResetFunc;
         Global.OnLastTiming += CheckDoNothing;
+
+        Global.OnP1MissBeat += () => Global.sfx.Play(Global.assets.aMissBeat);
+        Global.OnP1MissBeat += () => Global.sfx.Play(Global.assets.aMissBeat);
     }
 
     protected virtual void OnHeal() { }

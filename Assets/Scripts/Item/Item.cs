@@ -38,6 +38,7 @@ public class Item : MonoBehaviour
             return;
         }
 
+        Global.sfx.Play(Global.assets.aGetItem);
         iFunc.StoreItem(it);
 
         Disable();
