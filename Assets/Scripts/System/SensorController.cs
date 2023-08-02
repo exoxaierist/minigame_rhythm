@@ -18,6 +18,8 @@ public class SensorController : MonoBehaviour
     public GameObject[] mapImg;
     public BoxCollider2D[] sensors;
 
+    public AudioSource enterAudio;
+
     GameObject sceneChanger;
 
     private void Awake()
@@ -36,12 +38,14 @@ public class SensorController : MonoBehaviour
                 UIm.StartCoroutine("SparkleTime");
                 sensors[1].enabled = true;
                 sensors[0].enabled = false;
+                enterAudio.Play();
             }
 
 
             if (UIm.UITypenNum > 1)
             {
                 UIm.UITypenNum = 1;
+                enterAudio.Play();
                 sceneChanger.GetComponent<SceneChanger>().GameStart();
             }
                 

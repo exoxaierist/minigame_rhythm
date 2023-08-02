@@ -11,6 +11,8 @@ public class UImanager : MonoBehaviour
     public GameObject SettingPan;
     public GameObject middlePan;
 
+    public AudioSource clickBack;
+
     public Transform[] btnGroupTrans;
     public Transform[] upTrans;
     public Transform[] downTrans;
@@ -49,6 +51,7 @@ public class UImanager : MonoBehaviour
                 rulePan.SetActive(false);
                 SettingPan.SetActive(false);
                 middlePan.SetActive(false);
+                clickBack.Play();
             }
             
         }
