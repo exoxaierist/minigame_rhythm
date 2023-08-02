@@ -25,10 +25,10 @@ public class Beam : WeaponType
     {
         line.SetPosition(0, dir * 0.5f);
         //circleStart.transform.localPosition = line.GetPosition(0);
-        circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0.4f);
-        circleStart.DOFade(0, chargeTime);
-        circleStart.transform.localScale = new(6f, 6f, 6f);
-        circleStart.transform.DOScale(0.4f, chargeTime);
+        //circleStart.color = new(circleStart.color.r, circleStart.color.g, circleStart.color.b, 0.4f);
+        //circleStart.DOFade(0, chargeTime);
+        //circleStart.transform.localScale = new(6f, 6f, 6f);
+        //circleStart.transform.DOScale(0.4f, chargeTime);
     }
 
     private void LaserSettings()
@@ -66,10 +66,10 @@ public class Beam : WeaponType
         line.startWidth = 0f;
         line.endWidth = 0f;
 
-        DOTween.To(() => line.startWidth, x => line.startWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
-        DOTween.To(() => line.endWidth, x => line.endWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
+        //DOTween.To(() => line.startWidth, x => line.startWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
+        //DOTween.To(() => line.endWidth, x => line.endWidth = x, 0f, chargeTime).SetEase(Ease.InCirc);
 
-        yield return new WaitForSeconds(chargeTime);
+        //yield return new WaitForSeconds(chargeTime);
         Global.CamShakeMedium();
 
         line.startWidth = 0.4f;
