@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Faint : GridObject
 {
@@ -19,8 +20,8 @@ public class Faint : GridObject
     {
         Global.OnBeat -= MoveTowardsTarget;
         Global.OnBeat += MoveTowardsTarget;
-        Global.OnBeat -= ResetFunc;
-        Global.OnBeat += ResetFunc;
+        Global.OnReset -= ResetFunc;
+        Global.OnReset += ResetFunc;
     }
 
     public void setTarget(Player player)
@@ -47,19 +48,17 @@ public class Faint : GridObject
         }
     }
 
-    private void Count2Rhythm() => count++;
+    private void Count2Rhythm()
+    {
+        count++;
+        //Debug.Log(count);
+    }
 
     private void OnTriggerStay2D(Collider2D col)
     {
         
         if (Target != null && col.gameObject == Target.gameObject)
         {
-            Global.OnBeat -= Count2Rhythm;
-            Global.OnBeat += MoveTowardsTarget;
-
-            Global.OnBeat += Count2Rhythm;
-            Global.OnBeat -= MoveTowardsTarget;
-
             GetComponent<BoxCollider2D>().enabled = false;
             faintCo = StartCoroutine(MakeTargetFaint());
         }
@@ -67,6 +66,10 @@ public class Faint : GridObject
 
     IEnumerator MakeTargetFaint()
     {
+        Global.OnBeat -= MoveTowardsTarget;
+        Global.OnBeat += Count2Rhythm;
+        Global.sfx.Play(Global.assets.aFainted);
+
         count = 0;
         pb = Target.GetComponent<PlayerBase>();
         pb.fainted = true;

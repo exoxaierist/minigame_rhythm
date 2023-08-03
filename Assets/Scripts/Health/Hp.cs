@@ -47,8 +47,6 @@ public class Hp : MonoBehaviour, IReceiveAttack
             if (ownerPlayer.player == Player.Player1) Global.energyManager.IncP1Energy();
             else if(ownerPlayer.player == Player.Player2) Global.energyManager.IncP2Energy();
 
-            Global.sfx.Play(Global.assets.aShieldDefense);
-
             return;
         }
 

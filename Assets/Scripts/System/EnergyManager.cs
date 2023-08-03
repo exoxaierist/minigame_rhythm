@@ -41,13 +41,11 @@ public class EnergyManager : MonoBehaviour
     public void IncP1Energy()
     {
         p1Energy = Mathf.Min(p1Energy + 1, maxEnergy);
-        Global.sfx.Play(Global.assets.aGainEnergy);
         Global.OnP1EnergyChange?.Invoke();
     }
     public void IncP2Energy()
     {
         p2Energy = Mathf.Min(p2Energy + 1, maxEnergy);
-        Global.sfx.Play(Global.assets.aGainEnergy);
         Global.OnP2EnergyChange?.Invoke();
     }
     public void DecP1Energy()

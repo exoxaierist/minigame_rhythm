@@ -58,9 +58,11 @@ public class ItemFunc : MonoBehaviour
         switch (itype)
         {
             case ItemType.Heal:
+                Global.sfx.Play(Global.assets.aHeal);
                 hp.AddToHP(1);
                 break;
             case ItemType.Bang:
+                Global.sfx.Play(Global.assets.aBang);
                 hp.AddToHP(-1);
                 break;
             case ItemType.Faint:
@@ -81,19 +83,24 @@ public class ItemFunc : MonoBehaviour
         if (owner.actionCount > 0) return;
         else owner.actionCount++;
 
-        Global.sfx.Play(Global.assets.aUseItem);
-
         switch (ownedItem)
         {
             case ItemType.Shield:
                 int energy = p == Player.Player1 ? Global.GetP1Energy() : Global.GetP2Energy();
-                if (energy == 0) return;
+                if (energy == 0)
+                {
+                    Global.sfx.Play(Global.assets.aNotEnoughEnergy);
+                    return;
+                }
+                Global.sfx.Play(Global.assets.aShield);
                 ShieldItem();
                 break;
             case ItemType.MaxEnergy:
+                Global.sfx.Play(Global.assets.aFullEnergy);
                 MaxEnergyItem();
                 break;
             case ItemType.ChangeEnergy:
+                Global.sfx.Play(Global.assets.aChangeEnergy);
                 ChangeEnergyItem();
                 break;
             case ItemType.Cross:
