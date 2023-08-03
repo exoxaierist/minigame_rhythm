@@ -86,7 +86,33 @@ public class SensorController : MonoBehaviour
 
             }
         }
-       
+        if (uitype == UIType.Music)
+        {
+            GameObject.Find("Canvas").transform.Find("GameSelectPanel").Find("Background").GetComponent<Image>().sprite 
+                = albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].GetComponent<Image>().sprite;
+            string mName = collision.GetComponent<MusicInfo>().musicName;
+            sceneChanger.GetComponent<SceneChanger>().musicName = mName;
+            if (UIm.UITypenNum == 0 && !mapSelect)
+                albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].gameObject.SetActive(true);
+            foreach (AudioClip clip in GameObject.Find("MusicList").GetComponent<MusicList>().BGM)
+            {
+                if (clip.name == mName)
+                {
+                    AudioSource audioSource = GameObject.Find("TestAudio").transform.GetChild(0).GetComponent<AudioSource>();
+                    audioSource.clip = clip;
+                    audioSource.Play();
+                    break;
+                }
+
+            }
+        }
+        else if (uitype == UIType.Map)
+        {
+            sceneChanger.GetComponent<SceneChanger>().MapNum = collision.GetComponent<MusicInfo>().mapNum + 1;
+            if (UIm.UITypenNum == 1 && mapSelect)
+                mapImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].gameObject.SetActive(true);
+        }
+
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -101,18 +127,7 @@ public class SensorController : MonoBehaviour
 
         collision.gameObject.GetComponent<MusicInfo>().isOnSensor = true;
 
-        if(uitype == UIType.Music)
-        {
-            sceneChanger.GetComponent<SceneChanger>().musicName = collision.GetComponent<MusicInfo>().musicName;
-            if (UIm.UITypenNum == 0 &&!mapSelect)
-                albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
-        }
-        else if(uitype == UIType.Map)
-        {
-            sceneChanger.GetComponent<SceneChanger>().MapNum = collision.GetComponent<MusicInfo>().mapNum + 1;
-            if (UIm.UITypenNum == 1 && mapSelect)
-                mapImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].SetActive(true);
-        }
+        
             
 
 
