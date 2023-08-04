@@ -12,6 +12,7 @@ public class UImanager : MonoBehaviour
     public GameObject middlePan;
 
     public AudioSource clickBack;
+    public AudioSource scrollAudio;
 
     public Transform[] btnGroupTrans;
     public Transform[] upTrans;
@@ -36,6 +37,7 @@ public class UImanager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
+            clickBack.Play();
             if (UITypenNum == 1)
             {
                 UITypenNum -= 1;
@@ -51,7 +53,7 @@ public class UImanager : MonoBehaviour
                 rulePan.SetActive(false);
                 SettingPan.SetActive(false);
                 middlePan.SetActive(false);
-                clickBack.Play();
+                
             }
             
         }
@@ -65,11 +67,13 @@ public class UImanager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && sensCtrl[UITypenNum].isRoof == false && !upGetKeyDown)
         {
+            scrollAudio.Play();
             StartCoroutine(KeyDelay("Up"));
 
         }
         else if (Input.GetKeyDown(KeyCode.W) && sensCtrl[UITypenNum].isBottom == false && !downGetKeyDown)
         {
+            scrollAudio.Play();
             StartCoroutine(KeyDelay("Down"));
 
         }
