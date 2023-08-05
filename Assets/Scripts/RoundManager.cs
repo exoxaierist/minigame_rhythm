@@ -32,6 +32,7 @@ public class RoundManager : MonoBehaviour
             score[player] += 1;            
             if (scoreUI != null) scoreUI.ShowUI(player);
             BeatSystem.instance.Stop();
+            Global.sfx.Play(Global.assets.aRoundUp);
             if (score[player] != maxScore) StartCoroutine(Delay());
             else StartCoroutine(ExitGame());
         }       

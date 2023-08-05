@@ -28,7 +28,7 @@ MonoBehaviour:
   aShootBullet: {fileID: 8300000, guid: ce28fa00e3a0ff84a9513e849401fd3f, type: 3}
   aHitWall: {fileID: 8300000, guid: 961d9affe129c4e48928af8cd9c0c89f, type: 3}
   aHitDamage: {fileID: 8300000, guid: 40c34df9d498b6e4db0aadd1a429eecb, type: 3}
-  aTeleport: {fileID: 0}
+  aTeleport: {fileID: 8300000, guid: 585151f21e5a073419c7ce13d4c3fd41, type: 3}
   aLaserFire: {fileID: 8300000, guid: 26afc793f11dd4149a05085fb86b9f2b, type: 3}
   aLaserHit: {fileID: 8300000, guid: b1304e255e45f0b458d84b724110284a, type: 3}
   aNotEnoughEnergy: {fileID: 8300000, guid: 50a3dd1638feae64eaba4824321faa18, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
   aFainted: {fileID: 8300000, guid: 2fc6ad4013c9c1147adb578c2b77e6e0, type: 3}
   aChangeEnergy: {fileID: 8300000, guid: 5ca9c631ffe31944fa4583c6366234e4, type: 3}
   aFullEnergy: {fileID: 8300000, guid: c16535dbb001fa745b71fb719d6a1d66, type: 3}
-  aRoundUp: {fileID: 0}
+  aRoundUp: {fileID: 8300000, guid: 58dd62fa57115d14484fe4173e60c0f7, type: 3}
   item: {fileID: 7459990735481118363, guid: a01f37b0156515148acc9258b2475484, type: 3}
   Faint: {fileID: 7582767708024264728, guid: df8a3cb105723144f8df96344096f3ce, type: 3}
   Chorus: {fileID: 4405037038418860538, guid: e93f4cbcdf001e347ad3243ef2832421, type: 3}
@@ -51,6 +51,6 @@ MonoBehaviour:
   - {fileID: 496536126, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: -281784189, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: 1596126650, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
-  - {fileID: 1096839573, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: -1246506860, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
   - {fileID: -755835254, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}
+  - {fileID: 1096839573, guid: e34b247ec1f74ca46b38c149d6cc1266, type: 3}

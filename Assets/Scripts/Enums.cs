@@ -41,7 +41,7 @@ public enum ItemType
     Heal = 3,
     MaxEnergy = 4,
     ChangeEnergy = 5,
-    Bang = 6,
-    Cross = 7,
-    Chorus = 8,
+    Cross = 6,
+    Chorus = 7,
+    Bang = 8,
 }

@@ -26,7 +26,10 @@ public class Item : MonoBehaviour
         it = (ItemType)UnityEngine.Random.Range(1, itemCount);
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.sprite = Global.assets.itemImg[(int)it];
+        if(it == ItemType.Bang)
+            sr.sprite = Global.assets.itemImg[UnityEngine.Random.Range(1, itemCount-1)];
+        else
+            sr.sprite = Global.assets.itemImg[(int)it];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,6 +45,7 @@ public class Item : MonoBehaviour
         iFunc.StoreItem(it);
 
         Disable();
+        Global.itemSpawner.Spawn();
     }
 
     public void Disable()
