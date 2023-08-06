@@ -7,7 +7,7 @@ using DG.Tweening;
 public class ScoreUI : MonoBehaviour
 {
     public GameObject[] scoreText = new GameObject[2];
-    TextMeshProUGUI winnerText = new TextMeshProUGUI();
+    TextMeshProUGUI winnerText;
 
     private void Awake()
     {

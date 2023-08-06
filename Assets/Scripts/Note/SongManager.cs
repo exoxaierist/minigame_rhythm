@@ -21,13 +21,13 @@ public class SongManager : MonoBehaviour
 
     public AudioClip SearchSong(string name)
     {
-        if(GameObject.Find("MusicList") != null) BGM = GameObject.Find("MusicList").GetComponent<MusicList>().BGM;
+        if (GameObject.Find("MusicList") != null) BGM = MusicList.instance.BGM;
         foreach(AudioClip clip in BGM)
         {
             if(clip.name == name)
             {
                 if (audioSource == null)
-                    audioSource = GetComponent<AudioSource>();
+                    audioSource = GetComponent<AudioSource>();               
                 return clip;
             }
         }
@@ -49,6 +49,7 @@ public class SongManager : MonoBehaviour
                 audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume / (duration / 0.1f) * i);
                 yield return new WaitForSeconds(0.1f);
             }
+            setVolume(0, 0);
         }
         else audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume);
     }

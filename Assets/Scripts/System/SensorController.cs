@@ -31,7 +31,7 @@ public class SensorController : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            if(uitype == UIType.Music)
+            if (uitype == UIType.Music)
             {
                 mapSelect = true;
                 UIm.UITypenNum += 1;
@@ -94,7 +94,7 @@ public class SensorController : MonoBehaviour
             sceneChanger.GetComponent<SceneChanger>().musicName = mName;
             if (UIm.UITypenNum == 0 && !mapSelect)
                 albumImg[collision.gameObject.GetComponent<MusicInfo>().mapNum].gameObject.SetActive(true);
-            foreach (AudioClip clip in GameObject.Find("MusicList").GetComponent<MusicList>().BGM)
+            foreach (AudioClip clip in MusicList.instance.BGM)
             {
                 if (clip.name == mName)
                 {
