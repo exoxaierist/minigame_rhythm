@@ -24,6 +24,7 @@ public class SensorController : MonoBehaviour
 
     private void Awake()
     {
+        mapSelect = false;
         sceneChanger = GameObject.Find("SceneManager");
     }
 

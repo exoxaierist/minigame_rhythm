@@ -32,15 +32,16 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(int mapNumber)
     {
         SetTimeScale(1);
-        SetSound(false);
         if (!Application.CanStreamedLevelBeLoaded(mapNumber)) return;
         SceneManager.LoadScene(mapNumber);
+        SetSound(false);
     }
 
     public void UnloadCurrentScene()
     {
         UnloadStaticValues();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.UnloadSceneAsync(currentSceneIndex);
     }
 
     public void SetTimeScale(float value)
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var field in staticFields)
         {
-            if (field.FieldType == typeof(int) || field.FieldType == typeof(float) || field.FieldType == typeof(LayerMask) || field.FieldType == typeof(Vector2)) 
+            if (field.FieldType == typeof(int) || field.FieldType == typeof(float) || field.FieldType == typeof(LayerMask) || field.FieldType == typeof(Vector2) || field.FieldType == typeof(Color)) 
                 continue;
             field.SetValue(null, null);
         }

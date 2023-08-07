@@ -49,7 +49,6 @@ public class SongManager : MonoBehaviour
                 audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume / (duration / 0.1f) * i);
                 yield return new WaitForSeconds(0.1f);
             }
-            setVolume(0, 0);
         }
         else audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume);
     }
