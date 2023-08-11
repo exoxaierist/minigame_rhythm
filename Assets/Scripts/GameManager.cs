@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
         SetTimeScale(1);
         if (!Application.CanStreamedLevelBeLoaded(mapNumber)) return;
         SceneManager.LoadScene(mapNumber);
-        SetSound(false);
     }
 
     public void UnloadCurrentScene()

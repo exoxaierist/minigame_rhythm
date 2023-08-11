@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour
     public int MapNum;
     private void Awake()
     {
+        AudioListener.pause = false;
         DontDestroyOnLoad(gameObject);
     }
  

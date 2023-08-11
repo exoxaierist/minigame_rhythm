@@ -19,15 +19,16 @@ public class BeatSystem : MonoBehaviour
         sM = GetComponent<SongManager>();
         mP = GetComponent<MidiFileParser>();
         nM = GetComponent<NoteManager>();
-        if (GameObject.Find("SceneManager") != null)
+        GameObject tmp = GameObject.Find("SceneManager");
+        if (tmp != null)
         {
-            songName = GameObject.Find("SceneManager").GetComponent<SceneChanger>().musicName;
+            songName = tmp.GetComponent<SceneChanger>().musicName;
             if (sM.SearchSong(songName) == null)
                 mP.GetMidiFile(sM.BGM[1].name);
         }
         else
             mP.GetMidiFile(sM.BGM[1].name);
-        
+        Destroy(tmp);
         Global.GetTimingms += GetDelaytime;
         
         Global.CheckBeat += Detection;
