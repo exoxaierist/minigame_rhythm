@@ -10,7 +10,16 @@ public class SoundOptions : MonoBehaviour
     // 슬라이더
     public Slider BgmSlider;
     public Slider SfxSlider;
-        
+
+    public void Awake()
+    {
+        float currentValue;
+        audioMixer.GetFloat("BGM", out currentValue);
+        BgmSlider.value = Mathf.Pow(10, (currentValue / 20));
+        audioMixer.GetFloat("SFX", out currentValue);
+        SfxSlider.value = Mathf.Pow(10, (currentValue / 20));
+    }
+
     // 볼륨 조절
     public void SetBgmVolme()
     {

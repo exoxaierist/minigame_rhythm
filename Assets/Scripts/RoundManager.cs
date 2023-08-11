@@ -61,6 +61,7 @@ public class RoundManager : MonoBehaviour
     IEnumerator ExitGame()
     {
         yield return new WaitForSeconds(3);
+        GameObject.Find("UI").transform.Find("BeatUI").GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Master", 0);
         GameManager.instance.ChangeScene(0);
         GameManager.instance.UnloadCurrentScene();       
     }

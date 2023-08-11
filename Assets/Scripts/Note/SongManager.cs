@@ -10,7 +10,7 @@ public class SongManager : MonoBehaviour
 
     public void PlaySong()
     {
-        audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", 0);
+        audioSource.outputAudioMixerGroup.audioMixer.SetFloat("Master", 0);
         if (SearchSong(GetComponent<BeatSystem>().songName) != null)
             audioSource.clip = SearchSong(GetComponent<BeatSystem>().songName);
         else
@@ -46,10 +46,10 @@ public class SongManager : MonoBehaviour
         {
             for (int i = 0; i < duration / 0.1f; i++)
             {
-                audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume / (duration / 0.1f) * i);
+                audioSource.outputAudioMixerGroup.audioMixer.SetFloat("Master", volume / (duration / 0.1f) * i);
                 yield return new WaitForSeconds(0.1f);
             }
         }
-        else audioSource.outputAudioMixerGroup.audioMixer.SetFloat("BGM", volume);
+        else audioSource.outputAudioMixerGroup.audioMixer.SetFloat("Master", volume);
     }
 }
