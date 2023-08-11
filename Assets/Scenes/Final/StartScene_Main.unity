@@ -2093,6 +2093,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1205003626}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UImanager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845572891901352362, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
+      propertyPath: buttonEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4845572892542988051, guid: 6e0ff1f6dde1a0646b68cf1753e42968, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -19,6 +19,6 @@ public class LayerChanger : MonoBehaviour
     }
     public void LayerToDefault()
     {
-        spren.sortingLayerName = "Default";
+        spren.sortingLayerName = "WallTop";
     }
 }

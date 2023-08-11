@@ -92,6 +92,10 @@ public class UImanager : MonoBehaviour
             btnGroupTrans[UITypenNum].position = Vector3.Lerp(btnGroupTrans[UITypenNum].position, downTrans[UITypenNum].position, 20 * Time.deltaTime);
         }
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 
     public IEnumerator SparkleTime()
     {
